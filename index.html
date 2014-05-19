@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html ng-app="ereader">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>O'Neil Book Shop</title>
+	<link rel="stylesheet" href="css/normalize.css">
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<body onselectstart="return false;" ondragstart="return false;">
+	<div class="container">
+		<div class="header">
+			<button id="button-signin" >Sign In</button>
+			<button id="button-setting" ></button>
+		</div>
+		<div ng-show="false" class="section">
+			<div class="section-header">MY LIBRARY</div>
+		</div>
+		<div class="section">
+			<div class="section-header">SPECIAL REPORTS</div>
+		</div>
+		<div class="section">
+			<div class="section-header">INSTITUTIONAL RESEARCH</div>
+		</div>
+		<div class="section">
+			<div class="section-header">MARKET DATA</div>
+		</div>
+	</div>
+
+	<!-- mask -->
+	<div ng-show="false" class="mask"></div>
+
+	<!-- signin -->
+	<div ng-show="false" id="signin" class="modal">
+		<div class="modal-header">
+			<h1>Sign In</h1>
+			<button class="button-right">Close</button>
+		</div>
+		<div class="modal-body">
+				<form method="post">
+					<ul>
+						<li>
+							<input required type="email" name="email" placeholder="Email">
+						</li>
+						<li>
+							<input required type="password" name="password" placeholder="Password">
+							<button type="submit" class = "button-submit fr">Sign In</button>
+						</li>
+					</ul>	
+				</form>
+				<img src="img/signin/divider.png" width="100%"/>
+				<p class="modal-text">O'Neil Institutional Library®</p>
+				<br/>
+				<p class="modal-text">This library offers institutional investing clients of William O'Neil + Co. digital</p>
+				<p class="modal-text">access to their services, including global buy-and-sell recommendations, sector</p>
+				<p class="modal-text">strategy, customized research, and data.</p>
+				<br/>
+				<p class="modal-text">To learn more about our services, contact us at:</p>
+				<p class="modal-text">800.419.6632 (US) | 0.800.969.581 (UK) | 310.448.6199 (International)</p>
+				<p class="modal-text"><a href="mailto:support@williamoneil.com">support@williamoneil.com</a></p>
+				<br/>
+				<p class="modal-text">William O'Neil + Co. is a registered Investment Advisor providing independent research and consulting services.</p>
+		</div>
+	</div>
+
+	<script src="js/angular.min.js"></script>
+	<script src="js/app.js"></script>
+	<script src="js/controllers.js"></script>
+</body>
+</html>

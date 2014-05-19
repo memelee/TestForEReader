@@ -5,13 +5,14 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>O'Neil Book Shop</title>
 	<link rel="stylesheet" href="css/normalize.css">
+	<link rel="stylesheet" href="css/reset.css">
 	<link rel="stylesheet" href="css/style.css">
 </head>
-<body onselectstart="return false;" ondragstart="return false;">
-	<div class="container">
+<body ng-controller="MainCtrl" onselectstart="return false;" ondragstart="return false;">
+	<div ng-controller="HomeCtrl" class="container">
 		<div class="header">
-			<button id="button-signin" >Sign In</button>
-			<button id="button-setting" ></button>
+			<button ng-click="showSignin()" id="button-signin">Sign In</button>
+			<button ng-click="showSetting()" id="button-setting"></button>
 		</div>
 		<div ng-show="false" class="section">
 			<div class="section-header">MY LIBRARY</div>
@@ -28,10 +29,10 @@
 	</div>
 
 	<!-- mask -->
-	<div ng-show="false" class="mask"></div>
+	<div ng-show="isShowMask" class="mask"></div>
 
 	<!-- signin -->
-	<div ng-show="false" id="signin" class="modal">
+	<div ng-controller="SigninCtrl" ng-show="isShowSignin" id="signin" class="modal">
 		<div class="modal-header">
 			<h1>Sign In</h1>
 			<button class="button-right">Close</button>
@@ -49,7 +50,7 @@
 					</ul>	
 				</form>
 				<img src="img/signin/divider.png" width="100%"/>
-				<p class="modal-text">O'Neil Institutional Library®</p>
+				<p class="modal-text text-bold">O'Neil Institutional Library®</p>
 				<br/>
 				<p class="modal-text">This library offers institutional investing clients of William O'Neil + Co. digital</p>
 				<p class="modal-text">access to their services, including global buy-and-sell recommendations, sector</p>
@@ -59,7 +60,7 @@
 				<p class="modal-text">800.419.6632 (US) | 0.800.969.581 (UK) | 310.448.6199 (International)</p>
 				<p class="modal-text"><a href="mailto:support@williamoneil.com">support@williamoneil.com</a></p>
 				<br/>
-				<p class="modal-text">William O'Neil + Co. is a registered Investment Advisor providing independent research and consulting services.</p>
+				<p class="modal-text text-disable">William O'Neil + Co. is a registered Investment Advisor providing independent research and consulting services.</p>
 		</div>
 	</div>
 

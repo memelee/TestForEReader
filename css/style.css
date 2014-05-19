@@ -4,20 +4,108 @@
 .fr { float: right; }
 .mask { position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 99; background-color: #000; opacity: 0.8; }
 
+.text-bold{ font-weight: bold !important; }
+.text-disable{ color: #646464 !important; }
+
 /*main*/
 body { background-color: #000; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; }
 .container { position: relative; margin: 0 auto; width: 1024px; }
 .header { position: relative; width: 1024px; height: 71px; background: url(../img/main/header.png) no-repeat; background-size: 100% 100%; }
-	#button-signin { position: absolute; cursor: pointer; width: 80px; height: 30px; top: 30px; right: 60px; border: 0; padding: 0; color: #fff; font-size: 12px; font-weight: bold; line-height: 30px; background: url(../img/main/button-signin.png) no-repeat; background-size: 100% 100%; }
-	#button-setting { position: absolute; cursor: pointer; width: 30px; height: 30px; top: 30px; right: 20px; border: 0; padding: 0; background: url(../img/main/button-setting.png) no-repeat; background-size: 100% 100%; }
+	#button-signin { position: absolute; width: 80px; height: 30px; top: 30px; right: 60px; border: 0; padding: 0; color: #fff; font-size: 12px; font-weight: bold; line-height: 30px; background: url(../img/main/button-signin.png) no-repeat; background-size: 100% 100%; }
+	#button-setting { position: absolute; width: 30px; height: 30px; top: 30px; right: 20px; border: 0; padding: 0; background: url(../img/main/button-setting.png) no-repeat; background-size: 100% 100%; }
 .section { width: 1024px; height: 322px; overflow: hidden; background: url(../img/main/section.png) no-repeat; background-size: 100% 100%; }
 	.section-header { margin: 10px 0 0 20px; color: #999; font-size: 12px; font-weight: bold; }
+.button-submit { 
+	width: 80px; 
+	height: 30px; 
+	border: 0; 
+	font-size: 12px; 
+	font-weight: bold; 
+	color: #3399ee; 
+	background: url(../img/main/button-signin.png) no-repeat; 
+	background-size: 100% 100%;
+	border-radius: 5px;  
+}
+
 
 /*modal*/
 .modal {
 	position: fixed;
 	z-index: 100;
-	top: 50px;
+	margin: auto 0;
+	top: 100px;
 	border-radius: 5px;
 }
+	.modal-header {
+		height: 40px;
+		color: #fff;
+		line-height: 40px;
+		background: url(../img/signin/modal-header.png) repeat;
+		background-size: auto 100%;
+		border-top-left-radius: 5px;
+		border-top-right-radius: 5px;
+	}
+		.modal-header h1 {
+			text-align: center;
+			color: #fff;
+			font-size: 16px;
+			font-weight: bold;
+		}
+		.modal-header button {
+			position: absolute; 
+			top: 7px; 
+			height: 26px; 
+			width: 50px; 
+			border: 0; 
+			padding: 0;
+			color: #fff; 
+			font-size: 13px; 
+			font-weight: bold; 
+			line-height: 26px;
+			border-radius: 5px; 
+			box-shadow:1px 1px 1px #000 inset; 
+			background: url(../img/main/button-signin.png) no-repeat; 
+			background-size: 100% 100%;
 
+		}
+		.modal-header .button-left { 
+			left: 20px;
+		}
+		.modal-header .button-right { 
+			right: 20px; 
+		}
+	.modal-body {
+		background: url(../img/main/modal-body.png) no-repeat;
+		background-size: 100% 100%;
+		border-bottom-left-radius: 10px; 
+		border-bottom-right-radius: 10px;
+	}
+	.modal-text {
+		text-align: center;
+		color: #fff;
+		font-size: 12px;
+		line-height: 13px;
+	}
+
+/*signin*/
+#signin {
+	width: 600px;
+	height: 370px;
+}
+	#signin .modal-body {
+		height: 300px;
+		padding-top: 30px;
+	}
+		#signin ul { 
+			margin: 0 auto; 
+			width: 380px; 
+		}
+			#signin ul li input {
+				margin-bottom: 20px;
+				width: 280px; 
+				height: 25px; 
+				color: #000; 
+				font-size: 14px; 
+				text-indent: 10px; 
+				border-radius: 5px; 
+			}

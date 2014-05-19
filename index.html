@@ -32,35 +32,37 @@
 	<div ng-show="isShowMask" class="mask"></div>
 
 	<!-- signin -->
-	<div ng-controller="SigninCtrl" ng-show="isShowSignin" id="signin" class="modal">
-		<div class="modal-header">
-			<h1>Sign In</h1>
-			<button class="button-right">Close</button>
-		</div>
-		<div class="modal-body">
-				<form method="post">
-					<ul>
-						<li>
-							<input required type="email" name="email" placeholder="Email">
-						</li>
-						<li>
-							<input required type="password" name="password" placeholder="Password">
-							<button type="submit" class = "button-submit fr">Sign In</button>
-						</li>
-					</ul>	
-				</form>
-				<img src="img/signin/divider.png" width="100%"/>
-				<p class="modal-text text-bold">O'Neil Institutional Library®</p>
-				<br/>
-				<p class="modal-text">This library offers institutional investing clients of William O'Neil + Co. digital</p>
-				<p class="modal-text">access to their services, including global buy-and-sell recommendations, sector</p>
-				<p class="modal-text">strategy, customized research, and data.</p>
-				<br/>
-				<p class="modal-text">To learn more about our services, contact us at:</p>
-				<p class="modal-text">800.419.6632 (US) | 0.800.969.581 (UK) | 310.448.6199 (International)</p>
-				<p class="modal-text"><a href="mailto:support@williamoneil.com">support@williamoneil.com</a></p>
-				<br/>
-				<p class="modal-text text-disable">William O'Neil + Co. is a registered Investment Advisor providing independent research and consulting services.</p>
+	<div ng-controller="SigninCtrl" ng-show="isShowSignin" class="modal">
+		<div id="signin" class="modal-container">
+			<div class="modal-header">
+				<h1>Sign In</h1>
+				<button class="button-right">Close</button>
+			</div>
+			<div class="modal-body">
+					<form method="post">
+						<ul>
+							<li>
+								<input required type="email" name="email" placeholder="Email">
+							</li>
+							<li>
+								<input required type="password" name="password" placeholder="Password">
+								<button type="submit" class = "button-submit fr">Sign In</button>
+							</li>
+						</ul>	
+					</form>
+					<img src="img/signin/divider.png" width="100%"/>
+					<p class="modal-text text-bold">O'Neil Institutional Library®</p>
+					<br/>
+					<p class="modal-text">This library offers institutional investing clients of William O'Neil + Co. digital</p>
+					<p class="modal-text">access to their services, including global buy-and-sell recommendations, sector</p>
+					<p class="modal-text">strategy, customized research, and data.</p>
+					<br/>
+					<p class="modal-text">To learn more about our services, contact us at:</p>
+					<p class="modal-text">800.419.6632 (US) | 0.800.969.581 (UK) | 310.448.6199 (International)</p>
+					<p class="modal-text"><a href="mailto:support@williamoneil.com">support@williamoneil.com</a></p>
+					<br/>
+					<p class="modal-text text-disable">William O'Neil + Co. is a registered Investment Advisor providing independent research and consulting services.</p>
+			</div>
 		</div>
 	</div>
 

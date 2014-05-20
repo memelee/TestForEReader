@@ -3,7 +3,7 @@
 .fl { float: left; }
 .fr { float: right; }
 
-.mask { position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 99; background-color: #000; opacity: 0.8; }
+.mask { position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 99; background-color: #000; }
 .modal { position: fixed; top: 100px; left: 0; right: 0; z-index: 100; }
 
 .text-bold{ font-weight: bold !important; }

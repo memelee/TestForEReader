@@ -1,20 +1,25 @@
 var MainCtrl = function($scope) {
 	$scope.isShowMask = false;
-	$scope.$on("showSigninEmit", function(event) {
+	$scope.isShowSignin = false;
+
+	$scope.$on("showSignin", function(event) {
 		$scope.isShowMask = true;
-		$scope.$broadcast("showSigninCast");
+		$scope.isShowSignin = true;
+	});
+	$scope.$on("hideSignin", function(event) {
+		$scope.isShowSignin = false;
+		$scope.isShowMask = false;
 	});
 };
 
 var HomeCtrl = function($scope) {
 	$scope.showSignin = function() {
-		$scope.$emit("showSigninEmit");
+		$scope.$emit("showSignin");
 	};
 };
 
 var SigninCtrl = function($scope) {
-	$scope.isShowSignin = false;
-	$scope.$on("showSigninCast", function(event) {
-		$scope.isShowSignin = true;
-	});
+	$scope.hideSignin = function() {
+		$scope.$emit("hideSignin");
+	};
 };

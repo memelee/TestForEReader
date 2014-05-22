@@ -10,13 +10,13 @@
 .mask.ng-hide-remove,
 .mask.ng-hide-add.ng-hide-add-active {
   	display: block !important; 
-	opacity: 0;
+    opacity: 0;
 }
 
 .mask.ng-hide-add,
 .mask.ng-hide-remove.ng-hide-remove-active {
   	display: block !important;
-	opacity: 0.8;
+    opacity: 0.8;
 }
 
 .modal.ng-hide-remove,

@@ -17,20 +17,84 @@
 		</div>
 		<div ng-show="false" class="section">
 			<div class="section-header">MY LIBRARY</div>
+			<ul class="section-list" style="width:{{256 * mlBookList.length}}px;">
+				<li ng-repeat="each in mlBookList" ng-click="openPDF('ml', $index)">
+					<div class="book-thumb">
+	                	<img ng-src="{{serverAddress + each.coverUrl}}">
+	                </div>
+	                <div class="book-label">each.bookName</div>
+	                <div class="book-date">each.bookDate</div>
+	            </li>	
+			</ul>
 		</div>
 		<div class="section">
 			<div class="section-header">SPECIAL REPORTS</div>
+			<ul class="section-list" style="width:{{256 * srBookList.length}}px;">
+				<li ng-repeat="each in srBookList" ng-click="openPDF('sr', $index)">
+					<div class="book-thumb">
+	                	<img ng-src="{{serverAddress + each.coverUrl}}">
+	                </div>
+	                <div ng-if="!each.pdfname" class="book-lock">
+						<img src="img/main/locker.png">
+	                </div>
+	                <div class="book-label">{{each.bookName}}</div>
+	                <div class="book-date">{{each.bookDate}}</div>
+	            </li>
+			</ul>
 		</div>
 		<div class="section">
 			<div class="section-header">INSTITUTIONAL RESEARCH</div>
+			<ul class="section-list" style="width:{{256 * irBookList.length}}px;">
+				<li ng-repeat="each in irBookList" ng-click="showProduct()">
+					<div class="book-thumb">
+	                	<img ng-src="{{serverAddress + each.coverUrl}}">
+	                </div>
+	                <div class="book-label">{{each.bookName}}</div>
+	                <div class="book-date">{{each.bookDate}}</div>
+	            </li>
+			</ul>
 		</div>
 		<div class="section">
 			<div class="section-header">MARKET DATA</div>
+			<ul class="section-list" style="width:{{256 * mdBookList.length}}px;">
+				<li ng-repeat="each in mdBookList" ng-click="showProduct()">
+					<div class="book-thumb">
+	                	<img ng-src="{{serverAddress + each.coverUrl}}">
+	                </div>
+	                <div class="book-label">{{each.bookName}}</div>
+	                <div class="book-date">{{each.bookDate}}</div>
+	            </li>
+			</ul>
 		</div>
 	</div>
 
 	<!-- mask -->
 	<div ng-show="isShowMask" class="mask"></div>
+
+	<!-- product -->
+	<div ng-show="isShowProduct" class="modal">
+		<div ng-controller="ProductCtrl" id="product" class="modal-container">
+			<div class="modal-header">
+				<h1>Product Information</h1>
+				<button ng-click="hideProduct()" class="button-right">Close</button>
+			</div>
+			<div class="modal-body">
+				<div class="part-container">
+					<div class="part fl" style="width: 300px; margin-left: 40px;">
+						<img class="part-wall">
+						<ul class="part-thumbnail"></ul>
+					</div>
+					<div class="part fl" style="width: 300px; margin-right: 40px;">
+						<h1 class="part-title"></h1>
+						<iframe class="part-description" frameborder="1" framespacing="0"></iframe>
+						<p class="part-text">For access to TITLE, please contact your Account Exective.</p>
+						<button ng-click="requestBook()">Request Service</button>
+					</div>
+					<div class="part fl" style="width: 640px;"></div>
+				</div>
+			</div>
+		</div>
+	</div>
 
 	<!-- signin -->
 	<div ng-show="isShowSignin" class="modal">
@@ -63,6 +127,32 @@
 					<p class="modal-text"><a href="mailto:support@williamoneil.com">support@williamoneil.com</a></p>
 					<br/>
 					<p class="modal-text text-disable">William O'Neil + Co. is a registered Investment Advisor providing independent research and consulting services.</p>
+			</div>
+		</div>
+	</div>
+
+	<!-- setting -->
+	<div ng-show="isShowSetting" class="modal">
+		<div ng-controller="SettingCtrl" id="setting" class="modal-container">
+			<div class="modal-header">
+				<h1>Setting</h1>
+				<button ng-click="hideSetting()" class="button-right">Close</button>
+			</div>
+			<div class="modal-body">
+				<img src="img/setting/setting-header.png" width="80%">
+				<br />
+				<br />
+				<p class="modal-text">Service & Support</p>
+				<p class="modal-text">Contact William O'Neil Client Services:</p>
+				<p class="modal-text">US: (800) 419-6632</p>
+				<p class="modal-text">UK: 0 (800) 969-581</p>
+				<p class="modal-text">International: (310) 448-6199</p>
+				<p class="modal-text"><a href="mailto:support@williamoneil.com">support@williamoneil.com</a></p>
+				<br />
+				<br />
+				<p class="modal-text">Copyright 2013 William O'Neil + Co. Incorporated</p>
+				<p class="modal-text">Terms & Conditions</p>
+				<p class="modal-text">Version HTML 1.0 Build 1.0</p>
 			</div>
 		</div>
 	</div>

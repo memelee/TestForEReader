@@ -1,0 +1,29 @@
+{
+	"response": {
+		"responseHeader": {
+			"error": false,
+			"errorCode": null,
+			"errorShortDesc": null,
+			"errorLongDesc": null,
+			"asOfDate": 1380095448097
+		},
+		"productData": {
+			"textUrl": "/public/text/exclusive_focus_list.html",
+			"imgUrl": "/public/pd2x/xfl-long.jpg",
+			"imageData": [{
+				"seqNo": 1,
+				"shortText": "Sample Story page on a Stock",
+				"smallImgUrl": "/public/smallimg2x/xfl_pg1@2x.png",
+				"largeImgUrl": "/public/largeimg2x/xfl_pg1@2x.png",
+				"longText": "Sample Story page on a Stock"
+			}, {
+				"seqNo": 2,
+				"shortText": "Sample of a Datagraph",
+				"smallImgUrl": "/public/smallimg2x/xfl_pg2@2x.png",
+				"largeImgUrl": "/public/largeimg2x/xfl_pg2@2x.png",
+				"longText": "Sample of a Datagraph"
+			}],
+			"bookID": 12
+		}
+	}
+}

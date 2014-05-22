@@ -1,9 +1,10 @@
 /*common*/
 .hide { display: none; }
+.clear { clear: both; }
 .fl { float: left; }
 .fr { float: right; }
 
-.mask { position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 99; background-color: #000; }
+.mask { position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 99; background-color: #000; opacity: 0.8; }
 .modal { position: fixed; top: 100px; left: 0; right: 0; z-index: 100; }
 
 .text-bold{ font-weight: bold !important; }
@@ -15,8 +16,15 @@ body { background-color: #000; -webkit-user-select: none; -moz-user-select: none
 .header { position: relative; width: 1024px; height: 71px; background: url(../img/main/header.png) no-repeat; background-size: 100% 100%; }
 	#button-signin { position: absolute; width: 80px; height: 30px; top: 30px; right: 60px; border: 0; padding: 0; color: #fff; font-size: 12px; font-weight: bold; line-height: 30px; background: url(../img/main/button-signin.png) no-repeat; background-size: 100% 100%; }
 	#button-setting { position: absolute; width: 30px; height: 30px; top: 30px; right: 20px; border: 0; padding: 0; background: url(../img/main/button-setting.png) no-repeat; background-size: 100% 100%; }
-.section { width: 1024px; height: 322px; overflow: hidden; background: url(../img/main/section.png) no-repeat; background-size: 100% 100%; }
-	.section-header { margin: 10px 0 0 20px; color: #999; font-size: 12px; font-weight: bold; }
+.section { position: relative; width: 1024px; height: 322px; overflow: hidden; background: url(../img/main/section.png) no-repeat; background-size: 100% 100%; }
+	.section-header { margin: 10px 20px; color: #999; font-size: 12px; font-weight: bold; }
+	.section-list { height: 250px; }
+	.section-list li { position: relative; float: left; height: 100%; width: 256px; background: url(../img/main/light.png) no-repeat; background-position: center; background-size: 80% 100%; }
+		.section-list .book-thumb { margin: 50px 0 20px; height: 156px; text-align: center; }
+			.section-list .book-thumb img { height: 100%; cursor: pointer; }
+		.section-list .book-lock { position: absolute; top: 50px; height: 156px; width: 100%; text-align: center; }
+			.section-list .book-lock img { height: 100%; cursor: pointer; }
+		.section-list .book-label, .section-list .book-date { margin: 5px; text-align: center; color: white; font-size: 12px; }
 .button-submit { width: 80px; height: 30px; border: 0; font-size: 12px; font-weight: bold; color: #3399ee; background: url(../img/main/button-signin.png) no-repeat; background-size: 100% 100%; border-radius: 5px; }
 
 /*modal*/
@@ -26,11 +34,26 @@ body { background-color: #000; -webkit-user-select: none; -moz-user-select: none
 		.modal-header button { position: absolute; top: 7px; height: 26px; width: 50px; border: 0; padding: 0; color: #fff; font-size: 13px; font-weight: bold; line-height: 26px; border-radius: 5px; box-shadow:1px 1px 1px #000 inset; background: url(../img/main/button-signin.png) no-repeat; background-size: 100% 100%; }
 		.modal-header .button-left { left: 20px; }
 		.modal-header .button-right { right: 20px; }
-	.modal-body { background: url(../img/main/modal-body.png) no-repeat; background-size: 100% 100%; border-bottom-left-radius: 5px; border-bottom-right-radius: 5px; }
+	.modal-body { text-align: center; background: url(../img/main/modal-body.png) no-repeat; background-size: 100% 100%; border-bottom-left-radius: 5px; border-bottom-right-radius: 5px; }
 	.modal-text { text-align: center; color: #fff; font-size: 12px; line-height: 13px; }
+
+/*product*/
+#product { width: 720px; height: 480px; overflow: hidden;}
+	#product .modal-body { height: 400px; padding-top: 40px; }
+		#product .modal-body .part-container {
+			width: 200%;
+			height: 100%;
+		}
+			#product .modal-body .part-container .part {
+				margin: 0 20px;
+			}
 
 /*signin*/
 #signin { width: 600px; height: 370px; }
 	#signin .modal-body { height: 300px; padding-top: 30px; }
-		#signin ul { margin: 0 auto; width: 380px; }
-			#signin ul li input { margin-bottom: 20px; width: 280px; height: 25px; color: #000; font-size: 14px; text-indent: 10px; border-radius: 5px; }
+		#signin .modal-body ul { margin: 0 auto; width: 380px; text-align: left; }
+			#signin .modal-body ul li input { margin-bottom: 20px; width: 280px; height: 25px; color: #000; font-size: 14px; text-indent: 10px; border-radius: 5px; }
+
+/*setting*/
+#setting { width: 500px; height: 310px; }
+	#setting .modal-body { height: 240px; padding-top: 30px; }

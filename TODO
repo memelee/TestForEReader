@@ -1,0 +1,15 @@
+15292 PBI
+
+There is an effort underway to 'true-up' the eReader website experience so that it resembles closer to how the eReader iPad experience is.  This may include PDF availability and features/tools.
+ 
+http://wonqaweb/eReaderHTML5/index.html
+ 
+Font Type should match the iPad - in Authenticated and Unauthenticated View.
+Add a low profile, low contract horizontal arrows to the left/right, when there is actually more at each level.  A dark gray arrow may be fine.  This convention for scrolling seems more modern than an actual scrollbar.  Amazon does something similar.
+If you can add a tiny amount of momentum to the scroll experience, that would be nice too, so it doesn't feel so stiff.
+In the Settings/Help section, we should have a link someplace to the WON website, www.williamoneil.com.
+The thumbnail images on the product slides are not clickable - they should be.  Clicking on them should open the image.
+The Product slides all show an XFL image in unauthenticated view.  This is the marketing section of the page.  Each Product slide should only s show that product information.
+There is an Error for Invalid Address Format.  It shows a 404 page - instead, show the same theme of messaging as appears on the iPad.
+The invalid password message should not show a 404 page - copy iPad.
+Remove the 50th Anniversary banner.

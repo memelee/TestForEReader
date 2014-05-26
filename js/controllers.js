@@ -5,21 +5,36 @@ var MainCtrl = function($scope, $http) {
 	$scope.isShowSignin = false;
 	$scope.isShowSetting = false;
 
+	$scope.mlBookList = [];
+	$scope.srBookList = [];
+	$scope.irBookList = [];
+	$scope.mdBookList = [];
+
 	$http({
 		method: "GET",
 		url: "js/json/booklist.json"
 	})
 	.success(function(data, status, headers, config) {
 		var bookData = data["response"]["bkdata"];
-		$scope.$broadcast("bindBookList", bookData);
+		for (var i in bookData) {
+			var each = bookData[i];
+			if (each.bookCategoryName == "Special Reports") {
+				$scope.srBookList.push(each);
+			} else if (each.bookCategoryName == "Institutional Research") {
+				$scope.irBookList.push(each);			
+			} else if (each.bookCategoryName == "Market Data") {
+				$scope.mdBookList.push(each);
+			}
+		}
 	})
 	.error(function(data, status, headers, config) {
 		alert("load book error");
 	});
 
-	$scope.$on("showProduct", function(event, c, i) {
+	$scope.$on("showProduct", function(event, p) {
 		$scope.isShowMask = true;
 		$scope.isShowProduct = true;
+		$scope.$broadcast("bindProduct", p);
 	});
 	$scope.$on("hideProduct", function(event) {
 		$scope.isShowProduct = false;
@@ -46,13 +61,9 @@ var MainCtrl = function($scope, $http) {
 };
 
 var HomeCtrl = function($scope) {
-	$scope.mlBookList = [];
-	$scope.srBookList = [];
-	$scope.irBookList = [];
-	$scope.mdBookList = [];
-
 	$scope.showProduct = function(c, i) {
-		$scope.$emit("showProduct", c, i);
+		var product = getProduct(c, i);
+		$scope.$emit("showProduct", product);
 	};
 	$scope.showSignin = function() {
 		$scope.$emit("showSignin");
@@ -61,38 +72,65 @@ var HomeCtrl = function($scope) {
 		$scope.$emit("showSetting");
 	};
 	$scope.openPDF = function(c, i) {
-		var addr = "";
-		if (c == "ml") {
-			addr = $scope.mlBookList[i].pdfname;
-		} else if (c == "sr") {
-			addr = $scope.srBookList[i].pdfname;
-		}
-
-		if (addr == "" || addr == null) {
-			$scope.showProduct(c, i);
+		var product = getProduct(c, i);
+		if (product.pdfname == "" || product.pdfname == null) {
+			$scope.$emit("showProduct", product);
 		} else {
-			window.open($scope.serverAddress + addr);
+			window.open($scope.serverAddress + product.pdfname);
 		}
 	};
 
-	$scope.$on("bindBookList", function(event, bookData) {
-		for (var i in bookData) {
-			var each = bookData[i];
-			if (each.bookCategoryName == "Special Reports") {
-				$scope.srBookList.push(each);
-			} else if (each.bookCategoryName == "Institutional Research") {
-				$scope.irBookList.push(each);			
-			} else if (each.bookCategoryName == "Market Data") {
-				$scope.mdBookList.push(each);
-			}
+	var getProduct = function(c, i) {
+		switch (c) {
+		case "ml":
+			return $scope.mlBookList[i];
+			break;
+		case "sr":
+			return $scope.srBookList[i];
+			break;
+		case "ir":
+			return $scope.irBookList[i];
+			break;
+		case "md":
+			return $scope.mdBookList[i];
+			break;
+		default:
+			return null;
+			break;
 		}
-	});
+	};
 };
 
-var ProductCtrl = function($scope) {
+var ProductCtrl = function($scope, $http, $sce) {
+	$scope.isShowRequest = false;
+
 	$scope.hideProduct = function() {
 		$scope.$emit("hideProduct");
 	};
+
+	$scope.showRequest = function() {
+		$scope.isShowRequest = true;
+	};
+
+	$scope.hideNext = function() {
+		$scope.isShowRequest = false;
+	}
+
+	$scope.$on("bindProduct", function(event, p) {
+		$scope.productTitle = p.bookName;
+		$http({
+			method: "GET",
+			url: "js/json/thumblist.json"
+		})
+		.success(function(data, status, headers, config) {
+			var productData = data["response"]["productData"];
+			$scope.product = productData;
+			$scope.productHTML = $sce.trustAsResourceUrl($scope.serverAddress + $scope.product.textUrl);
+		})
+		.error(function(data, status, headers, config) {
+			alert("load book error");
+		});
+	});
 };
 
 var SigninCtrl = function($scope) {

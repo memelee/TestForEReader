@@ -102,18 +102,32 @@ var HomeCtrl = function($scope) {
 };
 
 var ProductCtrl = function($scope, $http, $sce) {
+	$scope.isShowNext = false;
 	$scope.isShowRequest = false;
+	$scope.isShowCarousel = false;
 
 	$scope.hideProduct = function() {
+		$scope.isShowNext = false;
+		$scope.isShowRequest = false;
+		$scope.isShowCarousel = false;
 		$scope.$emit("hideProduct");
 	};
 
 	$scope.showRequest = function() {
+		$scope.isShowNext = true;
 		$scope.isShowRequest = true;
+		$scope.isShowCarousel = false;
+	};
+
+	$scope.showCarousel = function(i) {
+		$scope.isShowNext = true;
+		$scope.isShowRequest = false;
+		$scope.isShowCarousel = true;
+		$scope.activeCarousel = i;
 	};
 
 	$scope.hideNext = function() {
-		$scope.isShowRequest = false;
+		$scope.isShowNext = false;
 	}
 
 	$scope.$on("bindProduct", function(event, p) {

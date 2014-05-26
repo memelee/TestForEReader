@@ -8,6 +8,7 @@
 	<link rel="stylesheet" href="css/reset.css">
 	<link rel="stylesheet" href="css/style.css">
 	<link rel="stylesheet" href="css/animate.css">
+	<link rel="stylesheet" href="css/bootstrap.css">
 </head>
 <body ng-controller="MainCtrl" onselectstart="return false;" ondragstart="return false;">
 	<div ng-controller="HomeCtrl" class="container">
@@ -75,17 +76,17 @@
 	<div ng-show="isShowProduct" class="modal">
 		<div ng-controller="ProductCtrl" id="product" class="modal-container">
 			<div class="modal-header">
-				<button ng-show="isShowRequest" ng-click="hideNext()" class="button-left">Back</button>
+				<button ng-show="isShowNext" ng-click="hideNext()" class="button-left">Back</button>
 				<h1>Product Information</h1>
 				<button ng-click="hideProduct()" class="button-right">Close</button>
 			</div>
 			<div class="modal-body">
-				<div ng-model="product" ng-class="{'part-next-show': isShowRequest}" class="part-container">
+				<div ng-model="product" ng-class="{'part-next-show': isShowNext}" class="part-container">
 					<div class="part fl" style="margin-right: 20px;">
 						<img class="part-wall" src="{{serverAddress + product.imgUrl}}">
 						<ul class="part-thumbnail">
 							<li ng-repeat="each in product.imageData">
-								<img src="{{serverAddress + each.smallImgUrl}}">
+								<img ng-click="showCarousel($index)" src="{{serverAddress + each.smallImgUrl}}">
 								<p>{{each.shortText}}</p>
 							</li>
 						</ul>
@@ -96,7 +97,7 @@
 						<p class="part-text">For access to {{productTitle}}, please contact your Account Exective.</p>
 						<button ng-click="showRequest()" class="button-request">Request Service</button>
 					</div>
-					<div class="part fl part-request">
+					<div ng-If="isShowRequest" class="part fl part-request">
 						<p class="modal-text text-bold">Please tell us who you are and we will respond to you within 1-2 business days.</p>
 							<form method="post">
 								<ul>
@@ -117,6 +118,20 @@
 							<p class="modal-text">US: (800) 419-6632</p>
 							<p class="modal-text">UK: 0 (800) 969-581</p>
 							<p class="modal-text">International: (310) 448-6199</p>
+					</div>
+					<div ng-If="isShowCarousel" class="part fl part-carousel">
+						<div id="carousel" class="carousel slide">
+			                <ol class="carousel-indicators">
+			                  	<li ng-repeat="each in product.imageData" data-target="#carousel" ng-class="{active: $index == activeCarousel}"></li>
+			                </ol>
+			                <div class="carousel-inner">
+			                  	<div ng-repeat="each in product.imageData" class="item" ng-class="{active: $index == activeCarousel}">
+			                    	<img src="{{serverAddress + each.largeImgUrl}}">
+			                  	</div>
+			                </div>
+			                <a class="left carousel-control" href="#carousel" data-slide="prev">‹</a>
+			                <a class="right carousel-control" href="#carousel" data-slide="next">›</a>
+			            </div>
 					</div>
 				</div>
 			</div>
@@ -188,5 +203,8 @@
 	<script src="js/include/angular-animate.min.js"></script>
 	<script src="js/app.js"></script>
 	<script src="js/controllers.js"></script>
+
+	<script src="js/include/jquery.min.js"></script>
+	<script src="js/include/bootstrap.min.js"></script>
 </body>
 </html>

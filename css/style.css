@@ -44,6 +44,7 @@ body { background-color: #000; -webkit-user-select: none; -moz-user-select: none
 		#product .modal-body .part-container.part-next-show { left: -720px; }
 			#product .modal-body .part-container .part { margin: 0 40px; width: 300px; text-align: left;}
 			#product .modal-body .part-container .part.part-request { width: 640px; text-align: center; }
+			#product .modal-body .part-container .part.part-carousel { width: 640px; text-align: center; }
 				#product .modal-body .part-container .part .part-wall { width: 100%; }
 				#product .modal-body .part-container .part .part-thumbnail { width: 100%; margin-top: 20px; overflow: hidden; }
 					#product .modal-body .part-container .part .part-thumbnail li { float: left; width: 100px; text-align: center; }
@@ -53,9 +54,11 @@ body { background-color: #000; -webkit-user-select: none; -moz-user-select: none
 				#product .modal-body .part-container .part iframe { margin-top: 10px; height: 160px; }
 				#product .modal-body .part-container .part .part-text { margin: 15px 0; color: #39e; font-size: 16px; }
 				#product .modal-body .part-container .part .button-request { height: 30px; width: 130px; color: #39e; font-size: 15px; font-weight: bold; line-height: 30px; cursor: pointer; background: url(../img/main/button-signin.png) no-repeat; background-size: 100% 100%; border: 0; border-radius:5px; }
+				
 				#product .modal-body .part-container .part.part-request ul { margin: 20px auto 0; width: 600px; }
-				#product .modal-body .part-container .part.part-request ul li{ height: 50px; }
-				#product .modal-body .part-container .part.part-request ul li input { width: 280px; height: 25px; color: #000; font-size: 14px; text-indent: 10px; border-radius: 5px; }
+					#product .modal-body .part-container .part.part-request ul li{ height: 50px; }
+						#product .modal-body .part-container .part.part-request ul li input { width: 280px; height: 25px; color: #000; font-size: 14px; text-indent: 10px; border-radius: 5px; }
+
 /*signin*/
 #signin { width: 600px; height: 370px; }
 	#signin .modal-body { height: 300px; padding-top: 30px; }

@@ -19,3 +19,4 @@ sup{vertical-align:text-top}
 sub{vertical-align:text-bottom}
 input,textarea,select{font-family:inherit;font-size:inherit;font-weight:inherit;*font-size:100%}
 legend{color:#000}
+a{text-decoration: none;}

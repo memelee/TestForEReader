@@ -81,7 +81,7 @@
 				<button ng-click="hideProduct()" class="button-right">Close</button>
 			</div>
 			<div class="modal-body">
-				<div ng-model="product" ng-class="{'part-next-show': isShowNext}" class="part-container">
+				<div ng-class="{'part-next-show': isShowNext}" class="part-container">
 					<div class="part fl" style="margin-right: 20px;">
 						<img class="part-wall" src="{{serverAddress + product.imgUrl}}">
 						<ul class="part-thumbnail">
@@ -120,17 +120,19 @@
 							<p class="modal-text">International: (310) 448-6199</p>
 					</div>
 					<div ng-If="isShowCarousel" class="part fl part-carousel">
-						<div id="carousel" class="carousel slide">
-			                <ol class="carousel-indicators">
-			                  	<li ng-repeat="each in product.imageData" data-target="#carousel" ng-class="{active: $index == activeCarousel}"></li>
-			                </ol>
-			                <div class="carousel-inner">
-			                  	<div ng-repeat="each in product.imageData" class="item" ng-class="{active: $index == activeCarousel}">
-			                    	<img src="{{serverAddress + each.largeImgUrl}}">
-			                  	</div>
+						<div class="part-carousel-container">
+			                <ul class="part-carousel-indicators">
+			                  	<li ng-repeat="each in product.imageData" ng-class="{active: $index == activeCarousel}"></li>
+			                </ul>
+			                <div class="part-carousel-inner">
+			                	<div class="part-item-container" style="width: {{640 * product.imageData.length}}px; left: {{-640 * activeCarousel}}px;">
+				                  	<div ng-repeat="each in product.imageData" class="part-item" >
+				                    	<img src="{{serverAddress + each.largeImgUrl}}">
+				                  	</div>
+				                </div>
 			                </div>
-			                <a class="left carousel-control" href="#carousel" data-slide="prev">‹</a>
-			                <a class="right carousel-control" href="#carousel" data-slide="next">›</a>
+			                <a ng-click="showLeft()" class="part-carousel-control" style="left: 15px;">‹</a>
+			                <a ng-click="showRight()" class="part-carousel-control" style="right: 15px;">›</a>
 			            </div>
 					</div>
 				</div>
@@ -203,8 +205,5 @@
 	<script src="js/include/angular-animate.min.js"></script>
 	<script src="js/app.js"></script>
 	<script src="js/controllers.js"></script>
-
-	<script src="js/include/jquery.min.js"></script>
-	<script src="js/include/bootstrap.min.js"></script>
 </body>
 </html>

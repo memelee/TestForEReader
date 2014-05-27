@@ -107,10 +107,10 @@ var ProductCtrl = function($scope, $http, $sce) {
 	$scope.isShowCarousel = false;
 
 	$scope.hideProduct = function() {
+		$scope.$emit("hideProduct");
 		$scope.isShowNext = false;
 		$scope.isShowRequest = false;
 		$scope.isShowCarousel = false;
-		$scope.$emit("hideProduct");
 	};
 
 	$scope.showRequest = function() {
@@ -128,6 +128,19 @@ var ProductCtrl = function($scope, $http, $sce) {
 
 	$scope.hideNext = function() {
 		$scope.isShowNext = false;
+	}
+
+	$scope.showLeft = function() {
+		if ($scope.activeCarousel - 1 >= 0) {
+			$scope.activeCarousel--;
+		}
+	}
+
+	$scope.showRight = function() {
+		var count = $scope.product.imageData.length;
+		if ($scope.activeCarousel + 1 < count) {
+			$scope.activeCarousel++;
+		}
 	}
 
 	$scope.$on("bindProduct", function(event, p) {

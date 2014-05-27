@@ -1,6 +1,7 @@
 .mask,
 .modal,
-.part-container {
+.part-container,
+.part-item-container {
   	-webkit-transition: 400ms linear all;
     -moz-transition: 400ms linear all;
     -ms-transition: 400ms linear all;

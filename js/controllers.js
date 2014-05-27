@@ -61,16 +61,72 @@ var MainCtrl = function($scope, $http) {
 };
 
 var HomeCtrl = function($scope) {
+	$scope.activeMLBook = 0;
+	$scope.activeSRBook = 0;
+	$scope.activeIRBook = 0;
+	$scope.activeMDBook = 0;
+
 	$scope.showProduct = function(c, i) {
 		var product = getProduct(c, i);
 		$scope.$emit("showProduct", product);
 	};
+
 	$scope.showSignin = function() {
 		$scope.$emit("showSignin");
 	};
 	$scope.showSetting = function() {
 		$scope.$emit("showSetting");
 	};
+
+	$scope.showLeft = function(c) {
+		switch (c) {
+		case "ml":
+			if ($scope.activeMLBook - 1 >= 0) {
+				$scope.activeMLBook--;
+			}
+			break;
+		case "sr":
+			if ($scope.activeSRBook - 1 >= 0) {
+				$scope.activeSRBook--;
+			}
+			break;
+		case "ir":
+			if ($scope.activeIRBook - 1 >= 0) {
+				$scope.activeIRBook--;
+			}
+			break;
+		case "md":
+			if ($scope.activeMDBook - 1 >= 0) {
+				$scope.activeMDBook--;
+			}
+			break;
+		}
+	}
+	$scope.showRight = function(c) {
+		switch (c) {
+		case "ml":
+			if ($scope.activeMLBook + 4 < $scope.mlBookList.length) {
+				$scope.activeMLBook++;
+			}
+			break;
+		case "sr":
+			if ($scope.activeSRBook + 4 < $scope.srBookList.length) {
+				$scope.activeSRBook++;
+			}
+			break;
+		case "ir":
+			if ($scope.activeIRBook + 4 < $scope.irBookList.length) {
+				$scope.activeIRBook++;
+			}
+			break;
+		case "md":
+			if ($scope.activeMDBook + 4 < $scope.mdBookList.length) {
+				$scope.activeMDBook++;
+			}
+			break;
+		}
+	}
+
 	$scope.openPDF = function(c, i) {
 		var product = getProduct(c, i);
 		if (product.pdfname == "" || product.pdfname == null) {
@@ -94,9 +150,6 @@ var HomeCtrl = function($scope) {
 		case "md":
 			return $scope.mdBookList[i];
 			break;
-		default:
-			return null;
-			break;
 		}
 	};
 };
@@ -105,6 +158,7 @@ var ProductCtrl = function($scope, $http, $sce) {
 	$scope.isShowNext = false;
 	$scope.isShowRequest = false;
 	$scope.isShowCarousel = false;
+	$scope.activeCarousel = 0;
 
 	$scope.hideProduct = function() {
 		$scope.$emit("hideProduct");
@@ -118,7 +172,6 @@ var ProductCtrl = function($scope, $http, $sce) {
 		$scope.isShowRequest = true;
 		$scope.isShowCarousel = false;
 	};
-
 	$scope.showCarousel = function(i) {
 		$scope.isShowNext = true;
 		$scope.isShowRequest = false;
@@ -135,7 +188,6 @@ var ProductCtrl = function($scope, $http, $sce) {
 			$scope.activeCarousel--;
 		}
 	}
-
 	$scope.showRight = function() {
 		var count = $scope.product.imageData.length;
 		if ($scope.activeCarousel + 1 < count) {

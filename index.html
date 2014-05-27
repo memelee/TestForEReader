@@ -18,54 +18,70 @@
 		</div>
 		<div ng-show="false" class="section">
 			<div class="section-header">MY LIBRARY</div>
-			<ul class="section-list" style="width:{{256 * mlBookList.length}}px;">
-				<li ng-repeat="each in mlBookList" ng-click="openPDF('ml', $index)">
-					<div class="book-thumb">
-	                	<img src="{{serverAddress + each.coverUrl}}">
-	                </div>
-	                <div class="book-label">each.bookName</div>
-	                <div class="book-date">each.bookDate</div>
-	            </li>	
-			</ul>
+			<div class="section-list-container">
+				<ul class="section-list" style="width:{{256 * mlBookList.length}}px; left:{{-240 * activeMLBook}}px;">
+					<li ng-repeat="each in mlBookList" ng-click="openPDF('ml', $index)">
+						<div class="book-thumb">
+		                	<img src="{{serverAddress + each.coverUrl}}">
+		                </div>
+		                <div class="book-label">each.bookName</div>
+		                <div class="book-date">each.bookDate</div>
+		            </li>	
+				</ul>
+			</div>
+            <a ng-click="showLeft('ml')" class="section-control left" >‹</a>
+            <a ng-click="showRight('ml')" class="section-control right" >›</a>
 		</div>
 		<div class="section">
 			<div class="section-header">SPECIAL REPORTS</div>
-			<ul class="section-list" style="width:{{256 * srBookList.length}}px;">
-				<li ng-repeat="each in srBookList" ng-click="openPDF('sr', $index)">
-					<div class="book-thumb">
-	                	<img src="{{serverAddress + each.coverUrl}}">
-	                </div>
-	                <div ng-if="!each.pdfname" class="book-lock">
-						<img src="img/main/locker.png">
-	                </div>
-	                <div class="book-label">{{each.bookName}}</div>
-	                <div class="book-date">{{each.bookDate}}</div>
-	            </li>
-			</ul>
+			<div class="section-list-container">
+				<ul class="section-list" style="width:{{256 * srBookList.length}}px; left:{{-240 * activeSRBook}}px;">
+					<li ng-repeat="each in srBookList" ng-click="openPDF('sr', $index)">
+						<div class="book-thumb">
+		                	<img src="{{serverAddress + each.coverUrl}}">
+		                </div>
+		                <div ng-if="!each.pdfname" class="book-lock">
+							<img src="img/main/locker.png">
+		                </div>
+		                <div class="book-label">{{each.bookName}}</div>
+		                <div class="book-date">{{each.bookDate}}</div>
+		            </li>
+				</ul>
+			</div>
+            <a ng-click="showLeft('sr')" class="section-control left" >‹</a>
+            <a ng-click="showRight('sr')" class="section-control right" >›</a>
 		</div>
 		<div class="section">
 			<div class="section-header">INSTITUTIONAL RESEARCH</div>
-			<ul class="section-list" style="width:{{256 * irBookList.length}}px;">
-				<li ng-repeat="each in irBookList" ng-click="showProduct('ir', $index)">
-					<div class="book-thumb">
-	                	<img ng-src="{{serverAddress + each.coverUrl}}">
-	                </div>
-	                <div class="book-label">{{each.bookName}}</div>
-	                <div class="book-date">{{each.bookDate}}</div>
-	            </li>
-			</ul>
+			<div class="section-list-container">
+				<ul class="section-list" style="width:{{256 * irBookList.length}}px; left:{{-240 * activeIRBook}}px;">
+					<li ng-repeat="each in irBookList" ng-click="showProduct('ir', $index)">
+						<div class="book-thumb">
+		                	<img ng-src="{{serverAddress + each.coverUrl}}">
+		                </div>
+		                <div class="book-label">{{each.bookName}}</div>
+		                <div class="book-date">{{each.bookDate}}</div>
+		            </li>
+				</ul>
+			</div>
+            <a ng-click="showLeft('ir')" class="section-control left" >‹</a>
+            <a ng-click="showRight('ir')" class="section-control right" >›</a>
 		</div>
 		<div class="section">
 			<div class="section-header">MARKET DATA</div>
-			<ul class="section-list" style="width:{{256 * mdBookList.length}}px;">
-				<li ng-repeat="each in mdBookList" ng-click="showProduct('md', $index)">
-					<div class="book-thumb">
-	                	<img ng-src="{{serverAddress + each.coverUrl}}">
-	                </div>
-	                <div class="book-label">{{each.bookName}}</div>
-	                <div class="book-date">{{each.bookDate}}</div>
-	            </li>
-			</ul>
+			<div class="section-list-container">
+				<ul class="section-list" style="width:{{256 * mdBookList.length}}px; left:{{-240 * activeMDBook}}px;">
+					<li ng-repeat="each in mdBookList" ng-click="showProduct('md', $index)">
+						<div class="book-thumb">
+		                	<img ng-src="{{serverAddress + each.coverUrl}}">
+		                </div>
+		                <div class="book-label">{{each.bookName}}</div>
+		                <div class="book-date">{{each.bookDate}}</div>
+		            </li>
+				</ul>
+			</div>
+            <a ng-click="showLeft('md')" class="section-control left" >‹</a>
+            <a ng-click="showRight('md')" class="section-control right" >›</a>
 		</div>
 	</div>
 

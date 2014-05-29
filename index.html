@@ -20,7 +20,7 @@
 		<div ng-show="false" class="section">
 			<div class="section-header">MY LIBRARY</div>
 			<div class="section-list-container">
-				<ul class="section-list" style="width:{{256 * mlBookList.length}}px; left:{{-240 * activeMLBook}}px;">
+				<ul id="ml" class="section-list" style="width:{{256 * mlBookList.length}}px; left:{{-240 * activeMLBook}}px;">
 					<li ng-repeat="each in mlBookList" ng-click="openPDF('ml', $index)">
 						<div class="book-thumb">
 		                	<img src="{{serverAddress + each.coverUrl}}">
@@ -36,7 +36,7 @@
 		<div class="section">
 			<div class="section-header">SPECIAL REPORTS</div>
 			<div class="section-list-container">
-				<ul class="section-list" style="width:{{256 * srBookList.length}}px; left:{{-240 * activeSRBook}}px;">
+				<ul id="sr" ng-swipe-left="swipeLeft('sr')" ng-swipe-right="swipeRight('sr')" class="section-list" style="width:{{256 * srBookList.length}}px; left:{{-240 * activeSRBook}}px;">
 					<li ng-repeat="each in srBookList" ng-click="openPDF('sr', $index)">
 						<div class="book-thumb">
 		                	<img src="{{serverAddress + each.coverUrl}}">
@@ -55,7 +55,7 @@
 		<div class="section">
 			<div class="section-header">INSTITUTIONAL RESEARCH</div>
 			<div class="section-list-container">
-				<ul class="section-list" style="width:{{256 * irBookList.length}}px; left:{{-240 * activeIRBook}}px;">
+				<ul id="ir" class="section-list" style="width:{{256 * irBookList.length}}px; left:{{-240 * activeIRBook}}px;">
 					<li ng-repeat="each in irBookList" ng-click="showProduct('ir', $index)">
 						<div class="book-thumb">
 		                	<img ng-src="{{serverAddress + each.coverUrl}}">
@@ -71,7 +71,7 @@
 		<div class="section">
 			<div class="section-header">MARKET DATA</div>
 			<div class="section-list-container">
-				<ul class="section-list" style="width:{{256 * mdBookList.length}}px; left:{{-240 * activeMDBook}}px;">
+				<ul id="md" class="section-list" style="width:{{256 * mdBookList.length}}px; left:{{-240 * activeMDBook}}px;">
 					<li ng-repeat="each in mdBookList" ng-click="showProduct('md', $index)">
 						<div class="book-thumb">
 		                	<img ng-src="{{serverAddress + each.coverUrl}}">
@@ -84,6 +84,7 @@
             <a ng-click="showLeft('md')" class="section-control left" >‹</a>
             <a ng-click="showRight('md')" class="section-control right" >›</a>
 		</div>
+		<div class="footer" style="height:px;"></div>
 	</div>
 
 	<!-- mask -->
@@ -142,7 +143,7 @@
 			                  	<li ng-repeat="each in product.imageData" ng-class="{active: $index == activeCarousel}"></li>
 			                </ul>
 			                <div class="part-carousel-inner">
-			                	<div class="part-item-container" style="width: {{640 * product.imageData.length}}px; left: {{-640 * activeCarousel}}px;">
+			                	<div ng-swipe-left="swipeLeft()" ng-swipe-right="swipeRight()" class="part-item-container" style="width: {{640 * product.imageData.length}}px; left: {{-640 * activeCarousel}}px;">
 				                  	<div ng-repeat="each in product.imageData" class="part-item" >
 				                    	<img src="{{serverAddress + each.largeImgUrl}}">
 				                  	</div>
@@ -210,7 +211,6 @@
 				<p class="modal-text">International: (310) 448-6199</p>
 				<p class="modal-text"><a href="mailto:support@williamoneil.com">support@williamoneil.com</a></p>
 				<br />
-				<br />
 				<p class="modal-text"><a href="http://www.williamoneil.com" target="_blank">Copyright 2013 William O'Neil + Co. Incorporated</a></p>
 				<p class="modal-text">Terms & Conditions</p>
 				<p class="modal-text">Version HTML 1.0 Build 1.0</p>
@@ -219,6 +219,7 @@
 	</div>
 
 	<script src="js/include/angular.min.js"></script>
+	<script src="js/include/angular-touch.min.js"></script>
 	<script src="js/include/angular-animate.min.js"></script>
 	<script src="js/app.js"></script>
 	<script src="js/controllers.js"></script>

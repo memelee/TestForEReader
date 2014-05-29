@@ -31,6 +31,16 @@ var MainCtrl = function($scope, $http) {
 		alert("load book error");
 	});
 
+	$scope.screenWidth = function() {
+		// alert(document.body.scrollWidth);
+		return document.body.scrollWidth;
+	};
+
+	$scope.screenHeight = function() {
+		// return window.screen.height;
+		return document.body.scrollHeight;
+	};
+
 	$scope.$on("showProduct", function(event, p) {
 		$scope.isShowMask = true;
 		$scope.isShowProduct = true;
@@ -60,7 +70,7 @@ var MainCtrl = function($scope, $http) {
 	});
 };
 
-var HomeCtrl = function($scope) {
+var HomeCtrl = function($scope, $swipe) {
 	$scope.activeMLBook = 0;
 	$scope.activeSRBook = 0;
 	$scope.activeIRBook = 0;
@@ -101,31 +111,53 @@ var HomeCtrl = function($scope) {
 			}
 			break;
 		}
-	}
+	};
 	$scope.showRight = function(c) {
+		var tail = ($scope.screenWidth() - 100) / 240;
 		switch (c) {
 		case "ml":
-			if ($scope.activeMLBook + 4 < $scope.mlBookList.length) {
+			if ($scope.activeMLBook + tail < $scope.mlBookList.length) {
 				$scope.activeMLBook++;
 			}
 			break;
 		case "sr":
-			if ($scope.activeSRBook + 4 < $scope.srBookList.length) {
+			if ($scope.activeSRBook + tail < $scope.srBookList.length) {
 				$scope.activeSRBook++;
 			}
 			break;
 		case "ir":
-			if ($scope.activeIRBook + 4 < $scope.irBookList.length) {
+			if ($scope.activeIRBook + tail < $scope.irBookList.length) {
 				$scope.activeIRBook++;
 			}
 			break;
 		case "md":
-			if ($scope.activeMDBook + 4 < $scope.mdBookList.length) {
+			if ($scope.activeMDBook + tail < $scope.mdBookList.length) {
 				$scope.activeMDBook++;
 			}
 			break;
 		}
-	}
+	};
+
+	$scope.swipeLeft = function(c) {
+		var target = document.getElementById(c);
+		$swipe.bind(ele, {
+			"start": function() {
+				var i=1;
+			},
+			"move": function() {
+				var i=2;
+			},
+			"end": function() {
+				var i=3;
+			},
+			"cancel": function() {
+				var i=4;
+			}
+		});
+	};
+	$scope.swipeRight = function(c) {
+		var target = document.getElementById(c);
+	};
 
 	$scope.openPDF = function(c, i) {
 		var product = getProduct(c, i);
@@ -154,7 +186,7 @@ var HomeCtrl = function($scope) {
 	};
 };
 
-var ProductCtrl = function($scope, $http, $sce) {
+var ProductCtrl = function($scope, $http, $sce, $swipe) {
 	$scope.isShowNext = false;
 	$scope.isShowRequest = false;
 	$scope.isShowCarousel = false;
@@ -181,19 +213,31 @@ var ProductCtrl = function($scope, $http, $sce) {
 
 	$scope.hideNext = function() {
 		$scope.isShowNext = false;
-	}
+	};
 
 	$scope.showLeft = function() {
 		if ($scope.activeCarousel - 1 >= 0) {
 			$scope.activeCarousel--;
 		}
-	}
+	};
 	$scope.showRight = function() {
 		var count = $scope.product.imageData.length;
 		if ($scope.activeCarousel + 1 < count) {
 			$scope.activeCarousel++;
 		}
-	}
+	};
+
+	$scope.swipeLeft = function() {
+		var count = $scope.product.imageData.length;
+		if ($scope.activeCarousel + 1 < count) {
+			$scope.activeCarousel++;
+		}
+	};
+	$scope.swipeRight = function() {
+		if ($scope.activeCarousel - 1 >= 0) {
+			$scope.activeCarousel--;
+		}
+	};
 
 	$scope.$on("bindProduct", function(event, p) {
 		$scope.productTitle = p.bookName;

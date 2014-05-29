@@ -11,19 +11,20 @@
 .text-disable{ color: #646464 !important; }
 
 /*main*/
-body { background-color: #000; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; }
-.container { position: relative; margin: 0 auto; width: 1024px; }
-.header { position: relative; width: 1024px; height: 71px; text-align: center; background: url(../img/main/header.png) no-repeat; background-size: 100% 100%; }
+body { background-color: #000; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; width: 100%; }
+.container { position: relative; margin: 0 auto; width: 100%; }
+.header { position: relative; width: 100%; height: 71px; text-align: center; background: url(../img/main/header.png) no-repeat; background-size: 100% 100%; }
 	.header img { margin-top: 5px; height: 60px;}
 	.button-signin { position: absolute; width: 80px; height: 30px; top: 30px; right: 60px; border: 0; padding: 0; color: #fff; font-size: 12px; font-weight: bold; line-height: 30px; background: url(../img/main/button-signin.png) no-repeat; background-size: 100% 100%; }
 	.button-setting { position: absolute; width: 30px; height: 30px; top: 30px; right: 20px; border: 0; padding: 0; background: url(../img/main/button-setting.png) no-repeat; background-size: 100% 100%; }
-.section { position: relative; width: 1024px; height: 322px; overflow: hidden; background: url(../img/main/section.png) no-repeat; background-size: 100% 100%; }
-	.section .section-control { position: absolute; height: 280px; width: 50px; top: 35px; line-height: 280px; font-size: 60px; font-weight: 100; text-align: center; color: #fff; opacity: 0.5; cursor: pointer; }
+.footer { position: relative; width: 100%; background-color: #000;}
+.section { position: relative; width: 100%; height: 322px; overflow: hidden; background: url(../img/main/section.png) no-repeat; background-size: 100% 100%; }
+	.section .section-control { position: absolute; height: 285px; width: 50px; top: 35px; line-height: 280px; font-size: 60px; font-weight: 100; text-align: center; color: #fff; opacity: 0.5; cursor: pointer; }
 	.section .section-control.left {left: 0px;}
 	.section .section-control.right {right: 0px;}
 	.section .section-control:hover, .section-control:focus { color: #fff; opacity: 0.9; }
 	.section-header { margin: 10px 20px; color: #999; font-size: 12px; font-weight: bold; }
-	.section .section-list-container { margin: 0 auto; width: 960px; height: 280px; }
+	.section .section-list-container { margin: 0 50px; height: 285px; }
 	.section-list { position: relative; height: 250px; }
 	.section-list li { position: relative; float: left; height: 100%; width: 240px; background: url(../img/main/light.png) no-repeat; background-position: center; background-size: 80% 100%; }
 		.section-list .book-thumb { margin: 50px 0 20px; height: 156px; text-align: center; }

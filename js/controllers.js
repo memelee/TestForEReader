@@ -140,20 +140,6 @@ var HomeCtrl = function($scope, $swipe) {
 
 	$scope.swipeLeft = function(c) {
 		var target = document.getElementById(c);
-		$swipe.bind(ele, {
-			"start": function() {
-				var i=1;
-			},
-			"move": function() {
-				var i=2;
-			},
-			"end": function() {
-				var i=3;
-			},
-			"cancel": function() {
-				var i=4;
-			}
-		});
 	};
 	$scope.swipeRight = function(c) {
 		var target = document.getElementById(c);

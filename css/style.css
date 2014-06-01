@@ -5,7 +5,7 @@
 .fr { float: right; }
 
 .mask { position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 99; background-color: #000; opacity: 0.8; }
-.modal { position: fixed; top: 100px; left: 0; right: 0; z-index: 100; }
+.modal { position: fixed; top: 100px; left: 0; right: 0; z-index: 999; }
 
 .text-bold{ font-weight: bold !important; }
 .text-disable{ color: #646464 !important; }
@@ -24,8 +24,8 @@ body { background-color: #000; -webkit-user-select: none; -moz-user-select: none
 	.section .section-control.right {right: 0px;}
 	.section .section-control:hover, .section-control:focus { color: #fff; opacity: 0.9; }
 	.section-header { margin: 10px 20px; color: #999; font-size: 12px; font-weight: bold; }
-	.section .section-list-container { margin: 0 50px; height: 285px; }
-	.section-list { position: relative; height: 250px; }
+	.section .section-list-container { position: relative; margin: 0 50px; height: 285px; }
+	.section-list { position: relative; }
 	.section-list li { position: relative; float: left; height: 100%; width: 240px; background: url(../img/main/light.png) no-repeat; background-position: center; background-size: 80% 100%; }
 		.section-list .book-thumb { margin: 50px 0 20px; height: 156px; text-align: center; }
 			.section-list .book-thumb img { height: 100%; cursor: pointer; }

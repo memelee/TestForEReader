@@ -20,7 +20,7 @@
 		<div ng-show="false" class="section">
 			<div class="section-header">MY LIBRARY</div>
 			<div class="section-list-container">
-				<ul id="ml" class="section-list" style="width:{{256 * mlBookList.length}}px; left:{{-240 * activeMLBook}}px;">
+				<ul hm-dragStart="dragStart('ml')" hm-drag="dragging('ml', $event)" id="ml" class="section-list" style="width: {{240 * mlBookList.length}}px; left: 0;">
 					<li ng-repeat="each in mlBookList" ng-click="openPDF('ml', $index)">
 						<div class="book-thumb">
 		                	<img src="{{serverAddress + each.coverUrl}}">
@@ -36,7 +36,7 @@
 		<div class="section">
 			<div class="section-header">SPECIAL REPORTS</div>
 			<div class="section-list-container">
-				<ul id="sr" ng-swipe-left="swipeLeft('sr')" ng-swipe-right="swipeRight('sr')" class="section-list" style="width:{{256 * srBookList.length}}px; left:{{-240 * activeSRBook}}px;">
+				<ul hm-dragStart="dragStart('sr')" hm-drag="dragging('sr', $event)" id="sr" class="section-list" style="width: {{240 * srBookList.length}}px; left: 0;">
 					<li ng-repeat="each in srBookList" ng-click="openPDF('sr', $index)">
 						<div class="book-thumb">
 		                	<img src="{{serverAddress + each.coverUrl}}">
@@ -55,7 +55,7 @@
 		<div class="section">
 			<div class="section-header">INSTITUTIONAL RESEARCH</div>
 			<div class="section-list-container">
-				<ul id="ir" class="section-list" style="width:{{256 * irBookList.length}}px; left:{{-240 * activeIRBook}}px;">
+				<ul hm-dragStart="dragStart('ir')" hm-drag="dragging('ir', $event)" id="ir" class="section-list" style="width: {{240 * irBookList.length}}px; left: 0;">
 					<li ng-repeat="each in irBookList" ng-click="showProduct('ir', $index)">
 						<div class="book-thumb">
 		                	<img ng-src="{{serverAddress + each.coverUrl}}">
@@ -71,7 +71,7 @@
 		<div class="section">
 			<div class="section-header">MARKET DATA</div>
 			<div class="section-list-container">
-				<ul id="md" class="section-list" style="width:{{256 * mdBookList.length}}px; left:{{-240 * activeMDBook}}px;">
+				<ul hm-dragStart="dragStart('md')" hm-drag="dragging('md', $event)" id="md" class="section-list" style="width: {{240 * mdBookList.length}}px; left: 0;">
 					<li ng-repeat="each in mdBookList" ng-click="showProduct('md', $index)">
 						<div class="book-thumb">
 		                	<img ng-src="{{serverAddress + each.coverUrl}}">
@@ -140,7 +140,7 @@
 					<div ng-If="isShowCarousel" class="part fl part-carousel">
 						<div class="part-carousel-container">
 			                <ul class="part-carousel-indicators">
-			                  	<li ng-repeat="each in product.imageData" ng-class="{active: $index == activeCarousel}"></li>
+			                  	<li ng-repeat="each in product.imageData" ng-click="showThis($index)" ng-class="{active: $index == activeCarousel}"></li>
 			                </ul>
 			                <div class="part-carousel-inner">
 			                	<div ng-swipe-left="swipeLeft()" ng-swipe-right="swipeRight()" class="part-item-container" style="width: {{640 * product.imageData.length}}px; left: {{-640 * activeCarousel}}px;">
@@ -221,6 +221,7 @@
 	<script src="js/include/angular.min.js"></script>
 	<script src="js/include/angular-touch.min.js"></script>
 	<script src="js/include/angular-animate.min.js"></script>
+	<script src="js/include/gestures.min.js"></script>
 	<script src="js/app.js"></script>
 	<script src="js/controllers.js"></script>
 </body>

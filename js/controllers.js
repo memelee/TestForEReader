@@ -70,11 +70,8 @@ var MainCtrl = function($scope, $http) {
 	});
 };
 
-var HomeCtrl = function($scope, $swipe) {
-	$scope.activeMLBook = 0;
-	$scope.activeSRBook = 0;
-	$scope.activeIRBook = 0;
-	$scope.activeMDBook = 0;
+var HomeCtrl = function($scope) {
+	$scope.startX = 0;
 
 	$scope.showProduct = function(c, i) {
 		var product = getProduct(c, i);
@@ -89,60 +86,42 @@ var HomeCtrl = function($scope, $swipe) {
 	};
 
 	$scope.showLeft = function(c) {
-		switch (c) {
-		case "ml":
-			if ($scope.activeMLBook - 1 >= 0) {
-				$scope.activeMLBook--;
+		var target = document.getElementById(c);
+		var left = target.offsetLeft;
+		if (left < 0) {
+			if (left + 240 < 0) {
+				target.style.left = left + 240 + "px";
+			} else {
+				target.style.left = 0 + "px";
 			}
-			break;
-		case "sr":
-			if ($scope.activeSRBook - 1 >= 0) {
-				$scope.activeSRBook--;
-			}
-			break;
-		case "ir":
-			if ($scope.activeIRBook - 1 >= 0) {
-				$scope.activeIRBook--;
-			}
-			break;
-		case "md":
-			if ($scope.activeMDBook - 1 >= 0) {
-				$scope.activeMDBook--;
-			}
-			break;
 		}
 	};
 	$scope.showRight = function(c) {
-		var tail = ($scope.screenWidth() - 100) / 240;
-		switch (c) {
-		case "ml":
-			if ($scope.activeMLBook + tail < $scope.mlBookList.length) {
-				$scope.activeMLBook++;
+		var target = document.getElementById(c);
+		var left = target.offsetLeft;
+		var width = target.offsetWidth;
+		var tail = target.parentNode.offsetWidth;
+		if (left > -width + tail) {
+			if (left - 240 > -width + tail) {
+				target.style.left = left - 240 + "px";
+			} else {
+				target.style.left = -width + tail + "px";
 			}
-			break;
-		case "sr":
-			if ($scope.activeSRBook + tail < $scope.srBookList.length) {
-				$scope.activeSRBook++;
-			}
-			break;
-		case "ir":
-			if ($scope.activeIRBook + tail < $scope.irBookList.length) {
-				$scope.activeIRBook++;
-			}
-			break;
-		case "md":
-			if ($scope.activeMDBook + tail < $scope.mdBookList.length) {
-				$scope.activeMDBook++;
-			}
-			break;
 		}
 	};
 
-	$scope.swipeLeft = function(c) {
+	$scope.dragStart = function(c) {
 		var target = document.getElementById(c);
+		$scope.startX = target.offsetLeft;
 	};
-	$scope.swipeRight = function(c) {
+	$scope.dragging = function(c, event) {
 		var target = document.getElementById(c);
+		var left = $scope.startX;
+		var width = target.offsetWidth;
+		var tail = target.parentNode.offsetWidth;
+		var dt = event.gesture.deltaX;
+		if (left + dt <= 0 && left + dt >= -width + tail)
+			target.style.left =  $scope.startX + dt + "px";
 	};
 
 	$scope.openPDF = function(c, i) {
@@ -211,6 +190,9 @@ var ProductCtrl = function($scope, $http, $sce, $swipe) {
 		if ($scope.activeCarousel + 1 < count) {
 			$scope.activeCarousel++;
 		}
+	};
+	$scope.showThis = function(i) {
+		$scope.activeCarousel = i;
 	};
 
 	$scope.swipeLeft = function() {

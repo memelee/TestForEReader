@@ -72,6 +72,7 @@ var MainCtrl = function($scope, $http) {
 
 var HomeCtrl = function($scope) {
 	$scope.startX = 0;
+	$scope.isDragging = 0;
 
 	$scope.showProduct = function(c, i) {
 		var product = getProduct(c, i);
@@ -88,6 +89,7 @@ var HomeCtrl = function($scope) {
 	$scope.showLeft = function(c) {
 		var target = document.getElementById(c);
 		var left = target.offsetLeft;
+		target.className = target.className + " animate";
 		if (left < 0) {
 			if (left + 240 < 0) {
 				target.style.left = left + 240 + "px";
@@ -101,6 +103,7 @@ var HomeCtrl = function($scope) {
 		var left = target.offsetLeft;
 		var width = target.offsetWidth;
 		var tail = target.parentNode.offsetWidth;
+		target.className = target.className + " animate";
 		if (left > -width + tail) {
 			if (left - 240 > -width + tail) {
 				target.style.left = left - 240 + "px";
@@ -110,8 +113,10 @@ var HomeCtrl = function($scope) {
 		}
 	};
 
-	$scope.dragStart = function(c) {
+	$scope.dragStart = function(c) {	
+		$scope.isDragging  = true;
 		var target = document.getElementById(c);
+		target.className = target.className.replace("animate", "");
 		$scope.startX = target.offsetLeft;
 	};
 	$scope.dragging = function(c, event) {
@@ -120,16 +125,23 @@ var HomeCtrl = function($scope) {
 		var width = target.offsetWidth;
 		var tail = target.parentNode.offsetWidth;
 		var dt = event.gesture.deltaX;
-		if (left + dt <= 0 && left + dt >= -width + tail)
+		if (left + dt <= 0 && left + dt >= -width + tail) {
 			target.style.left =  $scope.startX + dt + "px";
+		}
+	};
+	$scope.dragEnd = function(c) {
 	};
 
 	$scope.openPDF = function(c, i) {
-		var product = getProduct(c, i);
-		if (product.pdfname == "" || product.pdfname == null) {
-			$scope.$emit("showProduct", product);
+		if ($scope.isDragging) {
+			$scope.isDragging  = false;
 		} else {
-			window.open($scope.serverAddress + product.pdfname);
+			var product = getProduct(c, i);
+			if (product.pdfname == "" || product.pdfname == null) {
+				$scope.$emit("showProduct", product);
+			} else {
+				window.open($scope.serverAddress + product.pdfname);
+			}
 		}
 	};
 

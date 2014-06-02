@@ -89,7 +89,9 @@ var HomeCtrl = function($scope) {
 	$scope.showLeft = function(c) {
 		var target = document.getElementById(c);
 		var left = target.offsetLeft;
-		target.className = target.className + " animate";
+		if (target.className.indexOf("animate") < 0) {
+			target.className = target.className + " animate";
+		}
 		if (left < 0) {
 			if (left + 240 < 0) {
 				target.style.left = left + 240 + "px";
@@ -103,7 +105,9 @@ var HomeCtrl = function($scope) {
 		var left = target.offsetLeft;
 		var width = target.offsetWidth;
 		var tail = target.parentNode.offsetWidth;
-		target.className = target.className + " animate";
+		if (target.className.indexOf("animate") < 0) {
+			target.className = target.className + " animate";
+		}
 		if (left > -width + tail) {
 			if (left - 240 > -width + tail) {
 				target.style.left = left - 240 + "px";
@@ -116,7 +120,7 @@ var HomeCtrl = function($scope) {
 	$scope.dragStart = function(c) {	
 		$scope.isDragging  = true;
 		var target = document.getElementById(c);
-		target.className = target.className.replace("animate", "");
+		target.className = target.className.replace(" animate", "");
 		$scope.startX = target.offsetLeft;
 	};
 	$scope.dragging = function(c, event) {

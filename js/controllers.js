@@ -165,9 +165,6 @@ var HomeCtrl = function($scope) {
 		}
 	};
 	$scope.dragEnd = function(c) {
-		if ($scope.browser.indexOf("chrome") != -1) {
-			$scope.isDragging = false;
-		}
 	};
 
 	$scope.openPDF = function(c, i) {

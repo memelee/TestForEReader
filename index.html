@@ -9,6 +9,11 @@
 	<link rel="stylesheet" href="css/reset.css">
 	<link rel="stylesheet" href="css/style.css">
 	<link rel="stylesheet" href="css/animate.css">
+
+	<script src="js/include/angular.min.js"></script>
+	<script src="js/include/angular-touch.min.js"></script>
+	<script src="js/include/angular-animate.min.js"></script>
+	<script src="js/include/gestures.min.js"></script>
 </head>
 <body ng-controller="MainCtrl" onselectstart="return false;" ondragstart="return false;">
 	<div ng-controller="HomeCtrl" class="container">
@@ -88,10 +93,10 @@
 	</div>
 
 	<!-- mask -->
-	<div ng-show="isShowMask" class="mask animate"></div>
+	<div ng-show="isShowMask" class="mask animate ng-hide"></div>
 
 	<!-- product -->
-	<div ng-show="isShowProduct" class="modal animate">
+	<div ng-show="isShowProduct" class="modal animate ng-hide">
 		<div ng-controller="ProductCtrl" id="product" class="modal-container">
 			<div class="modal-header">
 				<button ng-show="isShowNext" ng-click="hideNext()" class="button-left">Back</button>
@@ -161,7 +166,7 @@
 	</div>
 
 	<!-- signin -->
-	<div ng-show="isShowSignin" class="modal animate">
+	<div ng-show="isShowSignin" class="modal animate ng-hide">
 		<div ng-controller="SigninCtrl" id="signin" class="modal-container">
 			<div class="modal-header">
 				<h1>Sign In</h1>
@@ -196,7 +201,7 @@
 	</div>
 
 	<!-- setting -->
-	<div ng-show="isShowSetting" class="modal animate">
+	<div ng-show="isShowSetting" class="modal animate ng-hide">
 		<div ng-controller="SettingCtrl" id="setting" class="modal-container">
 			<div class="modal-header">
 				<h1>Setting</h1>
@@ -220,10 +225,6 @@
 		</div>
 	</div>
 
-	<script src="js/include/angular.min.js"></script>
-	<script src="js/include/angular-touch.min.js"></script>
-	<script src="js/include/angular-animate.min.js"></script>
-	<script src="js/include/gestures.min.js"></script>
 	<script src="js/app.js"></script>
 	<script src="js/controllers.js"></script>
 </body>

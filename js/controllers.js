@@ -1,5 +1,6 @@
 var MainCtrl = function($scope, $http) {
 	$scope.serverAddress = "http://ereaderweb.williamoneil.com";
+	$scope.browser = navigator.userAgent.toLowerCase();
 
 	$scope.isShowMask = false;
 	$scope.isShowSignin = false;
@@ -35,7 +36,6 @@ var MainCtrl = function($scope, $http) {
 		// alert(document.body.scrollWidth);
 		return document.body.scrollWidth;
 	};
-
 	$scope.screenHeight = function() {
 		// return window.screen.height;
 		return document.body.scrollHeight;
@@ -71,8 +71,9 @@ var MainCtrl = function($scope, $http) {
 };
 
 var HomeCtrl = function($scope) {
-	$scope.startX = 0;
-	$scope.isDragging = 0;
+	// $scope.startX = 0;
+	$scope.startLeft = 0;
+	$scope.isDragging = false;
 
 	$scope.showProduct = function(c, i) {
 		var product = getProduct(c, i);
@@ -138,26 +139,36 @@ var HomeCtrl = function($scope) {
 	};
 
 	$scope.dragStart = function(c) {	
-		// $scope.isDragging  = true;
+		if ($scope.browser.indexOf("ipad") < 0 && $scope.browser.indexOf("iphone") < 0) {
+			$scope.isDragging  = true;
+			var target = document.getElementById(c).parentNode;
 		// var target = document.getElementById(c);
 		// target.className = target.className.replace(" animate", "");
 		// $scope.startX = target.offsetLeft;
+			$scope.startLeft = target.scrollLeft;
+		}
 	};
 	$scope.dragging = function(c, event) {
+		var target = document.getElementById(c).parentNode;
 		// var target = document.getElementById(c);
 		// var left = $scope.startX;
+		if ($scope.browser.indexOf("ipad") < 0 && $scope.browser.indexOf("iphone") < 0) {
+			var left = $scope.startLeft;
 		// var width = target.offsetWidth;
 		// var tail = target.parentNode.offsetWidth;
-		// var dt = event.gesture.deltaX;
+			var dt = event.gesture.deltaX;
 		// if (left + dt <= 0 && left + dt >= -width + tail) {
 		// 	target.style.left =  $scope.startX + dt + "px";
+			target.scrollLeft =  $scope.startLeft - dt;
 		// }
+		}
 	};
 	$scope.dragEnd = function(c) {
 	};
 
 	$scope.openPDF = function(c, i) {
-		if ($scope.isDragging) {
+		// if ($scope.isDragging) {
+		if ($scope.browser.indexOf("ipad") < 0 && $scope.browser.indexOf("iphone") < 0 && $scope.isDragging) {
 			$scope.isDragging  = false;
 		} else {
 			var product = getProduct(c, i);

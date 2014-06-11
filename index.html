@@ -3,6 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
 	<title>O'Neil Book Shop</title>
 	<link rel="stylesheet" href="css/normalize.css">
 	<link rel="stylesheet" href="css/reset.css">
@@ -18,7 +19,7 @@
 		</div>
 		<div ng-show="false" class="section">
 			<div class="section-header">MY LIBRARY</div>
-			<div class="section-list-container">
+			<div ng-class="{'scroll': isMobileDevice}" class="section-list-container">
 				<ul hm-dragStart="dragStart('ml')" hm-drag="dragging('ml', $event)" hm-dragEnd="dragEnd('ml')" id="ml" class="section-list" style="width: {{240 * mlBookList.length}}px; left: 0;">
 					<li ng-repeat="each in mlBookList" ng-click="openPDF('ml', $index)">
 						<div class="book-thumb">
@@ -34,7 +35,7 @@
 		</div>
 		<div class="section">
 			<div class="section-header">SPECIAL REPORTS</div>
-			<div class="section-list-container">
+			<div ng-class="{'scroll': isMobileDevice}" class="section-list-container">
 				<ul hm-dragStart="dragStart('sr')" hm-drag="dragging('sr', $event)" hm-dragEnd="dragEnd('sr')" id="sr" class="section-list" style="width: {{240 * srBookList.length}}px; left: 0;">
 					<li ng-repeat="each in srBookList" ng-click="openPDF('sr', $index)">
 						<div class="book-thumb">
@@ -53,7 +54,7 @@
 		</div>
 		<div class="section">
 			<div class="section-header">INSTITUTIONAL RESEARCH</div>
-			<div class="section-list-container">
+			<div ng-class="{'scroll': isMobileDevice}" class="section-list-container">
 				<ul hm-dragStart="dragStart('ir')" hm-drag="dragging('ir', $event)" hm-dragEnd="dragEnd('ir')" id="ir" class="section-list" style="width: {{240 * irBookList.length}}px; left: 0;">
 					<li ng-repeat="each in irBookList" ng-click="showProduct('ir', $index)">
 						<div class="book-thumb">
@@ -69,7 +70,7 @@
 		</div>
 		<div class="section">
 			<div class="section-header">MARKET DATA</div>
-			<div class="section-list-container">
+			<div ng-class="{'scroll': isMobileDevice}" class="section-list-container">
 				<ul hm-dragStart="dragStart('md')" hm-drag="dragging('md', $event)" hm-dragEnd="dragEnd('md')" id="md" class="section-list" style="width: {{240 * mdBookList.length}}px; left: 0;">
 					<li ng-repeat="each in mdBookList" ng-click="showProduct('md', $index)">
 						<div class="book-thumb">
@@ -110,7 +111,9 @@
 					</div>
 					<div class="part fl" style="margin-left: 20px;">
 						<h1>{{productTitle}}</h1>
-						<iframe frameborder="1" framespacing="0" src="{{productHTML}}"></iframe>
+						<div ng-class="{'scroll': isMobileDevice}" class="part-description">
+							<iframe src="{{productHTML}}"></iframe>
+						</div>
 						<p class="part-text">For access to {{productTitle}}, please contact your Account Exective.</p>
 						<button ng-click="showRequest()" class="button-request">Request Service</button>
 					</div>

@@ -1,6 +1,7 @@
 var MainCtrl = function($scope, $http) {
 	$scope.serverAddress = "http://ereaderweb.williamoneil.com";
 	$scope.browser = navigator.userAgent.toLowerCase();
+	$scope.isMobileDevice = $scope.browser.indexOf("ipod") != -1 || $scope.browser.indexOf("ipad") != -1 || $scope.browser.indexOf("iphone") != -1 || $scope.browser.indexOf("android") != -1;
 
 	$scope.isShowMask = false;
 	$scope.isShowSignin = false;
@@ -74,7 +75,7 @@ var HomeCtrl = function($scope) {
 	// $scope.startX = 0;
 	$scope.startLeft = 0;
 	$scope.isDragging = false;
-
+	
 	$scope.showProduct = function(c, i) {
 		var product = getProduct(c, i);
 		$scope.$emit("showProduct", product);
@@ -138,8 +139,8 @@ var HomeCtrl = function($scope) {
 		}, 1);
 	};
 
-	$scope.dragStart = function(c) {	
-		if ($scope.browser.indexOf("ipad") < 0 && $scope.browser.indexOf("iphone") < 0) {
+	$scope.dragStart = function(c) {
+		if (!$scope.isMobileDevice) {
 			$scope.isDragging  = true;
 			var target = document.getElementById(c).parentNode;
 		// var target = document.getElementById(c);
@@ -152,7 +153,7 @@ var HomeCtrl = function($scope) {
 		var target = document.getElementById(c).parentNode;
 		// var target = document.getElementById(c);
 		// var left = $scope.startX;
-		if ($scope.browser.indexOf("ipad") < 0 && $scope.browser.indexOf("iphone") < 0) {
+		if (!$scope.isMobileDevice) {
 			var left = $scope.startLeft;
 		// var width = target.offsetWidth;
 		// var tail = target.parentNode.offsetWidth;
@@ -168,7 +169,7 @@ var HomeCtrl = function($scope) {
 
 	$scope.openPDF = function(c, i) {
 		// if ($scope.isDragging) {
-		if ($scope.browser.indexOf("ipad") < 0 && $scope.browser.indexOf("iphone") < 0 && $scope.isDragging) {
+		if (!$scope.isMobileDevice && $scope.isDragging) {
 			$scope.isDragging  = false;
 		} else {
 			var product = getProduct(c, i);

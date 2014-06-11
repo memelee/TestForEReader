@@ -87,51 +87,71 @@ var HomeCtrl = function($scope) {
 	};
 
 	$scope.showLeft = function(c) {
-		var target = document.getElementById(c);
-		var left = target.offsetLeft;
-		if (target.className.indexOf("animate") < 0) {
-			target.className = target.className + " animate";
-		}
-		if (left < 0) {
-			if (left + 240 < 0) {
-				target.style.left = left + 240 + "px";
-			} else {
-				target.style.left = 0 + "px";
+		var target = document.getElementById(c).parentNode;
+		// var target = document.getElementById(c);
+		var left = target.scrollLeft;
+		// var left = target.offsetLeft;
+		// if (target.className.indexOf("animate") < 0) {
+		// 	target.className = target.className + " animate";
+		// }
+		// if (left < 0) {
+		// 	if (left + 240 < 0) {
+				// target.scrollLeft = left + 240 + "px";
+			// } else {
+				// target.scrollLeft = 0 + "px";
+		// 	}
+		// }
+		var i = 0;
+		var time = setInterval(function() {
+			target.scrollLeft -= 3;
+			i += 3;
+			if (i >= 240) {
+				clearInterval(time);
 			}
-		}
+		}, 1);
 	};
 	$scope.showRight = function(c) {
-		var target = document.getElementById(c);
-		var left = target.offsetLeft;
-		var width = target.offsetWidth;
-		var tail = target.parentNode.offsetWidth;
-		if (target.className.indexOf("animate") < 0) {
-			target.className = target.className + " animate";
-		}
-		if (left > -width + tail) {
-			if (left - 240 > -width + tail) {
-				target.style.left = left - 240 + "px";
-			} else {
-				target.style.left = -width + tail + "px";
+		var target = document.getElementById(c).parentNode;
+		// var target = document.getElementById(c);
+		var left = target.scrollLeft;
+		// var left = target.offsetLeft;
+		// var width = target.offsetWidth;
+		// var tail = target.parentNode.offsetWidth;
+		// if (target.className.indexOf("animate") < 0) {
+		// 	target.className = target.className + " animate";
+		// }
+		// if (left > -width + tail) {
+		// 	if (left - 240 > -width + tail) {
+		// 		target.scrollLeft = left - 240 + "px";
+		// 	} else {
+		// 		target.scrollLeft = -width + tail + "px";
+		// 	}
+		// }
+		var i = 0;
+		var time = setInterval(function() {
+			target.scrollLeft += 3;
+			i += 3;
+			if (i >= 240) {
+				clearInterval(time);
 			}
-		}
+		}, 1);
 	};
 
 	$scope.dragStart = function(c) {	
-		$scope.isDragging  = true;
-		var target = document.getElementById(c);
-		target.className = target.className.replace(" animate", "");
-		$scope.startX = target.offsetLeft;
+		// $scope.isDragging  = true;
+		// var target = document.getElementById(c);
+		// target.className = target.className.replace(" animate", "");
+		// $scope.startX = target.offsetLeft;
 	};
 	$scope.dragging = function(c, event) {
-		var target = document.getElementById(c);
-		var left = $scope.startX;
-		var width = target.offsetWidth;
-		var tail = target.parentNode.offsetWidth;
-		var dt = event.gesture.deltaX;
-		if (left + dt <= 0 && left + dt >= -width + tail) {
-			target.style.left =  $scope.startX + dt + "px";
-		}
+		// var target = document.getElementById(c);
+		// var left = $scope.startX;
+		// var width = target.offsetWidth;
+		// var tail = target.parentNode.offsetWidth;
+		// var dt = event.gesture.deltaX;
+		// if (left + dt <= 0 && left + dt >= -width + tail) {
+		// 	target.style.left =  $scope.startX + dt + "px";
+		// }
 	};
 	$scope.dragEnd = function(c) {
 	};

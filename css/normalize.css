@@ -1,6 +1,6 @@
 /*!normalize.cssv3.0.1|MITLicense|git.io/normalize*/
 
-html{font-family:"Times New Roman";-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;}
+html{font-family:"helvetica","Arial";-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;}
 body{margin:0;}
 article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section,summary{display:block;}
 audio,canvas,progress,video{display:inline-block;vertical-align:baseline;}

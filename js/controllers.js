@@ -77,8 +77,12 @@ var HomeCtrl = function($scope) {
 	$scope.isDragging = false;
 	
 	$scope.showProduct = function(c, i) {
-		var product = getProduct(c, i);
-		$scope.$emit("showProduct", product);
+		if (!$scope.isMobileDevice && $scope.isDragging) {
+			$scope.isDragging  = false;
+		} else {
+			var product = getProduct(c, i);
+			$scope.$emit("showProduct", product);
+		}
 	};
 
 	$scope.showSignin = function() {

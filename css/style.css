@@ -21,8 +21,11 @@ body { background-color: #000; -webkit-user-select: none; -moz-user-select: none
 .container { position: relative; margin: 0 auto; width: 100%; }
 .header { position: relative; width: 100%; height: 71px; text-align: center; background: url(../img/main/header.png) no-repeat; background-size: 100% 100%; }
 	.header img { margin-top: 5px; height: 60px;}
-	.button-signin { position: absolute; width: 80px; height: 30px; top: 30px; right: 60px; border: 0; padding: 0; color: #fff; font-size: 12px; font-weight: bold; line-height: 30px; background: url(../img/main/button-signin.png) no-repeat; background-size: 100% 100%; }
-	.button-setting { position: absolute; width: 30px; height: 30px; top: 30px; right: 20px; border: 0; padding: 0; background: url(../img/main/button-setting.png) no-repeat; background-size: 100% 100%; }
+	.button-signin { position: absolute; width: 80px; height: 30px; top: 30px; right: 70px; border: 0; padding: 0; color: #fff; font-size: 12px; font-weight: bold; line-height: 30px; background: url(../img/main/button-signin.png) no-repeat; background-size: 100% 100%; border-radius:5px; }
+	.button-setting { position: absolute; width: 30px; height: 30px; top: 30px; right: 20px; border: 0; padding: 0; background: url(../img/main/button-setting.png) no-repeat; background-size: 100% 100%; border-radius:5px; }
+	.header-hello {
+		position: absolute; height: 30px; top: 30px; right: 70px; color: #fff; font-size: 12px; font-weight: bold; line-height: 30px;
+	}
 .section { position: relative; width: 100%; height: 322px; overflow: hidden; background: url(../img/main/section.png) no-repeat; background-size: 100% 100%; }
 	.section .section-control { position: absolute; height: 285px; width: 50px; top: 35px; line-height: 280px; font-size: 100px; font-weight: 100; text-align: center; color: #fff; opacity: 0.5; cursor: pointer; }
 	.section .section-control.left {left: 0px;}
@@ -37,7 +40,7 @@ body { background-color: #000; -webkit-user-select: none; -moz-user-select: none
 		.section-list .book-lock { position: absolute; top: 50px; height: 156px; width: 100%; text-align: center; }
 			.section-list .book-lock img { height: 100%; cursor: pointer; }
 		.section-list .book-label, .section-list .book-date { margin: 5px 10px; text-align: center; color: white; font-size: 12px; }
-.button-submit { width: 80px; height: 30px; border: 0; font-size: 12px; font-weight: bold; color: #3399ee; background: url(../img/main/button-signin.png) no-repeat; background-size: 100% 100%; border-radius: 5px; }
+.button-submit { width: 80px; height: 30px; border: 0; padding: 0; font-size: 12px; font-weight: bold; line-height: 30px; color: #3399ee; background: url(../img/main/button-signin.png) no-repeat; background-size: 100% 100%; border-radius: 5px; }
 
 /*modal*/
 .modal-container { position: relative; margin: 0 auto; }
@@ -66,7 +69,7 @@ body { background-color: #000; -webkit-user-select: none; -moz-user-select: none
 				#product .modal-body .part-container .part .part-description { height: 168px; border: 1px solid #fff; overflow: hidden; -webkit-overflow-scrolling: touch; }
 				#product .modal-body .part-container .part iframe { width: 100%; height: 100%; border: none; }
 				#product .modal-body .part-container .part .part-text { margin: 15px 0; color: #39e; font-size: 15px; }
-				#product .modal-body .part-container .part .button-request { height: 30px; width: 140px; color: #39e; font-size: 14px; font-weight: bold; line-height: 25px; cursor: pointer; background: url(../img/main/button-signin.png) no-repeat; background-size: 100% 100%; border: 0; border-radius:5px; }
+				#product .modal-body .part-container .part .button-request { height: 30px; width: 140px; border: 0; padding: 0; color: #39e; font-size: 14px; font-weight: bold; line-height: 30px; cursor: pointer; background: url(../img/main/button-signin.png) no-repeat; background-size: 100% 100%; border-radius:5px; }
 				
 				#product .modal-body .part-container .part.part-request ul { margin: 20px auto 0; width: 600px; }
 					#product .modal-body .part-container .part.part-request ul li{ height: 50px; }
@@ -92,3 +95,4 @@ body { background-color: #000; -webkit-user-select: none; -moz-user-select: none
 /*setting*/
 #setting { width: 500px; height: 310px; }
 	#setting .modal-body { height: 240px; padding-top: 30px; }
+		#setting .modal-body .button-signout { width: 80px; height: 30px; border: 0; padding: 0; color: #3399ee; font-size: 12px; font-weight: bold; line-height: 30px; background: url(../img/main/button-signin.png) no-repeat; background-size: 100% 100%; border-radius:5px; }

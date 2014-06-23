@@ -3,6 +3,9 @@ var MainCtrl = function($scope, $http) {
 	$scope.browser = navigator.userAgent.toLowerCase();
 	$scope.isMobileDevice = $scope.browser.indexOf("ipod") != -1 || $scope.browser.indexOf("ipad") != -1 || $scope.browser.indexOf("iphone") != -1 || $scope.browser.indexOf("android") != -1;
 
+	// TODO check the cookies
+	$scope.isLogin = false;
+
 	$scope.isShowMask = false;
 	$scope.isShowSignin = false;
 	$scope.isShowSetting = false;
@@ -41,6 +44,20 @@ var MainCtrl = function($scope, $http) {
 		// return window.screen.height;
 		return document.body.scrollHeight;
 	};
+
+	$scope.$on("login", function(event) {
+		$scope.isShowSignin = false;
+		$scope.isShowMask = false;
+
+		$scope.isLogin = true;
+		$scope.$broadcast("bindMyLibrary");
+	});
+	$scope.$on("logout", function(event) {
+		$scope.isShowSetting = false;
+		$scope.isShowMask = false;
+
+		$scope.isLogin = false;
+	});
 
 	$scope.$on("showProduct", function(event, p) {
 		$scope.isShowMask = true;
@@ -94,19 +111,8 @@ var HomeCtrl = function($scope) {
 
 	$scope.showLeft = function(c) {
 		var target = document.getElementById(c).parentNode;
-		// var target = document.getElementById(c);
 		var left = target.scrollLeft;
-		// var left = target.offsetLeft;
-		// if (target.className.indexOf("animate") < 0) {
-		// 	target.className = target.className + " animate";
-		// }
-		// if (left < 0) {
-		// 	if (left + 240 < 0) {
-				// target.scrollLeft = left + 240 + "px";
-			// } else {
-				// target.scrollLeft = 0 + "px";
-		// 	}
-		// }
+
 		var i = 0;
 		var time = setInterval(function() {
 			target.scrollLeft -= 3;
@@ -118,21 +124,8 @@ var HomeCtrl = function($scope) {
 	};
 	$scope.showRight = function(c) {
 		var target = document.getElementById(c).parentNode;
-		// var target = document.getElementById(c);
 		var left = target.scrollLeft;
-		// var left = target.offsetLeft;
-		// var width = target.offsetWidth;
-		// var tail = target.parentNode.offsetWidth;
-		// if (target.className.indexOf("animate") < 0) {
-		// 	target.className = target.className + " animate";
-		// }
-		// if (left > -width + tail) {
-		// 	if (left - 240 > -width + tail) {
-		// 		target.scrollLeft = left - 240 + "px";
-		// 	} else {
-		// 		target.scrollLeft = -width + tail + "px";
-		// 	}
-		// }
+
 		var i = 0;
 		var time = setInterval(function() {
 			target.scrollLeft += 3;
@@ -147,32 +140,24 @@ var HomeCtrl = function($scope) {
 		if (!$scope.isMobileDevice) {
 			$scope.isDragging  = true;
 			var target = document.getElementById(c).parentNode;
-		// var target = document.getElementById(c);
-		// target.className = target.className.replace(" animate", "");
-		// $scope.startX = target.offsetLeft;
 			$scope.startLeft = target.scrollLeft;
 		}
 	};
 	$scope.dragging = function(c, event) {
-		var target = document.getElementById(c).parentNode;
-		// var target = document.getElementById(c);
-		// var left = $scope.startX;
 		if (!$scope.isMobileDevice) {
 			var left = $scope.startLeft;
-		// var width = target.offsetWidth;
-		// var tail = target.parentNode.offsetWidth;
 			var dt = event.gesture.deltaX;
-		// if (left + dt <= 0 && left + dt >= -width + tail) {
-		// 	target.style.left =  $scope.startX + dt + "px";
+			var target = document.getElementById(c).parentNode;
 			target.scrollLeft =  $scope.startLeft - dt;
-		// }
 		}
 	};
 	$scope.dragEnd = function(c) {
+		if (!$scope.isMobileDevice && $scope.browser.indexOf("chrome") != -1) {
+			$scope.isDragging  = false;
+		}
 	};
 
 	$scope.openPDF = function(c, i) {
-		// if ($scope.isDragging) {
 		if (!$scope.isMobileDevice && $scope.isDragging) {
 			$scope.isDragging  = false;
 		} else {
@@ -184,6 +169,11 @@ var HomeCtrl = function($scope) {
 			}
 		}
 	};
+
+	$scope.$on("bindMyLibrary", function(event) {
+		$scope.nickname = "call me nickname";
+		// TODO bind my library
+	});
 
 	var getProduct = function(c, i) {
 		switch (c) {
@@ -280,10 +270,18 @@ var SigninCtrl = function($scope) {
 	$scope.hideSignin = function() {
 		$scope.$emit("hideSignin");
 	};
+
+	$scope.login = function() {
+		$scope.$emit("login");
+	};
 };
 
 var SettingCtrl = function($scope) {
 	$scope.hideSetting = function() {
 		$scope.$emit("hideSetting");
+	};
+
+	$scope.logout = function() {
+		$scope.$emit("logout");
 	};
 }

@@ -18,76 +18,79 @@
 <body ng-controller="MainCtrl" onselectstart="return false;" ondragstart="return false;">
 	<div ng-controller="HomeCtrl" class="container">
 		<div class="header">
-			<img src="img/main/logo.png">
-			<button ng-click="showSignin()" class="button-signin">Sign In</button>
+			<img ng-src="img/main/logo.png">
+			<button ng-if="!isLogin" ng-click="showSignin()" class="button-signin">Sign In</button>
+			<div ng-if="isLogin" class="header-hello">
+				hello {{nickname}}
+			</div>
 			<button ng-click="showSetting()" class="button-setting"></button>
 		</div>
-		<div ng-show="false" class="section">
+		<div ng-if="isLogin" class="section">
 			<div class="section-header">MY LIBRARY</div>
 			<div ng-class="{'scroll': isMobileDevice}" class="section-list-container">
-				<ul hm-dragStart="dragStart('ml')" hm-drag="dragging('ml', $event)" hm-dragEnd="dragEnd('ml')" id="ml" class="section-list" style="width: {{240 * mlBookList.length}}px; left: 0;">
-					<li ng-repeat="each in mlBookList" ng-click="openPDF('ml', $index)">
-						<div class="book-thumb">
-		                	<img src="{{serverAddress + each.coverUrl}}">
+				<ul hm-dragStart="dragStart('ml')" hm-drag="dragging('ml', $event)" hm-dragEnd="dragEnd('ml')" id="ml" class="section-list" style="width: {{240 * mlBookList.length}}px;">
+					<li ng-repeat="each in mlBookList">
+						<div ng-click="openPDF('ml', $index)" class="book-thumb">
+		                	<img ng-src="{{serverAddress + each.coverUrl}}">
 		                </div>
-		                <div class="book-label">each.bookName</div>
-		                <div class="book-date">each.bookDate</div>
+		                <div ng-bind="each.bookName" class="book-label"></div>
+		                <div ng-bind="each.bookDate" class="book-date"></div>
 		            </li>	
 				</ul>
 			</div>
-            <a ng-click="showLeft('ml')" class="section-control left" >‹</a>
-            <a ng-click="showRight('ml')" class="section-control right" >›</a>
+            <a ng-click="showLeft('ml')" class="section-control left">‹</a>
+            <a ng-click="showRight('ml')" class="section-control right">›</a>
 		</div>
 		<div class="section">
 			<div class="section-header">SPECIAL REPORTS</div>
 			<div ng-class="{'scroll': isMobileDevice}" class="section-list-container">
-				<ul hm-dragStart="dragStart('sr')" hm-drag="dragging('sr', $event)" hm-dragEnd="dragEnd('sr')" id="sr" class="section-list" style="width: {{240 * srBookList.length}}px; left: 0;">
-					<li ng-repeat="each in srBookList" ng-click="openPDF('sr', $index)">
-						<div class="book-thumb">
-		                	<img src="{{serverAddress + each.coverUrl}}">
+				<ul hm-dragStart="dragStart('sr')" hm-drag="dragging('sr', $event)" hm-dragEnd="dragEnd('sr')" id="sr" class="section-list" style="width: {{240 * srBookList.length}}px;">
+					<li ng-repeat="each in srBookList">
+						<div ng-click="openPDF('sr', $index)" class="book-thumb">
+		                	<img ng-src="{{serverAddress + each.coverUrl}}">
 		                </div>
 		                <div ng-if="!each.pdfname" class="book-lock">
-							<img src="img/main/locker.png">
+							<img ng-src="img/main/locker.png">
 		                </div>
-		                <div class="book-label">{{each.bookName}}</div>
-		                <div class="book-date">{{each.bookDate}}</div>
+		                <div ng-bind="each.bookName" class="book-label"></div>
+		                <div ng-bind="each.bookDate" class="book-date"></div>
 		            </li>
 				</ul>
 			</div>
-            <a ng-click="showLeft('sr')" class="section-control left" >‹</a>
-            <a ng-click="showRight('sr')" class="section-control right" >›</a>
+            <a ng-click="showLeft('sr')" class="section-control left">‹</a>
+            <a ng-click="showRight('sr')" class="section-control right">›</a>
 		</div>
 		<div class="section">
 			<div class="section-header">INSTITUTIONAL RESEARCH</div>
 			<div ng-class="{'scroll': isMobileDevice}" class="section-list-container">
-				<ul hm-dragStart="dragStart('ir')" hm-drag="dragging('ir', $event)" hm-dragEnd="dragEnd('ir')" id="ir" class="section-list" style="width: {{240 * irBookList.length}}px; left: 0;">
-					<li ng-repeat="each in irBookList" ng-click="showProduct('ir', $index)">
-						<div class="book-thumb">
+				<ul hm-dragStart="dragStart('ir')" hm-drag="dragging('ir', $event)" hm-dragEnd="dragEnd('ir')" id="ir" class="section-list" style="width: {{240 * irBookList.length}}px;">
+					<li ng-repeat="each in irBookList">
+						<div ng-click="showProduct('ir', $index)" class="book-thumb">
 		                	<img ng-src="{{serverAddress + each.coverUrl}}">
 		                </div>
-		                <div class="book-label">{{each.bookName}}</div>
-		                <div class="book-date">{{each.bookDate}}</div>
+		                <div ng-bind="each.bookName" class="book-label"></div>
+		                <div ng-bind="each.bookDate" class="book-date"></div>
 		            </li>
 				</ul>
 			</div>
-            <a ng-click="showLeft('ir')" class="section-control left" >‹</a>
-            <a ng-click="showRight('ir')" class="section-control right" >›</a>
+            <a ng-click="showLeft('ir')" class="section-control left">‹</a>
+            <a ng-click="showRight('ir')" class="section-control right">›</a>
 		</div>
 		<div class="section">
 			<div class="section-header">MARKET DATA</div>
 			<div ng-class="{'scroll': isMobileDevice}" class="section-list-container">
-				<ul hm-dragStart="dragStart('md')" hm-drag="dragging('md', $event)" hm-dragEnd="dragEnd('md')" id="md" class="section-list" style="width: {{240 * mdBookList.length}}px; left: 0;">
-					<li ng-repeat="each in mdBookList" ng-click="showProduct('md', $index)">
-						<div class="book-thumb">
+				<ul hm-dragStart="dragStart('md')" hm-drag="dragging('md', $event)" hm-dragEnd="dragEnd('md')" id="md" class="section-list" style="width: {{240 * mdBookList.length}}px;">
+					<li ng-repeat="each in mdBookList">
+						<div ng-click="showProduct('md', $index)" class="book-thumb">
 		                	<img ng-src="{{serverAddress + each.coverUrl}}">
 		                </div>
-		                <div class="book-label">{{each.bookName}}</div>
-		                <div class="book-date">{{each.bookDate}}</div>
+		                <div ng-bind="each.bookName" class="book-label"></div>
+		                <div ng-bind="each.bookDate" class="book-date"></div>
 		            </li>
 				</ul>
 			</div>
-            <a ng-click="showLeft('md')" class="section-control left" >‹</a>
-            <a ng-click="showRight('md')" class="section-control right" >›</a>
+            <a ng-click="showLeft('md')" class="section-control left">‹</a>
+            <a ng-click="showRight('md')" class="section-control right">›</a>
 		</div>
 	</div>
 
@@ -105,23 +108,23 @@
 			<div class="modal-body">
 				<div ng-class="{'part-next-show': isShowNext}" class="part-container animate">
 					<div class="part fl" style="margin-right: 20px;">
-						<img class="part-wall" src="{{serverAddress + product.imgUrl}}">
+						<img class="part-wall" ng-src="{{serverAddress + product.imgUrl}}">
 						<ul class="part-thumbnail">
 							<li ng-repeat="each in product.imageData">
-								<img ng-click="showCarousel($index)" src="{{serverAddress + each.smallImgUrl}}">
-								<p>{{each.shortText}}</p>
+								<img ng-click="showCarousel($index)" ng-src="{{serverAddress + each.smallImgUrl}}">
+								<p ng-bind="each.shortText"></p>
 							</li>
 						</ul>
 					</div>
 					<div class="part fl" style="margin-left: 20px;">
 						<h1>{{productTitle}}</h1>
 						<div ng-class="{'scroll': isMobileDevice}" class="part-description">
-							<iframe src="{{productHTML}}"></iframe>
+							<iframe ng-src="{{productHTML}}"></iframe>
 						</div>
 						<p class="part-text">For access to {{productTitle}}, please contact your Account Exective.</p>
 						<button ng-click="showRequest()" class="button-request">Request Service</button>
 					</div>
-					<div ng-If="isShowRequest" class="part fl part-request">
+					<div ng-if="isShowRequest" class="part fl part-request">
 						<p class="modal-text text-bold">Please tell us who you are and we will respond to you within 1-2 business days.</p>
 							<form method="post">
 								<ul>
@@ -143,7 +146,7 @@
 							<p class="modal-text">UK: 0 (800) 969-581</p>
 							<p class="modal-text">International: (310) 448-6199</p>
 					</div>
-					<div ng-If="isShowCarousel" class="part fl part-carousel">
+					<div ng-if="isShowCarousel" class="part fl part-carousel">
 						<div class="part-carousel-container">
 			                <ul class="part-carousel-indicators">
 			                  	<li ng-repeat="each in product.imageData" ng-click="showThis($index)" ng-class="{active: $index == activeCarousel}"></li>
@@ -151,7 +154,7 @@
 			                <div class="part-carousel-inner">
 			                	<div ng-swipe-left="swipeLeft()" ng-swipe-right="swipeRight()" class="part-item-container animate" style="width: {{640 * product.imageData.length}}px; left: {{-640 * activeCarousel}}px;">
 				                  	<div ng-repeat="each in product.imageData" class="part-item" >
-				                    	<img src="{{serverAddress + each.largeImgUrl}}">
+				                    	<img ng-src="{{serverAddress + each.largeImgUrl}}">
 				                  	</div>
 				                </div>
 			                </div>
@@ -179,11 +182,11 @@
 							</li>
 							<li>
 								<input required type="password" name="password" placeholder="Password">
-								<button type="submit" class = "button-submit fr">Sign In</button>
+								<button ng-click="login()" type="submit" class="button-submit fr">Sign In</button>
 							</li>
 						</ul>	
 					</form>
-					<img src="img/signin/divider.png" width="100%"/>
+					<img ng-src="img/signin/divider.png" width="100%"/>
 					<p class="modal-text text-bold">O'Neil Institutional Library®</p>
 					<br/>
 					<p class="modal-text">This library offers institutional investing clients of William O'Neil + Co. digital</p>
@@ -207,8 +210,7 @@
 				<button ng-click="hideSetting()" class="button-right">Close</button>
 			</div>
 			<div class="modal-body">
-				<img src="img/setting/setting-header.png" width="80%">
-				<br />
+				<img ng-src="img/setting/setting-header.png" width="80%">
 				<br />
 				<p class="modal-text">Service & Support</p>
 				<p class="modal-text">Contact William O'Neil Client Services:</p>
@@ -216,7 +218,9 @@
 				<p class="modal-text">UK: 0 (800) 969-581</p>
 				<p class="modal-text">International: (310) 448-6199</p>
 				<p class="modal-text"><a href="mailto:support@williamoneil.com">support@williamoneil.com</a></p>
-				<br />
+				<div style="height: 30px; padding: 10px;">
+					<button ng-if="isLogin" ng-click="logout()" class="button-signout">Sign Out</button>
+				</div>
 				<p class="modal-text"><a href="http://www.williamoneil.com" target="_blank">Copyright 2013 William O'Neil + Co. Incorporated</a></p>
 				<p class="modal-text">Terms & Conditions</p>
 				<p class="modal-text">Version HTML 1.0 Build 1.0</p>

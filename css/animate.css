@@ -3,11 +3,11 @@
    	-moz-transform: translate3d(0, 0, 0); 
    	-ms-transform: translate3d(0, 0, 0); 
    	transform: translate3d(0, 0, 0); 
-  	-webkit-transition: 400ms linear all;
-    -moz-transition: 400ms linear all;
-    -ms-transition: 400ms linear all;
-    -o-transition: 400ms linear all;
-    transition: 400ms linear all;
+  	-webkit-transition: 300ms linear all;
+    -moz-transition: 300ms linear all;
+    -ms-transition: 300ms linear all;
+    -o-transition: 300ms linear all;
+    transition: 300ms linear all;
 }
 
 .mask.ng-hide-remove,
@@ -19,22 +19,24 @@
 .modal.ng-hide-remove,
 .modal.ng-hide-add.ng-hide-add-active {
 	display: block !important;
-	-webkit-transform: rotateY(90deg);
+	/*-webkit-transform: rotateY(90deg);
 	-moz-transform: rotateY(90deg);
 	-ms-transform: rotateY(90deg);
 	-o-transform: rotateY(90deg);
-	transform: rotateY(90deg);
+	transform: rotateY(90deg);*/
+	top: 0;
 	opacity: 0;
 }
 
 .modal.ng-hide-add,
 .modal.ng-hide-remove.ng-hide-remove-active {
 	display: block !important;
-	-webkit-transform: rotateY(0deg);
+	/*-webkit-transform: rotateY(0deg);
 	-moz-transform: rotateY(0deg);
 	-ms-transform: rotateY(0deg);
 	-o-transform: rotateY(0deg);
-	transform: rotateY(0deg);
+	transform: rotateY(0deg);*/
+	top: 100px;
 	opacity: 1;
 }
 

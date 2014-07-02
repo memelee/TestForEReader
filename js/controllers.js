@@ -1,19 +1,13 @@
-var MainCtrl = function($scope, $http) {
+eReader.controller("MainCtrl", function($scope, $http, Cookie) {
 	$scope.serverAddress = "http://ereaderweb.williamoneil.com";
 	$scope.browser = navigator.userAgent.toLowerCase();
 	$scope.isMobileDevice = $scope.browser.indexOf("ipod") != -1 || $scope.browser.indexOf("ipad") != -1 || $scope.browser.indexOf("iphone") != -1 || $scope.browser.indexOf("android") != -1;
 
-	// TODO check the cookies
-	$scope.isLogin = false;
+	$scope.isLogin = Cookie.getCookie("EMAIL") != "";
 
 	$scope.isShowMask = false;
 	$scope.isShowSignin = false;
 	$scope.isShowSetting = false;
-
-	$scope.mlBookList = [];
-	$scope.srBookList = [];
-	$scope.irBookList = [];
-	$scope.mdBookList = [];
 
 	$http({
 		method: "GET",
@@ -35,15 +29,6 @@ var MainCtrl = function($scope, $http) {
 	.error(function(data, status, headers, config) {
 		alert("load book error");
 	});
-
-	$scope.screenWidth = function() {
-		// alert(document.body.scrollWidth);
-		return document.body.scrollWidth;
-	};
-	$scope.screenHeight = function() {
-		// return window.screen.height;
-		return document.body.scrollHeight;
-	};
 
 	$scope.$on("login", function(event) {
 		$scope.isShowSignin = false;
@@ -86,10 +71,9 @@ var MainCtrl = function($scope, $http) {
 		$scope.isShowSetting = false;
 		$scope.isShowMask = false;
 	});
-};
+});
 
-var HomeCtrl = function($scope) {
-	// $scope.startX = 0;
+eReader.controller("HomeCtrl", function($scope, Product) {
 	$scope.startLeft = 0;
 	$scope.isDragging = false;
 	
@@ -97,7 +81,7 @@ var HomeCtrl = function($scope) {
 		if (!$scope.isMobileDevice && $scope.isDragging) {
 			$scope.isDragging  = false;
 		} else {
-			var product = getProduct(c, i);
+			var product = Product.getProduct(c, i);
 			$scope.$emit("showProduct", product);
 		}
 	};
@@ -145,7 +129,6 @@ var HomeCtrl = function($scope) {
 	};
 	$scope.dragging = function(c, event) {
 		if (!$scope.isMobileDevice) {
-			var left = $scope.startLeft;
 			var dt = event.gesture.deltaX;
 			var target = document.getElementById(c).parentNode;
 			target.scrollLeft =  $scope.startLeft - dt;
@@ -161,7 +144,7 @@ var HomeCtrl = function($scope) {
 		if (!$scope.isMobileDevice && $scope.isDragging) {
 			$scope.isDragging  = false;
 		} else {
-			var product = getProduct(c, i);
+			var product = Product.getProduct(c, i);
 			if (product.pdfname == "" || product.pdfname == null) {
 				$scope.$emit("showProduct", product);
 			} else {
@@ -174,26 +157,9 @@ var HomeCtrl = function($scope) {
 		$scope.nickname = "call me nickname";
 		// TODO bind my library
 	});
+});
 
-	var getProduct = function(c, i) {
-		switch (c) {
-		case "ml":
-			return $scope.mlBookList[i];
-			break;
-		case "sr":
-			return $scope.srBookList[i];
-			break;
-		case "ir":
-			return $scope.irBookList[i];
-			break;
-		case "md":
-			return $scope.mdBookList[i];
-			break;
-		}
-	};
-};
-
-var ProductCtrl = function($scope, $http, $sce, $swipe) {
+eReader.controller("ProductCtrl", function($scope, $http, $sce, $swipe) {
 	$scope.isShowNext = false;
 	$scope.isShowRequest = false;
 	$scope.isShowCarousel = false;
@@ -264,24 +230,26 @@ var ProductCtrl = function($scope, $http, $sce, $swipe) {
 			alert("load book error");
 		});
 	});
-};
+});
 
-var SigninCtrl = function($scope) {
+eReader.controller("SigninCtrl", function($scope, Cookie) {
 	$scope.hideSignin = function() {
 		$scope.$emit("hideSignin");
 	};
 
-	$scope.login = function() {
+	$scope.login = function(u) {
+		Cookie.setCookie("EMAIL", u.email);
 		$scope.$emit("login");
 	};
-};
+});
 
-var SettingCtrl = function($scope) {
+eReader.controller("SettingCtrl", function($scope, Cookie) {
 	$scope.hideSetting = function() {
 		$scope.$emit("hideSetting");
 	};
 
 	$scope.logout = function() {
+		Cookie.delCookie("EMAIL");
 		$scope.$emit("logout");
 	};
-}
+});

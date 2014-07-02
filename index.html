@@ -30,8 +30,8 @@
 			<div ng-class="{'scroll': isMobileDevice}" class="section-list-container">
 				<ul hm-dragStart="dragStart('ml')" hm-drag="dragging('ml', $event)" hm-dragEnd="dragEnd('ml')" id="ml" class="section-list" style="width: {{240 * mlBookList.length}}px;">
 					<li ng-repeat="each in mlBookList">
-						<div ng-click="openPDF('ml', $index)" class="book-thumb">
-		                	<img ng-src="{{serverAddress + each.coverUrl}}">
+						<div class="book-thumb">
+		                	<img ng-click="openPDF('ml', $index)" ng-src="{{serverAddress + each.coverUrl}}">
 		                </div>
 		                <div ng-bind="each.bookName" class="book-label"></div>
 		                <div ng-bind="each.bookDate" class="book-date"></div>
@@ -46,11 +46,11 @@
 			<div ng-class="{'scroll': isMobileDevice}" class="section-list-container">
 				<ul hm-dragStart="dragStart('sr')" hm-drag="dragging('sr', $event)" hm-dragEnd="dragEnd('sr')" id="sr" class="section-list" style="width: {{240 * srBookList.length}}px;">
 					<li ng-repeat="each in srBookList">
-						<div ng-click="openPDF('sr', $index)" class="book-thumb">
-		                	<img ng-src="{{serverAddress + each.coverUrl}}">
+						<div class="book-thumb">
+		                	<img ng-click="openPDF('sr', $index)" ng-src="{{serverAddress + each.coverUrl}}">
 		                </div>
 		                <div ng-if="!each.pdfname" class="book-lock">
-							<img ng-src="img/main/locker.png">
+							<img ng-click="openPDF('sr', $index)" ng-src="img/main/locker.png">
 		                </div>
 		                <div ng-bind="each.bookName" class="book-label"></div>
 		                <div ng-bind="each.bookDate" class="book-date"></div>
@@ -65,8 +65,8 @@
 			<div ng-class="{'scroll': isMobileDevice}" class="section-list-container">
 				<ul hm-dragStart="dragStart('ir')" hm-drag="dragging('ir', $event)" hm-dragEnd="dragEnd('ir')" id="ir" class="section-list" style="width: {{240 * irBookList.length}}px;">
 					<li ng-repeat="each in irBookList">
-						<div ng-click="showProduct('ir', $index)" class="book-thumb">
-		                	<img ng-src="{{serverAddress + each.coverUrl}}">
+						<div class="book-thumb">
+		                	<img ng-click="showProduct('ir', $index)" ng-src="{{serverAddress + each.coverUrl}}">
 		                </div>
 		                <div ng-bind="each.bookName" class="book-label"></div>
 		                <div ng-bind="each.bookDate" class="book-date"></div>
@@ -81,8 +81,8 @@
 			<div ng-class="{'scroll': isMobileDevice}" class="section-list-container">
 				<ul hm-dragStart="dragStart('md')" hm-drag="dragging('md', $event)" hm-dragEnd="dragEnd('md')" id="md" class="section-list" style="width: {{240 * mdBookList.length}}px;">
 					<li ng-repeat="each in mdBookList">
-						<div ng-click="showProduct('md', $index)" class="book-thumb">
-		                	<img ng-src="{{serverAddress + each.coverUrl}}">
+						<div class="book-thumb">
+		                	<img ng-click="showProduct('md', $index)" ng-src="{{serverAddress + each.coverUrl}}">
 		                </div>
 		                <div ng-bind="each.bookName" class="book-label"></div>
 		                <div ng-bind="each.bookDate" class="book-date"></div>
@@ -175,14 +175,14 @@
 				<button ng-click="hideSignin()" class="button-right">Close</button>
 			</div>
 			<div class="modal-body">
-					<form method="post">
+					<form name="signinForm">
 						<ul>
 							<li>
-								<input required type="email" name="email" placeholder="Email">
+								<input ng-model="user.email" required type="email" name="email" placeholder="Email">
 							</li>
 							<li>
-								<input required type="password" name="password" placeholder="Password">
-								<button ng-click="login()" type="submit" class="button-submit fr">Sign In</button>
+								<input ng-model="user.password" required type="password" name="password" placeholder="Password">
+								<button ng-click="login(user)" type="submit" class="button-submit fr">Sign In</button>
 							</li>
 						</ul>	
 					</form>
@@ -229,6 +229,7 @@
 	</div>
 
 	<script src="js/app.js"></script>
+	<script src="js/service.js"></script>
 	<script src="js/controllers.js"></script>
 </body>
 </html>

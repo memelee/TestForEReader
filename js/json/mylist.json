@@ -1,0 +1,611 @@
+{
+	"response": {
+		"userData": {
+			"userName": "Angela Han",
+			"userId": 210,
+			"userEmail": "AHan@williamoneil.com"
+		},
+		"responseHeader": {
+			"error": false,
+			"errorCode": null,
+			"errorShortDesc": null,
+			"errorLongDesc": null,
+			"asOfDate": 1404290736060
+		},
+		"bkdata": [{
+			"fileSize": 7599585,
+			"bookCategoryName": "My Library",
+			"volumeNumber": 0,
+			"bookID": 10,
+			"bookName": "Leaders & Laggards Review",
+			"pdfname": "/rb2/e70c74/2014-06-27/Books/llr_llr_v1_Web.pdf",
+			"bookDate": "2014-06-27",
+			"coverUrl": "/public/cover2x/llr_all@2x.jpg"
+		}, {
+			"fileSize": 7326155,
+			"bookCategoryName": "My Library",
+			"volumeNumber": 0,
+			"bookID": 11,
+			"bookName": "Leaders & Laggards Large Cap Review",
+			"pdfname": "/rb2/e70c74/2014-06-27/Books/llr_llrlc_v1_Web.pdf",
+			"bookDate": "2014-06-27",
+			"coverUrl": "/public/cover2x/llr_large_cap@2x.jpg"
+		}, {
+			"fileSize": 87547772,
+			"bookCategoryName": "My Library",
+			"volumeNumber": 0,
+			"bookID": 14,
+			"bookName": "Global Focus List: Developed Markets - Long",
+			"pdfname": "/rb2/e70c74/2014-06-27/Books/GlobalFocusList-Developed-06272014-withIndex_Web.pdf",
+			"bookDate": "2014-06-27",
+			"coverUrl": "/public/cover2x/gfl_dm@2x.png"
+		}, {
+			"fileSize": 79261030,
+			"bookCategoryName": "My Library",
+			"volumeNumber": 0,
+			"bookID": 16,
+			"bookName": "Global Focus List: Emerging Markets - Long",
+			"pdfname": "/rb2/e70c74/2014-06-27/Books/GlobalFocusList-Emerging-06272014-withIndex_Web.pdf",
+			"bookDate": "2014-06-27",
+			"coverUrl": "/public/cover2x/gfl_em@2x.png"
+		}, {
+			"fileSize": 7307467,
+			"bookCategoryName": "My Library",
+			"volumeNumber": 0,
+			"bookID": 18,
+			"bookName": "Global Focus List: Frontier Markets - Long",
+			"pdfname": "/rb2/e70c74/2014-06-27/Books/GlobalFocusList-Frontier-06272014-withIndex_Web.pdf",
+			"bookDate": "2014-06-27",
+			"coverUrl": "/public/cover2x/gflfrontier_small.png"
+		}, {
+			"fileSize": 17367175,
+			"bookCategoryName": "My Library",
+			"volumeNumber": 0,
+			"bookID": 9,
+			"bookName": "Global Sector Strategy",
+			"pdfname": "/rb2/e70c74/2014-06-27/Books/sector_bookcontent_v001_Web.pdf",
+			"bookDate": "2014-06-27",
+			"coverUrl": "/public/cover2x/sector@2x.jpg"
+		}, {
+			"fileSize": 14044846,
+			"bookCategoryName": "My Library",
+			"volumeNumber": 0,
+			"bookID": 20,
+			"bookName": "Week In Review Large Cap",
+			"pdfname": "/rb2/e70c74/2014-06-27/Books/dwir_large_cap_v1_Web.pdf",
+			"bookDate": "2014-06-27",
+			"coverUrl": "/public/cover2x/wir_largecap@2x.jpg"
+		}, {
+			"fileSize": 21742384,
+			"bookCategoryName": "My Library",
+			"volumeNumber": 0,
+			"bookID": 21,
+			"bookName": "Week In Review Mid Cap",
+			"pdfname": "/rb2/e70c74/2014-06-27/Books/dwir_mid_cap_v1_Web.pdf",
+			"bookDate": "2014-06-27",
+			"coverUrl": "/public/cover2x/wir_midcap@2x.jpg"
+		}, {
+			"fileSize": 15887579,
+			"bookCategoryName": "My Library",
+			"volumeNumber": 0,
+			"bookID": 22,
+			"bookName": "Week In Review Small Cap",
+			"pdfname": "/rb2/e70c74/2014-06-27/Books/dwir_small_cap_v1_Web.pdf",
+			"bookDate": "2014-06-27",
+			"coverUrl": "/public/cover2x/wir_smallcap@2x.jpg"
+		}, {
+			"fileSize": 16722337,
+			"bookCategoryName": "My Library",
+			"volumeNumber": 0,
+			"bookID": 23,
+			"bookName": "Week In Review Micro Cap",
+			"pdfname": "/rb2/e70c74/2014-06-27/Books/dwir_micro_cap_v1_Web.pdf",
+			"bookDate": "2014-06-27",
+			"coverUrl": "/public/cover2x/wir_microcap@2x.jpg"
+		}, {
+			"fileSize": 12526956,
+			"bookCategoryName": "My Library",
+			"volumeNumber": 0,
+			"bookID": 30,
+			"bookName": "Week in Review China",
+			"pdfname": "/rb2/e70c74/2014-06-27/Books/IWIR_China_V1_Web.pdf",
+			"bookDate": "2014-06-27",
+			"coverUrl": "/public/cover2x/wir_china@2x.jpg"
+		}, {
+			"fileSize": 10945784,
+			"bookCategoryName": "My Library",
+			"volumeNumber": 0,
+			"bookID": 31,
+			"bookName": "Week In Review Hong Kong",
+			"pdfname": "/rb2/e70c74/2014-06-27/Books/IWIR_HONG-KONG_V1_Web.pdf",
+			"bookDate": "2014-06-27",
+			"coverUrl": "/public/cover2x/wir_hk@2x.jpg"
+		}, {
+			"fileSize": 13602158,
+			"bookCategoryName": "My Library",
+			"volumeNumber": 0,
+			"bookID": 32,
+			"bookName": "Week In Review India",
+			"pdfname": "/rb2/e70c74/2014-06-27/Books/IWIR_India_V1_Web.pdf",
+			"bookDate": "2014-06-27",
+			"coverUrl": "/public/cover2x/wir_india@2x.jpg"
+		}, {
+			"fileSize": 11251709,
+			"bookCategoryName": "My Library",
+			"volumeNumber": 0,
+			"bookID": 73,
+			"bookName": "Week In Review Canada",
+			"pdfname": "/rb2/e70c74/2014-06-27/Books/IWIR_CANADA_V1_Web.pdf",
+			"bookDate": "2014-06-27",
+			"coverUrl": "/public/cover2x/canada_small.png"
+		}, {
+			"fileSize": 11214904,
+			"bookCategoryName": "My Library",
+			"volumeNumber": 0,
+			"bookID": 74,
+			"bookName": "Week In Review UK",
+			"pdfname": "/rb2/e70c74/2014-06-27/Books/IWIR_UNITED-KINGDOM_V1_Web.pdf",
+			"bookDate": "2014-06-27",
+			"coverUrl": "/public/cover2x/uk_small.png"
+		}, {
+			"fileSize": 13316642,
+			"bookCategoryName": "My Library",
+			"volumeNumber": 0,
+			"bookID": 75,
+			"bookName": "Week In Review Japan",
+			"pdfname": "/rb2/e70c74/2014-06-27/Books/IWIR_JAPAN_V1_Web.pdf",
+			"bookDate": "2014-06-27",
+			"coverUrl": "/public/cover2x/japan_small.png"
+		}, {
+			"fileSize": 16036597,
+			"bookCategoryName": "My Library",
+			"volumeNumber": 0,
+			"bookID": 76,
+			"bookName": "Week In Review Germany",
+			"pdfname": "/rb2/e70c74/2014-06-27/Books/IWIR_GERMANY_V1_Web.pdf",
+			"bookDate": "2014-06-27",
+			"coverUrl": "/public/cover2x/germany_small.png"
+		}, {
+			"fileSize": 74222369,
+			"bookCategoryName": "My Library",
+			"volumeNumber": 1,
+			"bookID": 1,
+			"bookName": "O'Neil Database",
+			"pdfname": "/rb2/e70c74/2014-06-27/Books/maroonbookxmlv1_Web.pdf",
+			"bookDate": "2014-06-27",
+			"coverUrl": "/public/cover2x/oneildb_vol1.png"
+		}, {
+			"fileSize": 67273743,
+			"bookCategoryName": "My Library",
+			"volumeNumber": 2,
+			"bookID": 1,
+			"bookName": "O'Neil Database",
+			"pdfname": "/rb2/e70c74/2014-06-27/Books/maroonbookxmlv2_Web.pdf",
+			"bookDate": "2014-06-27",
+			"coverUrl": "/public/cover2x/oneildb_vol2.png"
+		}, {
+			"fileSize": 108407469,
+			"bookCategoryName": "My Library",
+			"volumeNumber": 0,
+			"bookID": 2,
+			"bookName": "O'Neil Database, Supplement",
+			"pdfname": "/rb2/e70c74/2014-06-27/Books/suppbookxmlv1_Web.pdf",
+			"bookDate": "2014-06-27",
+			"coverUrl": "/public/cover2x/oneildb_supplement-vol1@2x.png"
+		}, {
+			"fileSize": 116386,
+			"bookCategoryName": "My Library",
+			"volumeNumber": 0,
+			"bookID": 78,
+			"bookName": "O'Neil Market View",
+			"pdfname": "/rb2/e70c74/2014-06-27/Books/OMV1.pdf",
+			"bookDate": "2014-06-27",
+			"coverUrl": "/public/cover2x/omv_smthumb_02172014@2x.png"
+		}, {
+			"fileSize": 27635507,
+			"bookCategoryName": "My Library",
+			"volumeNumber": 0,
+			"bookID": 3,
+			"bookName": "O'Neil Canadian Perspective",
+			"pdfname": "/rb2/e70c74/2014-06-20/Books/CANADA_100013v1_S0_Proofs_Web.pdf",
+			"bookDate": "2014-06-20",
+			"coverUrl": "/public/cover2x/canadian@2x.jpg"
+		}, {
+			"fileSize": 785221,
+			"bookCategoryName": "Special Reports",
+			"volumeNumber": 0,
+			"bookID": 85,
+			"bookName": "Casinos in Asia",
+			"pdfname": "/rb2/e70c74/Special Reports/Casinos Asia Oneil Research_06092014.pdf",
+			"bookDate": "2014-06-09",
+			"coverUrl": "/public/pd2x/or_smthumb_themecasino_06122014@2x.png"
+		}, {
+			"fileSize": 977852,
+			"bookCategoryName": "Special Reports",
+			"volumeNumber": 0,
+			"bookID": 84,
+			"bookName": "Gemalto",
+			"pdfname": "/rb2/e70c74/Special Reports/Gemalto_Oneil Research_05152014.pdf",
+			"bookDate": "2014-05-14",
+			"coverUrl": "/public/pd2x/or_smthumb_gemalto_05152014@2x.png"
+		}, {
+			"fileSize": 961816,
+			"bookCategoryName": "Special Reports",
+			"volumeNumber": 0,
+			"bookID": 83,
+			"bookName": "Digital Wallet",
+			"pdfname": "/rb2/e70c74/Special Reports/ThemeDigitalWallet_Oneil Research_05062014.pdf",
+			"bookDate": "2014-05-05",
+			"coverUrl": "/public/pd2x/or_smthumb_digitaltheme_05062014@2x.png"
+		}, {
+			"fileSize": 2109445,
+			"bookCategoryName": "Special Reports",
+			"volumeNumber": 0,
+			"bookID": 82,
+			"bookName": "WhiteWave Foods",
+			"pdfname": "/rb2/e70c74/Special Reports/Whitewave_Oneil Research_04012014.pdf",
+			"bookDate": "2014-04-01",
+			"coverUrl": "/public/pd2x/or_smthumb_whitewave_04012014@2x.png"
+		}, {
+			"fileSize": 1984649,
+			"bookCategoryName": "Special Reports",
+			"volumeNumber": 0,
+			"bookID": 81,
+			"bookName": "Dorman",
+			"pdfname": "/rb2/e70c74/Special Reports/Dorman_Oneil Research_03042014.pdf",
+			"bookDate": "2014-03-04",
+			"coverUrl": "/public/pd2x/or_smthumb_dorman_03042014@2x.png"
+		}, {
+			"fileSize": 2204501,
+			"bookCategoryName": "Special Reports",
+			"volumeNumber": 0,
+			"bookID": 80,
+			"bookName": "Qihoo",
+			"pdfname": "/rb2/e70c74/Special Reports/Qihoo_Oneil Research_02272014.pdf",
+			"bookDate": "2014-02-27",
+			"coverUrl": "/public/pd2x/or_smthumb_qihoo_02272014@2x.png"
+		}, {
+			"fileSize": 443684,
+			"bookCategoryName": "Special Reports",
+			"volumeNumber": 0,
+			"bookID": 79,
+			"bookName": "Tesla",
+			"pdfname": "/rb2/e70c74/Special Reports/Tesla_Oneil Research_02132014.pdf",
+			"bookDate": "2014-02-12",
+			"coverUrl": "/public/pd2x/or_smthumb_tesla_02122014@2x.png"
+		}, {
+			"fileSize": 1103268,
+			"bookCategoryName": "Special Reports",
+			"volumeNumber": 0,
+			"bookID": 77,
+			"bookName": "KUKA AG",
+			"pdfname": "/rb2/e70c74/Special Reports/Kuka_Oneil Research_01302014.pdf",
+			"bookDate": "2014-01-30",
+			"coverUrl": "/public/pd2x/or_smthumb_kuka_01302014@2x.png"
+		}, {
+			"fileSize": 573359,
+			"bookCategoryName": "Special Reports",
+			"volumeNumber": 0,
+			"bookID": 72,
+			"bookName": "Safaricom",
+			"pdfname": "/rb2/e70c74/Special Reports/Safaricom_Oneil Research_12112013.pdf",
+			"bookDate": "2013-12-11",
+			"coverUrl": "/public/pd2x/or_smthumb_safaricom_12112013@2x.png"
+		}, {
+			"fileSize": 1944409,
+			"bookCategoryName": "Special Reports",
+			"volumeNumber": 0,
+			"bookID": 71,
+			"bookName": "Sprouts",
+			"pdfname": "/rb2/e70c74/Special Reports/Sprouts_Oneil Research_11132013.pdf",
+			"bookDate": "2013-11-13",
+			"coverUrl": "/public/pd2x/or_smthumb_sprouts_11182013@2x.png"
+		}, {
+			"fileSize": 788036,
+			"bookCategoryName": "Special Reports",
+			"volumeNumber": 0,
+			"bookID": 70,
+			"bookName": "Gogo",
+			"pdfname": "/rb2/e70c74/Special Reports/Gogo Oneil Research_11052013.pdf",
+			"bookDate": "2013-11-05",
+			"coverUrl": "/public/pd2x/or_smthumb_gogo_11052013@2x.png"
+		}, {
+			"fileSize": 492063,
+			"bookCategoryName": "Special Reports",
+			"volumeNumber": 0,
+			"bookID": 69,
+			"bookName": "Youku Tudou",
+			"pdfname": "/rb2/e70c74/Special Reports/Yoku_Oneil Research_10302013.pdf",
+			"bookDate": "2013-10-30",
+			"coverUrl": "/public/pd2x/or_smthumb_yoku_10302013@2x.png"
+		}, {
+			"fileSize": 824443,
+			"bookCategoryName": "Special Reports",
+			"volumeNumber": 0,
+			"bookID": 68,
+			"bookName": "Tesla",
+			"pdfname": "/rb2/e70c74/Special Reports/Tesla_Oneil Research_09122013.pdf",
+			"bookDate": "2013-09-12",
+			"coverUrl": "/public/pd2x/or_smthumb_tesla_09122013@2x.png"
+		}, {
+			"fileSize": 703875,
+			"bookCategoryName": "Special Reports",
+			"volumeNumber": 0,
+			"bookID": 67,
+			"bookName": "Mobile Payment",
+			"pdfname": "/rb2/e70c74/Special Reports/mobilepayment_Oneil Research_08072013.pdf",
+			"bookDate": "2013-08-07",
+			"coverUrl": "/public/pd2x/or_smthumb_mobilepayment_08072013@2x.png"
+		}, {
+			"fileSize": 805526,
+			"bookCategoryName": "Special Reports",
+			"volumeNumber": 0,
+			"bookID": 65,
+			"bookName": "Nike Adidas",
+			"pdfname": "/rb2/e70c74/Special Reports/Nike Adidas Oneil research_07232013.pdf",
+			"bookDate": "2013-07-23",
+			"coverUrl": "/public/pd2x/or_smthumb_nike_07232013@2x.png"
+		}, {
+			"fileSize": 768811,
+			"bookCategoryName": "Special Reports",
+			"volumeNumber": 0,
+			"bookID": 66,
+			"bookName": "ARM Holdings",
+			"pdfname": "/rb2/e70c74/Special Reports/ARM_Oneil research_07182013.pdf",
+			"bookDate": "2013-07-18",
+			"coverUrl": "/public/pd2x/or_smthumb_arm_07182013@2x.png"
+		}, {
+			"fileSize": 796809,
+			"bookCategoryName": "Special Reports",
+			"volumeNumber": 0,
+			"bookID": 64,
+			"bookName": "Kroton Educacional ",
+			"pdfname": "/rb2/e70c74/Special Reports/Kroton_Oneil Research_07162013.pdf",
+			"bookDate": "2013-07-16",
+			"coverUrl": "/public/pd2x/or_smthumb_kroton_07162013@2x.png"
+		}, {
+			"fileSize": 568925,
+			"bookCategoryName": "Special Reports",
+			"volumeNumber": 0,
+			"bookID": 63,
+			"bookName": "Naspers",
+			"pdfname": "/rb2/e70c74/Special Reports/Naspers_Oneil Research_07012013.pdf",
+			"bookDate": "2013-07-01",
+			"coverUrl": "/public/pd2x/or_smthumb_naspers_07012013@2x.png"
+		}, {
+			"fileSize": 829196,
+			"bookCategoryName": "Special Reports",
+			"volumeNumber": 0,
+			"bookID": 62,
+			"bookName": "3D Printing",
+			"pdfname": "/rb2/e70c74/Special Reports/3D Printing Oneil Reasearch_05152013.pdf",
+			"bookDate": "2013-05-15",
+			"coverUrl": "/public/pd2x/or_smthumb_3dprinting_05152013@2x.png"
+		}, {
+			"fileSize": 480189,
+			"bookCategoryName": "Special Reports",
+			"volumeNumber": 0,
+			"bookID": 61,
+			"bookName": "Proto Labs",
+			"pdfname": "/rb2/e70c74/Special Reports/Proto Oneil Research_04252013.pdf",
+			"bookDate": "2013-04-25",
+			"coverUrl": "/public/pd2x/or_smthumb_proto_04252013@2x.png"
+		}, {
+			"fileSize": 466229,
+			"bookCategoryName": "Special Reports",
+			"volumeNumber": 0,
+			"bookID": 60,
+			"bookName": "Japan Baby Care",
+			"pdfname": "/rb2/e70c74/Special Reports/Japan Baby Care Oneil Research_04112013.pdf",
+			"bookDate": "2013-04-11",
+			"coverUrl": "/public/pd2x/or_smthumb_japanbabycare_04112013@2x.png"
+		}, {
+			"fileSize": 616202,
+			"bookCategoryName": "Special Reports",
+			"volumeNumber": 0,
+			"bookID": 59,
+			"bookName": "Mexico Manufacturing",
+			"pdfname": "/rb2/e70c74/Special Reports/Mexico Manufacturing Oneil Research_04082013.pdf",
+			"bookDate": "2013-04-08",
+			"coverUrl": "/public/pd2x/or_smthumb_mexicomanufacturing_04082013@2x.png"
+		}, {
+			"fileSize": 605850,
+			"bookCategoryName": "Special Reports",
+			"volumeNumber": 0,
+			"bookID": 58,
+			"bookName": "TMH",
+			"pdfname": "/rb2/e70c74/Special Reports/TMH Oneil Research_03212013.pdf",
+			"bookDate": "2013-03-21",
+			"coverUrl": "/public/pd2x/or_smthumb_tmh_03132013@2x.png"
+		}, {
+			"fileSize": 832473,
+			"bookCategoryName": "Special Reports",
+			"volumeNumber": 0,
+			"bookID": 57,
+			"bookName": "Hong Kong Natural Gas",
+			"pdfname": "/rb2/e70c74/Special Reports/Hong Kong Natural Gas Oneil Research_031313.pdf",
+			"bookDate": "2013-03-13",
+			"coverUrl": "/public/pd2x/or_smthumb_hongkongnaturalgas_03132013@2x.png"
+		}, {
+			"fileSize": 509531,
+			"bookCategoryName": "Special Reports",
+			"volumeNumber": 0,
+			"bookID": 56,
+			"bookName": "Mortgage Servicers",
+			"pdfname": "/rb2/e70c74/Special Reports/Mortgage Servicers Oneil Research_03062013.pdf",
+			"bookDate": "2013-03-06",
+			"coverUrl": "/public/pd2x/or_smthumb_mortgageservicers_03062013@2x.png"
+		}, {
+			"fileSize": 1195610,
+			"bookCategoryName": "Special Reports",
+			"volumeNumber": 0,
+			"bookID": 55,
+			"bookName": "Nigerian Banks",
+			"pdfname": "/rb2/e70c74/Special Reports/Nigerian Banks Oneil Research_02112013.pdf",
+			"bookDate": "2013-02-21",
+			"coverUrl": "/public/pd2x/OR_SMThumb_Nigerian_Banks_022113@2x.png"
+		}, {
+			"fileSize": 2334800,
+			"bookCategoryName": "Special Reports",
+			"volumeNumber": 0,
+			"bookID": 54,
+			"bookName": "CVS Brazil",
+			"pdfname": "/rb2/e70c74/Special Reports/CVS Brazil Oneil Research_02112013.pdf",
+			"bookDate": "2013-02-11",
+			"coverUrl": "/public/pd2x/OR_SMThumb_CVS_Brazil_021113@2x.png"
+		}, {
+			"fileSize": 1793366,
+			"bookCategoryName": "Special Reports",
+			"volumeNumber": 0,
+			"bookID": 53,
+			"bookName": "Novo Nordisk",
+			"pdfname": "/rb2/e70c74/Special Reports/Novo Nordisk Oneil Research_01092013.pdf",
+			"bookDate": "2013-01-09",
+			"coverUrl": "/public/pd2x/OR_SMThumb_Novo_Nordisk_010913@2x.png"
+		}, {
+			"fileSize": 1128826,
+			"bookCategoryName": "Special Reports",
+			"volumeNumber": 0,
+			"bookID": 47,
+			"bookName": "Lululemon",
+			"pdfname": "/rb2/e70c74/Special Reports/lululemon Oneil Research_12122012.pdf",
+			"bookDate": "2012-12-12",
+			"coverUrl": "/public/pd2x/OR_SMThumb_lululemon_121212@2x.png"
+		}, {
+			"fileSize": 1814636,
+			"bookCategoryName": "Special Reports",
+			"volumeNumber": 0,
+			"bookID": 51,
+			"bookName": "Uniqlo",
+			"pdfname": "/rb2/e70c74/Special Reports/Uniqlo Oneil Research_11302012.pdf",
+			"bookDate": "2012-11-30",
+			"coverUrl": "/public/pd2x/OR_SMThumb_Uniqlo_113012@2x.png"
+		}, {
+			"fileSize": 2169808,
+			"bookCategoryName": "Special Reports",
+			"volumeNumber": 0,
+			"bookID": 44,
+			"bookName": "Alsea",
+			"pdfname": "/rb2/e70c74/Special Reports/Alsea Oneil Research_11162012.pdf",
+			"bookDate": "2012-11-16",
+			"coverUrl": "/public/pd2x/OR_SMThumb_Alsea_111612@2x.png"
+		}, {
+			"fileSize": 1050419,
+			"bookCategoryName": "Special Reports",
+			"volumeNumber": 0,
+			"bookID": 50,
+			"bookName": "Qihoo",
+			"pdfname": "/rb2/e70c74/Special Reports/Qihoo Oneil Research_11142012.pdf",
+			"bookDate": "2012-11-14",
+			"coverUrl": "/public/pd2x/OR_SMThumb_Qihoo_111412@2x.png"
+		}, {
+			"fileSize": 934705,
+			"bookCategoryName": "Special Reports",
+			"volumeNumber": 0,
+			"bookID": 52,
+			"bookName": "Indonesia and Thailand",
+			"pdfname": "/rb2/e70c74/Special Reports/Indonesia and Thailand Oneil Research_10242012.pdf",
+			"bookDate": "2012-10-24",
+			"coverUrl": "/public/pd2x/OR_SMThumb_Indonesia_and_Thailand_102412@2x.png"
+		}, {
+			"fileSize": 1094786,
+			"bookCategoryName": "Special Reports",
+			"volumeNumber": 0,
+			"bookID": 46,
+			"bookName": "Kors",
+			"pdfname": "/rb2/e70c74/Special Reports/Kors Oneil Research_10092012.pdf",
+			"bookDate": "2012-10-09",
+			"coverUrl": "/public/pd2x/OR_SMThumb_Michael_Kors_100912@2x.png"
+		}, {
+			"fileSize": 778637,
+			"bookCategoryName": "Special Reports",
+			"volumeNumber": 0,
+			"bookID": 45,
+			"bookName": "Brazil",
+			"pdfname": "/rb2/e70c74/Special Reports/Brazil Oneil Research_10012012.pdf",
+			"bookDate": "2012-10-01",
+			"coverUrl": "/public/pd2x/OR_SMThumb_Brazil_100112@2x.png"
+		}, {
+			"fileSize": 665744,
+			"bookCategoryName": "Special Reports",
+			"volumeNumber": 0,
+			"bookID": 49,
+			"bookName": "Hain",
+			"pdfname": "/rb2/e70c74/Special Reports/Hain Oneil Research_09122012.pdf",
+			"bookDate": "2012-09-12",
+			"coverUrl": "/public/pd2x/OR_SMThumb_Hain_091212@2x.png"
+		}, {
+			"fileSize": 677919,
+			"bookCategoryName": "Special Reports",
+			"volumeNumber": 0,
+			"bookID": 40,
+			"bookName": "Facebook ",
+			"pdfname": "/rb2/e70c74/Special Reports/Facebook Oneil Research_05242012.pdf",
+			"bookDate": "2012-05-24",
+			"coverUrl": "/public/pd2x/OR_SMThumb_Facebook_052412@2x.png"
+		}, {
+			"fileSize": null,
+			"bookCategoryName": "Institutional Research",
+			"volumeNumber": null,
+			"bookID": 12,
+			"bookName": "Exclusive Focus List Weekly - Long Ideas",
+			"pdfname": null,
+			"bookDate": null,
+			"coverUrl": "/public/cover2x/xfl-long@2x.jpg"
+		}, {
+			"fileSize": null,
+			"bookCategoryName": "Institutional Research",
+			"volumeNumber": null,
+			"bookID": 13,
+			"bookName": "Exclusive Focus List Weekly - Short Ideas",
+			"pdfname": null,
+			"bookDate": null,
+			"coverUrl": "/public/cover2x/xfl-short@2x.jpg"
+		}, {
+			"fileSize": null,
+			"bookCategoryName": "Institutional Research",
+			"volumeNumber": null,
+			"bookID": 15,
+			"bookName": "Global Focus List: Developed Markets - Short",
+			"pdfname": null,
+			"bookDate": null,
+			"coverUrl": "/public/cover2x/gfl_dm@2x.png"
+		}, {
+			"fileSize": null,
+			"bookCategoryName": "Institutional Research",
+			"volumeNumber": null,
+			"bookID": 17,
+			"bookName": "Global Focus List: Emerging Markets - Short",
+			"pdfname": null,
+			"bookDate": null,
+			"coverUrl": "/public/cover2x/gfl_em@2x.png"
+		}, {
+			"fileSize": null,
+			"bookCategoryName": "Institutional Research",
+			"volumeNumber": null,
+			"bookID": 19,
+			"bookName": "Global Focus List: Frontier Markets - Short",
+			"pdfname": null,
+			"bookDate": null,
+			"coverUrl": "/public/cover2x/gflfrontier_small.png"
+		}, {
+			"fileSize": null,
+			"bookCategoryName": "Institutional Research",
+			"volumeNumber": null,
+			"bookID": 99,
+			"bookName": "AlphaScope",
+			"pdfname": null,
+			"bookDate": null,
+			"coverUrl": "/public/cover2x/alphascope@2x.png"
+		}, {
+			"fileSize": null,
+			"bookCategoryName": "Market Data",
+			"volumeNumber": null,
+			"bookID": 4,
+			"bookName": "Analytical Perspective",
+			"pdfname": null,
+			"bookDate": null,
+			"coverUrl": "/public/cover2x/ap@2x.jpg"
+		}]
+	}
+}

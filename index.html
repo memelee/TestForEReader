@@ -3,8 +3,12 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
 	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
-	<title>O'Neil Book Shop</title>
+	<title>O'Neil Library</title>
+	<link rel="shortcut icon" href="img/main/favicon.ico">
+	<link rel="apple-touch-icon" href="img/main/app-icon.png">
 	<link rel="stylesheet" href="css/normalize.css">
 	<link rel="stylesheet" href="css/reset.css">
 	<link rel="stylesheet" href="css/style.css">
@@ -16,41 +20,41 @@
 	<script src="js/include/gestures.min.js"></script>
 </head>
 <body ng-controller="MainCtrl" onselectstart="return false;" ondragstart="return false;">
-	<div ng-controller="HomeCtrl" class="container">
+	<div ng-controller="HomeCtrl" ng-init="initHome()" class="container">
 		<div class="header">
 			<img ng-src="img/main/logo.png">
 			<button ng-if="!isLogin" ng-click="showSignin()" class="button-signin">Sign In</button>
-			<div ng-if="isLogin" class="header-hello">
-				hello {{nickname}}
-			</div>
+			<div ng-if="isLogin" ng-bind="nickname" class="header-hello"></div>
 			<button ng-click="showSetting()" class="button-setting"></button>
 		</div>
-		<div ng-if="isLogin" class="section">
-			<div class="section-header">MY LIBRARY</div>
-			<div ng-class="{'scroll': isMobileDevice}" class="section-list-container">
-				<ul hm-dragStart="dragStart('ml')" hm-drag="dragging('ml', $event)" hm-dragEnd="dragEnd('ml')" id="ml" class="section-list" style="width: {{240 * mlBookList.length}}px;">
-					<li ng-repeat="each in mlBookList">
-						<div class="book-thumb">
-		                	<img ng-click="openPDF('ml', $index)" ng-src="{{serverAddress + each.coverUrl}}">
-		                </div>
-		                <div ng-bind="each.bookName" class="book-label"></div>
-		                <div ng-bind="each.bookDate" class="book-date"></div>
-		            </li>	
-				</ul>
+		<div ng-show="isLogin" id="ml-container" class="animate ng-hide">
+			<div class="section">
+				<div class="section-header">MY LIBRARY</div>
+				<div ng-class="{'scroll': isMobileDevice}" class="section-list-container">
+					<ul hm-dragStart="dragStart('ml')" hm-drag="dragging('ml', $event)" hm-dragEnd="dragEnd('ml')" id="ml" class="section-list" style="width: {{240 * mlBookList.length}}px;">
+						<li ng-repeat="each in mlBookList" class="book-item animate">
+							<div class="book-thumb">
+			                	<img ng-click="showPDF('ml', $index)" ng-src="{{serverAddress + each.coverUrl}}">
+			                </div>
+			                <div ng-bind="each.bookName" class="book-label"></div>
+			                <div ng-bind="each.bookDate" class="book-date"></div>
+			            </li>	
+					</ul>
+				</div>
+	            <a ng-click="showLeft('ml')" class="section-control left">‹</a>
+	            <a ng-click="showRight('ml')" class="section-control right">›</a>
 			</div>
-            <a ng-click="showLeft('ml')" class="section-control left">‹</a>
-            <a ng-click="showRight('ml')" class="section-control right">›</a>
 		</div>
 		<div class="section">
 			<div class="section-header">SPECIAL REPORTS</div>
 			<div ng-class="{'scroll': isMobileDevice}" class="section-list-container">
 				<ul hm-dragStart="dragStart('sr')" hm-drag="dragging('sr', $event)" hm-dragEnd="dragEnd('sr')" id="sr" class="section-list" style="width: {{240 * srBookList.length}}px;">
-					<li ng-repeat="each in srBookList">
+					<li ng-repeat="each in srBookList" class="book-item animate">
 						<div class="book-thumb">
-		                	<img ng-click="openPDF('sr', $index)" ng-src="{{serverAddress + each.coverUrl}}">
+		                	<img ng-click="showPDF('sr', $index)" ng-src="{{serverAddress + each.coverUrl}}">
 		                </div>
 		                <div ng-if="!each.pdfname" class="book-lock">
-							<img ng-click="openPDF('sr', $index)" ng-src="img/main/locker.png">
+							<img ng-click="showPDF('sr', $index)" ng-src="img/main/locker.png">
 		                </div>
 		                <div ng-bind="each.bookName" class="book-label"></div>
 		                <div ng-bind="each.bookDate" class="book-date"></div>
@@ -64,7 +68,7 @@
 			<div class="section-header">INSTITUTIONAL RESEARCH</div>
 			<div ng-class="{'scroll': isMobileDevice}" class="section-list-container">
 				<ul hm-dragStart="dragStart('ir')" hm-drag="dragging('ir', $event)" hm-dragEnd="dragEnd('ir')" id="ir" class="section-list" style="width: {{240 * irBookList.length}}px;">
-					<li ng-repeat="each in irBookList">
+					<li ng-repeat="each in irBookList" class="book-item animate">
 						<div class="book-thumb">
 		                	<img ng-click="showProduct('ir', $index)" ng-src="{{serverAddress + each.coverUrl}}">
 		                </div>
@@ -80,7 +84,7 @@
 			<div class="section-header">MARKET DATA</div>
 			<div ng-class="{'scroll': isMobileDevice}" class="section-list-container">
 				<ul hm-dragStart="dragStart('md')" hm-drag="dragging('md', $event)" hm-dragEnd="dragEnd('md')" id="md" class="section-list" style="width: {{240 * mdBookList.length}}px;">
-					<li ng-repeat="each in mdBookList">
+					<li ng-repeat="each in mdBookList" class="book-item animate">
 						<div class="book-thumb">
 		                	<img ng-click="showProduct('md', $index)" ng-src="{{serverAddress + each.coverUrl}}">
 		                </div>
@@ -96,6 +100,24 @@
 
 	<!-- mask -->
 	<div ng-show="isShowMask" class="mask animate ng-hide"></div>
+
+	<!-- loading -->
+	<div ng-show="isShowLoading" class="loading animate ng-hide">
+		<img ng-src="img/main/loading.gif">
+	</div>
+
+	<!-- pdf -->
+	<div ng-show="isShowPDF" class="modal slim animate ng-hide">
+		<div ng-controller="PDFCtrl" id="pdf" class="modal-container">
+			<div class="modal-header">
+				<h1 ng-bind="bookName"></h1>
+				<button ng-click="hidePDF()" class="button-right">Close</button>
+			</div>
+			<div class="modal-body">
+				<iframe ng-src="{{bookPDF}}"></iframe>
+			</div>
+		</div>
+	</div>
 
 	<!-- product -->
 	<div ng-show="isShowProduct" class="modal animate ng-hide">
@@ -116,7 +138,7 @@
 							</li>
 						</ul>
 					</div>
-					<div class="part fl" style="margin-left: 20px;">
+					<div class="part fl" style="margin-left: 20px; text-align: left;">
 						<h1>{{productTitle}}</h1>
 						<div ng-class="{'scroll': isMobileDevice}" class="part-description">
 							<iframe ng-src="{{productHTML}}"></iframe>
@@ -129,15 +151,15 @@
 							<form method="post">
 								<ul>
 									<li>
-										<input class="fl" required name="name" placeholder="Name">
-										<input class="fr" required name="company" placeholder="Company">
+										<input ng-model="user.name" class="fl" required name="name" placeholder="Name">
+										<input ng-model="user.company" class="fr" required name="company" placeholder="Company">
 									</li>
 									<li>
-										<input class="fl" required type="email" name="email" placeholder="Email">
-										<input class="fr" required type="telephone" name="telephone" placeholder="Telephone">
+										<input ng-model="user.email" class="fl" required type="email" name="email" placeholder="Email">
+										<input ng-model="user.phone" class="fr" required type="telephone" name="telephone" placeholder="Telephone">
 									</li>
 									<li>
-										<button type="submit" class="button-submit">Submit</button>
+										<button ng-click="request(user)" type="submit" class="button-submit">Submit</button>
 									</li>
 								</ul>
 							</form>
@@ -175,7 +197,7 @@
 				<button ng-click="hideSignin()" class="button-right">Close</button>
 			</div>
 			<div class="modal-body">
-					<form name="signinForm">
+					<form>
 						<ul>
 							<li>
 								<input ng-model="user.email" required type="email" name="email" placeholder="Email">

@@ -5,7 +5,10 @@
 .fr { float: right; }
 
 .mask { position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 99; background-color: #000; opacity: 0.8; }
-.modal { position: fixed; top: 100px; left: 0; right: 0; z-index: 999; }
+.modal { position: fixed; top: 80px; bottom: 0; left: 0; right: 0; z-index: 999; }
+	.modal.slim { left: 50px; right: 50px; bottom: 90px; }
+.loading { position: fixed; text-align: center; top: 0; left: 0; right: 0; bottom: 0; z-index: 9999; }
+	.loading img { position: relative; top: 240px; width: 100px; border-radius: 5px; opacity: 0.8; }
 
 .text-bold{ font-weight: bold !important; }
 .text-disable{ color: #646464 !important; }
@@ -26,6 +29,7 @@ body { background-color: #000; -webkit-user-select: none; -moz-user-select: none
 	.header-hello {
 		position: absolute; height: 30px; top: 30px; right: 70px; color: #fff; font-size: 12px; font-weight: bold; line-height: 30px;
 	}
+#ml-container { width: 100%; height: 322px; }
 .section { position: relative; width: 100%; height: 322px; overflow: hidden; background: url(../img/main/section.png) no-repeat; background-size: 100% 100%; }
 	.section .section-control { position: absolute; height: 285px; width: 50px; top: 35px; line-height: 280px; font-size: 100px; font-weight: 100; text-align: center; color: #fff; opacity: 0.5; cursor: pointer; }
 	.section .section-control.left {left: 0px;}
@@ -52,19 +56,24 @@ body { background-color: #000; -webkit-user-select: none; -moz-user-select: none
 	.modal-body { text-align: center; background: url(../img/main/modal-body.png) no-repeat; background-size: 100% 100%; border-bottom-left-radius: 5px; border-bottom-right-radius: 5px; }
 	.modal-text { text-align: center; color: #fff; font-size: 12px; line-height: 13px; }
 
+/*pdf*/
+#pdf { width: 100%; height: 100%; }
+	#pdf .modal-body { height: 100%; }
+		#pdf .modal-body iframe { width: 100%; height: 100%; border: none; }
+
 /*product*/
-#product { width: 720px; height: 480px; overflow: hidden;}
-	#product .modal-body { height: 400px; padding-top: 40px; }
+#product { width: 720px; height: 490px; overflow: hidden;}
+	#product .modal-body { height: 410px; padding-top: 40px; }
 		#product .modal-body .part-container { position: relative; width: 200%; height: 100%; }
 		#product .modal-body .part-container.part-next-show { left: -720px; }
-			#product .modal-body .part-container .part { margin: 0 40px; width: 300px; text-align: left;}
-			#product .modal-body .part-container .part.part-request { width: 640px; text-align: center; }
-			#product .modal-body .part-container .part.part-carousel { width: 640px; text-align: center; }
-				#product .modal-body .part-container .part .part-wall { width: 100%; }
+			#product .modal-body .part-container .part { margin: 0 40px; width: 300px; text-align: center; }
+			#product .modal-body .part-container .part.part-request { width: 640px; }
+			#product .modal-body .part-container .part.part-carousel { width: 640px; }
+				#product .modal-body .part-container .part .part-wall { height: 232px; }
 				#product .modal-body .part-container .part .part-thumbnail { width: 100%; margin-top: 20px; overflow: hidden; }
-					#product .modal-body .part-container .part .part-thumbnail li { float: left; width: 100px; text-align: center; }
+					#product .modal-body .part-container .part .part-thumbnail li { float: left; width: 100px; }
 						#product .modal-body .part-container .part .part-thumbnail li img { height: 70px; cursor: pointer; }
-						#product .modal-body .part-container .part .part-thumbnail li p { color: #fff; font-size: 12px; margin-top: 10px; }
+						#product .modal-body .part-container .part .part-thumbnail li p { color: #fff; font-size: 12px; margin-top: 5px; }
 				#product .modal-body .part-container .part h1 { height: 60px; color: #fff; font-size: 22px; font-weight: bold; }
 				#product .modal-body .part-container .part .part-description { height: 168px; border: 1px solid #fff; overflow: hidden; -webkit-overflow-scrolling: touch; }
 				#product .modal-body .part-container .part iframe { width: 100%; height: 100%; border: none; }
@@ -75,7 +84,7 @@ body { background-color: #000; -webkit-user-select: none; -moz-user-select: none
 					#product .modal-body .part-container .part.part-request ul li{ height: 50px; }
 						#product .modal-body .part-container .part.part-request ul li input { width: 280px; height: 25px; color: #000; font-size: 14px; text-indent: 10px; border-radius: 5px; }
 
-				#product .modal-body .part-container .part.part-carousel .part-carousel-container { position: relative; margin-bottom: 20px; height: 360px; }
+				#product .modal-body .part-container .part.part-carousel .part-carousel-container { position: relative; margin-bottom: 20px; height: 370px; }
 					#product .modal-body .part-container .part.part-carousel .part-carousel-inner { position: relative; width: 100%; overflow: hidden; }
 						#product .modal-body .part-container .part.part-carousel .part-carousel-inner .part-item-container  { position: relative; }
 							#product .modal-body .part-container .part.part-carousel .part-carousel-inner .part-item { width: 640px; float: left; }

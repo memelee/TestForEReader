@@ -1,8 +1,8 @@
 <?php
 	
 	$action = $_GET["action"];
-	// $host = "ereaderweb.williamoneil.com";
-	$host = "172.22.136.45";
+	$host = "ereaderweb.williamoneil.com";
+	// $host = "172.22.136.45";
 
 	$request = getallheaders();
 	$request["Host"] = $host;

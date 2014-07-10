@@ -67,7 +67,7 @@ eReader.factory("Process", function($http) {
 			});
 		},
 		request: function(u) {
-			return $http.post(req + "&book=" + u.book + "&email=" + u.email + "&company=" + u.company + "&name=" + u.name + "&phone=" + u.phone).then(function(result) {
+			return $http.post(req + "?book=" + u.book + "&email=" + u.email + "&company=" + u.company + "&name=" + u.name + "&phone=" + u.phone).then(function(result) {
 				return result.data;
 			});
 		},
@@ -82,7 +82,7 @@ eReader.factory("Process", function($http) {
 			});
 		},
 		getProDetail: function(id) {
-			return $http.get(pro + "&book=" + id).then(function(result) {
+			return $http.get(pro + "?book=" + id).then(function(result) {
 				return result.data;
 			});
 		},

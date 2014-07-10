@@ -1,9 +1,9 @@
 // Root View Controller
-eReader.controller("MainCtrl", function($scope, Cookie) {
+eReader.controller("MainCtrl", function($scope, $timeout, Cookie) {
 	// constant
 	$scope.eReaderAddress = "ereader://?";
-	// $scope.serverAddress = "http://ereaderweb.williamoneil.com";
-	$scope.serverAddress = "http://172.22.136.45";
+	$scope.serverAddress = "http://ereaderweb.williamoneil.com";
+	// $scope.serverAddress = "http://172.22.136.45";
 	$scope.browser = navigator.userAgent.toLowerCase();
 	$scope.isIOS = $scope.browser.indexOf("ipod") != -1 || $scope.browser.indexOf("ipad") != -1 || $scope.browser.indexOf("iphone") != -1;
 	$scope.isMobileDevice = $scope.isIOS || $scope.browser.indexOf("android") != -1;
@@ -40,7 +40,10 @@ eReader.controller("MainCtrl", function($scope, Cookie) {
 		$scope.isShowLoading = true;
 	});
 	$scope.$on("hideLoading", function(event) {
-		$scope.isShowLoading = false;
+		var timer = $timeout(function() {
+			$scope.isShowLoading = false;
+			$timeout.cancel(timer);
+		}, 500);
 	});
 
 	// set pdf view
@@ -87,7 +90,7 @@ eReader.controller("MainCtrl", function($scope, Cookie) {
 });
 
 // Home View Controller
-eReader.controller("HomeCtrl", function($scope, Product, Process, Cookie) {
+eReader.controller("HomeCtrl", function($scope, $timeout, Product, Process, Cookie) {
 	$scope.startLeft = 0;
 	$scope.isDragging = false;
 
@@ -166,9 +169,23 @@ eReader.controller("HomeCtrl", function($scope, Product, Process, Cookie) {
 					if (product.volumeNumber) {
 						addr += ":" + product.volumeNumber;
 					}
-					window.location.replace(addr);
+
+					var app = document.createElement("iframe");
+					app.style.display = "none";
+					app.src = addr;
+					document.body.appendChild(app);
+
+					var old = (new Date()).getTime();
+					var timer = $timeout(function() {
+						document.body.removeChild(app);
+						var now = (new Date()).getTime();
+						if (now - old < 1500) {
+							window.open($scope.serverAddress + product.pdfname);
+						}
+						$timeout.cancel(timer);
+					}, 800);
 				}
-				if ($scope.isMobileDevice) {
+				else if ($scope.isMobileDevice) {
 					window.open($scope.serverAddress + product.pdfname);
 				} else {
 					$scope.$emit("showPDF", product);
@@ -228,8 +245,8 @@ eReader.controller("PDFCtrl", function($scope, $sce, $timeout) {
 	$scope.hidePDF = function() {
 		$scope.$emit("hidePDF");
 		var timer = $timeout(function() {
-			$scope.bookName = false;
-			$scope.bookPDF = false;
+			$scope.bookName = "";
+			$scope.bookPDF = "../view/null.html";
 			$timeout.cancel(timer);
 		}, 500);
 	};

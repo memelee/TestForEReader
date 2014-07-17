@@ -1,3 +1,27 @@
+eReader.factory("URL", function() {
+    var base = qa ? "local/proxy.aspx?ts=" : "local/proxy.php?ts=";
+    return {
+        getSGI: function() {
+            return base + (new Date).getTime() + (qa ?  "&uri=https://172.22.136.45/rb2/u/signin" : "&action=sgi");
+        },
+        getSGO: function() {
+            return base + (new Date).getTime() + (qa ?  "&uri=http://172.22.136.45/rb2/u/signout" : "&action=sgo");
+        },
+        getPUB: function() {
+            return base + (new Date).getTime() + (qa ?  "&uri=http://172.22.136.45/rb2/u/pub/list.json" : "&action=pub");
+        },
+        getMYL: function() {
+            return base + (new Date).getTime() + (qa ?  "&uri=http://172.22.136.45/rb2/bk/list.json" : "&action=myl");
+        },
+        getPRO: function() {
+            return base + (new Date).getTime() + (qa ?  "&uri=http://172.22.136.45/rb2/u/pub/detail.json" : "&action=pro");
+        },
+        getREQ: function() {
+            return base + (new Date).getTime() + (qa ?  "&uri=http://172.22.136.45/rb2/u/pub/reqsvc.json" : "&action=req");
+        }
+    };
+});
+
 eReader.factory("Product", function($rootScope) {
 	$rootScope.mlBookList = [];
 	$rootScope.srBookList = [];
@@ -23,6 +47,18 @@ eReader.factory("Product", function($rootScope) {
 				return $rootScope.mdBookList[i];
 			}
 		},
+        getCount: function(c) {
+            switch (c) {
+			case "ml":
+				return $rootScope.mlBookList.length;
+			case "sr":
+				return $rootScope.srBookList.length;
+			case "ir":
+				return $rootScope.irBookList.length;
+			case "md":
+				return $rootScope.mdBookList.length;
+			}
+        },
 		addOne: function(c, p) {
 			switch (c) {
 			case "ml":
@@ -49,11 +85,11 @@ eReader.factory("Product", function($rootScope) {
 	};
 });
 
-eReader.factory("Process", function($http) {
+eReader.factory("Process", function($http, URL) {
 	return {
 		login: function(u) {
 			var auth = "Basic " + btoa(u.email + ":" + u.password);
-			return $http.get(sgi, {
+			return $http.get(URL.getSGI(), {
 				headers: {
 					"Authorization": auth
 				}
@@ -62,27 +98,27 @@ eReader.factory("Process", function($http) {
 			});
 		},
 		logout: function() {
-			return $http.get(sgo).then(function(result) {
+			return $http.get(URL.getSGO()).then(function(result) {
 				return result.data;
 			});
 		},
 		request: function(u) {
-			return $http.post(req + "?book=" + u.book + "&email=" + u.email + "&company=" + u.company + "&name=" + u.name + "&phone=" + u.phone).then(function(result) {
+			return $http.post(URL.getREQ() + "?book=" + u.book + "&email=" + u.email + "&company=" + u.company + "&name=" + u.name + "&phone=" + u.phone).then(function(result) {
 				return result.data;
 			});
 		},
 		getMyList: function() {
-			return $http.get(myl).then(function(result) {
+			return $http.get(URL.getMYL()).then(function(result) {
 				return result.data;
 			});
 		},
 		getPubList: function() {
-			return $http.get(pub).then(function(result) {
+			return $http.get(URL.getPUB()).then(function(result) {
 				return result.data;
 			});
 		},
 		getProDetail: function(id) {
-			return $http.get(pro + "?book=" + id).then(function(result) {
+			return $http.get(URL.getPRO() + "?book=" + id).then(function(result) {
 				return result.data;
 			});
 		},

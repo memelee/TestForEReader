@@ -32,7 +32,7 @@
 			<div class="section">
 				<div class="section-header">MY LIBRARY</div>
 				<div ng-class="{'scroll': isMobileDevice}" class="section-list-container">
-					<ul hm-dragStart="dragStart('ml')" hm-drag="dragging('ml', $event)" hm-dragEnd="dragEnd('ml')" id="ml" class="section-list" style="width: {{240 * mlBookList.length}}px;">
+					<ul hm-dragStart="dragStart('ml')" hm-drag="dragging('ml', $event)" hm-dragEnd="dragEnd('ml')" id="ml" class="section-list" ng-style="setStyle('ml')">
 						<li ng-repeat="each in mlBookList" class="book-item animate">
 							<div class="book-thumb">
 			                	<img ng-click="showPDF('ml', $index)" ng-src="{{serverAddress + each.coverUrl}}">
@@ -49,13 +49,14 @@
 		<div class="section">
 			<div class="section-header">SPECIAL REPORTS</div>
 			<div ng-class="{'scroll': isMobileDevice}" class="section-list-container">
-				<ul hm-dragStart="dragStart('sr')" hm-drag="dragging('sr', $event)" hm-dragEnd="dragEnd('sr')" id="sr" class="section-list" style="width: {{240 * srBookList.length}}px;">
+				<ul hm-dragStart="dragStart('sr')" hm-drag="dragging('sr', $event)" hm-dragEnd="dragEnd('sr')" id="sr" class="section-list" ng-style="setStyle('sr')">
 					<li ng-repeat="each in srBookList" class="book-item animate">
 						<div class="book-thumb">
 		                	<img ng-click="showPDF('sr', $index)" ng-src="{{serverAddress + each.coverUrl}}">
 		                </div>
 		                <div ng-if="!each.pdfname" class="book-lock">
-							<img ng-click="showPDF('sr', $index)" ng-src="img/main/locker.png">
+							<img ng-if="each.bookName != 'GFL Test'" ng-click="showPDF('sr', $index)" ng-src="img/main/locker.png">
+							<img ng-if="each.bookName == 'GFL Test'" ng-click="showPDF('sr', $index)" ng-src="img/main/locker-big.png">
 		                </div>
 		                <div ng-bind="each.bookName" class="book-label"></div>
 		                <div ng-bind="each.bookDate" class="book-date"></div>
@@ -68,7 +69,7 @@
 		<div class="section">
 			<div class="section-header">INSTITUTIONAL RESEARCH</div>
 			<div ng-class="{'scroll': isMobileDevice}" class="section-list-container">
-				<ul hm-dragStart="dragStart('ir')" hm-drag="dragging('ir', $event)" hm-dragEnd="dragEnd('ir')" id="ir" class="section-list" style="width: {{240 * irBookList.length}}px;">
+				<ul hm-dragStart="dragStart('ir')" hm-drag="dragging('ir', $event)" hm-dragEnd="dragEnd('ir')" id="ir" class="section-list" ng-style="setStyle('ir')">
 					<li ng-repeat="each in irBookList" class="book-item animate">
 						<div class="book-thumb">
 		                	<img ng-click="showProduct('ir', $index)" ng-src="{{serverAddress + each.coverUrl}}">
@@ -84,7 +85,7 @@
 		<div class="section">
 			<div class="section-header">MARKET DATA</div>
 			<div ng-class="{'scroll': isMobileDevice}" class="section-list-container">
-				<ul hm-dragStart="dragStart('md')" hm-drag="dragging('md', $event)" hm-dragEnd="dragEnd('md')" id="md" class="section-list" style="width: {{240 * mdBookList.length}}px;">
+				<ul hm-dragStart="dragStart('md')" hm-drag="dragging('md', $event)" hm-dragEnd="dragEnd('md')" id="md" class="section-list" ng-style="setStyle('md')">
 					<li ng-repeat="each in mdBookList" class="book-item animate">
 						<div class="book-thumb">
 		                	<img ng-click="showProduct('md', $index)" ng-src="{{serverAddress + each.coverUrl}}">
@@ -149,7 +150,7 @@
 					</div>
 					<div ng-if="isShowRequest" class="part fl part-request">
 						<p class="modal-text text-bold">Please tell us who you are and we will respond to you within 1-2 business days.</p>
-							<form method="post">
+							<form ng-submit="request(user)">
 								<ul>
 									<li>
 										<input ng-model="user.name" class="fl" required name="name" placeholder="Name">
@@ -160,7 +161,7 @@
 										<input ng-model="user.phone" class="fr" required type="telephone" name="telephone" placeholder="Telephone">
 									</li>
 									<li>
-										<button ng-click="request(user)" type="submit" class="button-submit">Submit</button>
+										<button type="submit" class="button-submit">Submit</button>
 									</li>
 								</ul>
 							</form>
@@ -198,14 +199,14 @@
 				<button ng-click="hideSignin()" class="button-right">Close</button>
 			</div>
 			<div class="modal-body">
-					<form>
+					<form ng-submit="login(user)">
 						<ul>
 							<li>
 								<input ng-model="user.email" required type="email" name="email" placeholder="Email">
 							</li>
 							<li>
 								<input ng-model="user.password" required type="password" name="password" placeholder="Password">
-								<button ng-click="login(user)" type="submit" class="button-submit fr">Sign In</button>
+								<button type="submit" class="button-submit fr">Sign In</button>
 							</li>
 						</ul>	
 					</form>

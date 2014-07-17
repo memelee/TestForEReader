@@ -11,6 +11,12 @@
         }
     }
 
+    protected override void OnPreInit(EventArgs e)
+    {
+        base.OnPreInit(e);
+        this.Theme = null;
+    }
+
     protected void Page_Load(object sender, EventArgs e)
     {
         string Uri = Request["uri"];
@@ -23,8 +29,6 @@
         AddToSb(sb, Request.QueryString);
         AddToSb(sb, Request.Form);
         string query = sb.ToString();
-        //Response.Write(Uri);
-        //Uri = Server.UrlDecode(Uri);
         
         if (query.Length > 0)
         {
@@ -47,8 +51,31 @@
 
         System.Net.ServicePointManager.CertificatePolicy = new TrustAllCertificatePolicy();
         response = (HttpWebResponse)request.GetResponse();
-        StreamReader sr = new StreamReader(response.GetResponseStream());
-        Response.Write(sr.ReadToEnd());
+        Stream rs = response.GetResponseStream();
+        if (Uri.IndexOf(".pdf") != -1) 
+        {
+            Response.ContentType = "application/pdf"; 
+            
+            int buffer = 1024;
+            while (true)
+            {
+                byte[] bytes = new byte[buffer];
+                int size = rs.Read(bytes, 0, buffer);
+                if (size == 0) break;
+                if (size == buffer) Response.BinaryWrite(bytes);
+                else 
+                {
+                    byte[] last = new byte[size];
+                    for (int i = 0; i < size; i++) last[i] = bytes[i];
+                    Response.BinaryWrite(last);
+                }
+            }
+        } 
+        else 
+        {
+            StreamReader sr = new StreamReader(rs);
+            Response.Write(sr.ReadToEnd());
+        }
     }
 
     private void CloneToNV(NameValueCollection ori, NameValueCollection tar)

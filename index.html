@@ -31,8 +31,10 @@
 		<div ng-show="isLogin" id="ml-container" class="animate ng-hide">
 			<div class="section">
 				<div class="section-header">MY LIBRARY</div>
+                <div ng-click="showLeft('ml')" class="section-control left"></div>
+                <div ng-click="showRight('ml')" class="section-control right"></div>
 				<div ng-class="{'scroll': isMobileDevice}" class="section-list-container">
-					<ul hm-dragStart="dragStart('ml')" hm-drag="dragging('ml', $event)" hm-dragEnd="dragEnd('ml')" id="ml" class="section-list" ng-style="setStyle('ml')">
+					<ul hm-dragStart="dragStart('ml')" hm-drag="dragging('ml', $event)" hm-dragEnd="dragEnd('ml', $event)" id="ml" class="section-list" ng-style="setStyle('ml')">
 						<li ng-repeat="each in mlBookList" class="book-item animate">
 							<div class="book-thumb">
 			                	<img ng-click="showPDF('ml', $index)" ng-src="{{serverAddress + each.coverUrl}}">
@@ -42,14 +44,14 @@
 			            </li>	
 					</ul>
 				</div>
-	            <a ng-click="showLeft('ml')" class="section-control left">‹</a>
-	            <a ng-click="showRight('ml')" class="section-control right">›</a>
 			</div>
 		</div>
 		<div class="section">
-			<div class="section-header">SPECIAL REPORTS</div>
+			<div class="section-header">Equity Research Reports &nbsp; <a ng-click="showList()" class="section-sub-header">View All</a></div>
+            <div ng-click="showLeft('sr')" class="section-control left"></div>
+            <div ng-click="showRight('sr')" class="section-control right"></div>
 			<div ng-class="{'scroll': isMobileDevice}" class="section-list-container">
-				<ul hm-dragStart="dragStart('sr')" hm-drag="dragging('sr', $event)" hm-dragEnd="dragEnd('sr')" id="sr" class="section-list" ng-style="setStyle('sr')">
+				<ul hm-dragStart="dragStart('sr')" hm-drag="dragging('sr', $event)" hm-dragEnd="dragEnd('sr', $event)" id="sr" class="section-list" ng-style="setStyle('sr')">
 					<li ng-repeat="each in srBookList" class="book-item animate">
 						<div class="book-thumb">
 		                	<img ng-click="showPDF('sr', $index)" ng-src="{{serverAddress + each.coverUrl}}">
@@ -63,13 +65,13 @@
 		            </li>
 				</ul>
 			</div>
-            <a ng-click="showLeft('sr')" class="section-control left">‹</a>
-            <a ng-click="showRight('sr')" class="section-control right">›</a>
 		</div>
 		<div class="section">
 			<div class="section-header">INSTITUTIONAL RESEARCH</div>
+            <div ng-click="showLeft('ir')" class="section-control left"></div>
+            <div ng-click="showRight('ir')" class="section-control right"></div>
 			<div ng-class="{'scroll': isMobileDevice}" class="section-list-container">
-				<ul hm-dragStart="dragStart('ir')" hm-drag="dragging('ir', $event)" hm-dragEnd="dragEnd('ir')" id="ir" class="section-list" ng-style="setStyle('ir')">
+				<ul hm-dragStart="dragStart('ir')" hm-drag="dragging('ir', $event)" hm-dragEnd="dragEnd('ir', $event)" id="ir" class="section-list" ng-style="setStyle('ir')">
 					<li ng-repeat="each in irBookList" class="book-item animate">
 						<div class="book-thumb">
 		                	<img ng-click="showProduct('ir', $index)" ng-src="{{serverAddress + each.coverUrl}}">
@@ -79,13 +81,13 @@
 		            </li>
 				</ul>
 			</div>
-            <a ng-click="showLeft('ir')" class="section-control left">‹</a>
-            <a ng-click="showRight('ir')" class="section-control right">›</a>
 		</div>
 		<div class="section">
 			<div class="section-header">MARKET DATA</div>
+            <div ng-click="showLeft('md')" class="section-control left"></div>
+            <div ng-click="showRight('md')" class="section-control right"></div>
 			<div ng-class="{'scroll': isMobileDevice}" class="section-list-container">
-				<ul hm-dragStart="dragStart('md')" hm-drag="dragging('md', $event)" hm-dragEnd="dragEnd('md')" id="md" class="section-list" ng-style="setStyle('md')">
+				<ul hm-dragStart="dragStart('md')" hm-drag="dragging('md', $event)" hm-dragEnd="dragEnd('md', $event)" id="md" class="section-list" ng-style="setStyle('md')">
 					<li ng-repeat="each in mdBookList" class="book-item animate">
 						<div class="book-thumb">
 		                	<img ng-click="showProduct('md', $index)" ng-src="{{serverAddress + each.coverUrl}}">
@@ -95,8 +97,6 @@
 		            </li>
 				</ul>
 			</div>
-            <a ng-click="showLeft('md')" class="section-control left">‹</a>
-            <a ng-click="showRight('md')" class="section-control right">›</a>
 		</div>
 	</div>
 
@@ -120,6 +120,42 @@
 			</div>
 		</div>
 	</div>
+    
+    <!-- list -->
+    <div ng-show="isShowList" class="modal animate ng-hide">
+        <div ng-controller="ListCtrl" id="list" class="modal-container">
+            <div class="modal-header">
+                <input ng-model="search" type="text" placeholder="Search symbol, name, keyword">
+                <button ng-click="hideList()" class="button-right">Close</button>
+            </div>
+            <div class="modal-body">
+                <ul class="modal-segment">
+                    <li ng-class="{active: activeSegment == 0}" ng-click="showThis(0)" class="segment first">Date</span>
+                    <li ng-class="{active: activeSegment == 1}" ng-click="showThis(1)" class="segment last">Title</span>
+                </ul>
+                <div class="modal-list-container">
+                    <ul ng-if="activeSegment == 0" class="modal-list">
+                        <li ng-repeat="each in srBookList | filter:search" ng-click="showPDF('sr', each.index)" class="list-item animate">
+                            <span ng-bind="each.bookName" ng-class="{'text-disable': !each.pdfname}" class="list-label"></span>
+                            <span ng-bind="each.bookDate" ng-class="{'text-disable': !each.pdfname}" class="list-date"></span>
+                            <span ng-if="!each.pdfname" class="list-lock">
+                                <img ng-src="img/main/locker-list.png">
+                            </span>
+                        </li>
+                    </ul>
+                    <ul ng-if="activeSegment == 1" class="modal-list">
+                        <li ng-repeat="each in srBookList | filter:search" ng-click="showPDF('sr', each.index)" class="list-item animate">
+                            <span ng-bind="each.bookName" ng-class="{'text-disable': !each.pdfname}" class="list-label"></span>
+                            <span ng-bind="each.bookDate" ng-class="{'text-disable': !each.pdfname}" class="list-date"></span>
+                            <span ng-if="!each.pdfname" class="list-lock">
+                                <img ng-src="img/main/locker-list.png">
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
 
 	<!-- product -->
 	<div ng-show="isShowProduct" class="modal animate ng-hide">
@@ -202,10 +238,10 @@
 					<form ng-submit="login(user)">
 						<ul>
 							<li>
-								<input ng-model="user.email" required type="email" name="email" placeholder="Email">
+								<input ng-model="user.email" type="email" name="email" placeholder="Email">
 							</li>
 							<li>
-								<input ng-model="user.password" required type="password" name="password" placeholder="Password">
+								<input ng-model="user.password" type="password" name="password" placeholder="Password">
 								<button type="submit" class="button-submit fr">Sign In</button>
 							</li>
 						</ul>	
@@ -230,7 +266,6 @@
 	<div ng-show="isShowSetting" class="modal animate ng-hide">
 		<div ng-controller="SettingCtrl" id="setting" class="modal-container">
 			<div class="modal-header">
-				<h1>Setting</h1>
 				<button ng-click="hideSetting()" class="button-right">Close</button>
 			</div>
 			<div class="modal-body">
@@ -245,7 +280,7 @@
 				<div style="height: 30px; padding: 10px;">
 					<button ng-if="isLogin" ng-click="logout()" class="button-signout">Sign Out</button>
 				</div>
-				<p class="modal-text"><a href="http://www.williamoneil.com" target="_blank">Copyright 2013 William O'Neil + Co. Incorporated</a></p>
+				<p class="modal-text"><a href="http://williamoneil.com/InstitutionalServices/eBooks/terms.aspx" target="_blank">Copyright 2013 William O'Neil + Co. Incorporated</a></p>
 				<p class="modal-text">Terms & Conditions</p>
 				<p class="modal-text">Version HTML 1.0 Build 1.0</p>
 			</div>

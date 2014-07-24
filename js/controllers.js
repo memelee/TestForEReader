@@ -12,6 +12,7 @@ eReader.controller("MainCtrl", function($scope, $timeout, Cookie) {
 	$scope.isShowMask = false;
 	$scope.isShowLoading = false;
 	$scope.isShowPDF = false;
+	$scope.isShowList = false;
 	$scope.isShowProduct = false;
 	$scope.isShowSignin = false;
 	$scope.isShowSetting = false;
@@ -57,6 +58,16 @@ eReader.controller("MainCtrl", function($scope, $timeout, Cookie) {
 		$scope.isShowMask = false;
 	});
 
+    // set list view
+    $scope.$on("showList", function(event) {
+		$scope.isShowMask = true;
+        $scope.isShowList = true;
+    });
+    $scope.$on("hideList", function(event) {
+        $scope.isShowList = false;
+		$scope.isShowMask = false;
+    });
+    
 	// set product view 
 	$scope.$on("showProduct", function(event, p) {
 		$scope.isShowMask = true;
@@ -145,9 +156,16 @@ eReader.controller("HomeCtrl", function($scope, $timeout, Product, Process, Cook
 			target.scrollLeft =  $scope.startLeft - dt;
 		}
 	};
-	$scope.dragEnd = function(c) {
-		if (!$scope.isMobileDevice && $scope.browser.indexOf("chrome") != -1) {
-			$scope.isDragging  = false;
+	$scope.dragEnd = function(c, event) {
+		if (!$scope.isMobileDevice) {
+            if ($scope.browser.indexOf("chrome") != -1) {
+                $scope.isDragging  = false;
+            }
+            
+            var target = document.getElementById(c).parentNode;
+            var vx = event.gesture.velocityX * 2;
+            var left = event.gesture.deltaX < 0;
+            Product.slow(target, vx, left);
 		}
 	};
 
@@ -161,6 +179,10 @@ eReader.controller("HomeCtrl", function($scope, $timeout, Product, Process, Cook
 			$scope.$emit("showProduct", product);
 		}
 	};
+    
+    $scope.showList = function() {
+        $scope.$emit("showList");
+    };
     
 	// open pdf
 	$scope.showPDF = function(c, i) {
@@ -192,8 +214,7 @@ eReader.controller("HomeCtrl", function($scope, $timeout, Product, Process, Cook
 						}
 						$timeout.cancel(timer);
 					}, 800);
-				}
-				else if ($scope.isMobileDevice) {
+				} else if ($scope.isMobileDevice) {
 					window.open("local/proxy.aspx?uri=" + $scope.serverAddress + product.pdfname);
 				} else {
 					$scope.$emit("showPDF", product);
@@ -269,6 +290,60 @@ eReader.controller("PDFCtrl", function($scope, $sce, $timeout) {
 		$scope.bookName = p.bookName;
 		$scope.bookPDF = $sce.trustAsResourceUrl("local/proxy.aspx?uri=" + $scope.serverAddress + p.pdfname);
 	});
+});
+
+// List View Controller
+eReader.controller("ListCtrl", function($scope, $timeout, Product) {
+    $scope.activeSegment = 0;
+    
+    $scope.hideList = function() {
+        $scope.$emit("hideList");
+        var timer = $timeout(function() {
+            $scope.search = "";
+            $scope.activeSegment = 0;
+		}, 500);
+    };
+    
+    $scope.showThis = function(i) {
+        $scope.activeSegment = i;
+    };
+    
+    // open pdf
+	$scope.showPDF = function(c, i) {
+        $scope.hideList();
+        var product = Product.getOne(c, i);
+        if (product.pdfname == "" || product.pdfname == null) {
+            $scope.$emit("showLoading");
+            $scope.$emit("showProduct", product);
+        } else {
+            if ($scope.isIOS) {
+                var addr = $scope.eReaderAddress + product.bookName;
+                if (product.volumeNumber) {
+                    addr += ":" + product.volumeNumber;
+                }
+
+                var app = document.createElement("iframe");
+                app.style.display = "none";
+                app.src = addr;
+                document.body.appendChild(app);
+
+                var old = (new Date()).getTime();
+                var timer = $timeout(function() {
+                    document.body.removeChild(app);
+                    var now = (new Date()).getTime();
+                    if (now - old < 1500) {
+                        window.open("local/proxy.aspx?uri=" + $scope.serverAddress + product.pdfname);
+                    }
+                    $timeout.cancel(timer);
+                }, 800);
+            }
+            else if ($scope.isMobileDevice) {
+                window.open("local/proxy.aspx?uri=" + $scope.serverAddress + product.pdfname);
+            } else {
+                $scope.$emit("showPDF", product);
+            }
+        }
+	};
 });
 
 // Product View Controller
@@ -354,7 +429,7 @@ eReader.controller("ProductCtrl", function($scope, $sce, $swipe, $timeout, Proce
 			$scope.productHTML = $sce.trustAsResourceUrl($scope.serverAddress + productData.textUrl);
 			$scope.$emit("hideLoading");
 		}, function(data) {
-            $scope.$emit("hideProduct");
+            $scope.hideProduct();
             $scope.$emit("hideLoading");
             alert("Load book infomation error.");
         });
@@ -368,6 +443,15 @@ eReader.controller("SigninCtrl", function($scope, Cookie, Process) {
 	};
 
 	$scope.login = function(u) {
+        if (typeof(u) == "undefined" || typeof(u.email) == "undefined" || u.email == "") {
+            alert("Please enter a valid email address.");
+            return;
+        }
+        if (typeof(u.password) == "undefined" || u.password == "") {
+            alert("Please enter a valid password.");
+            return;
+        }
+        
 		$scope.$emit("showLoading");
 		Process.login(u).then(function(data) {
 			Cookie.setCookie("RAY_SESSION_ID", "\"" + data + "\"");
@@ -375,7 +459,7 @@ eReader.controller("SigninCtrl", function($scope, Cookie, Process) {
 			$scope.$emit("login");
 		}, function(data) {
             $scope.$emit("hideLoading");
-            alert("Please check you account.");
+            alert("Please check your address and password and try again.");
         });
 	};
 });

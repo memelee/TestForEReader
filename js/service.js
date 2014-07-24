@@ -62,12 +62,16 @@ eReader.factory("Product", function($rootScope) {
 		addOne: function(c, p) {
 			switch (c) {
 			case "ml":
+                p.index = this.getCount("ml");
 				return $rootScope.mlBookList.push(p);
 			case "sr":
+                p.index = this.getCount("sr");
 				return $rootScope.srBookList.push(p);
 			case "ir":
+                p.index = this.getCount("ir");
 				return $rootScope.irBookList.push(p);
 			case "md":
+                p.index = this.getCount("md");
 				return $rootScope.mdBookList.push(p);
 			}
 		},
@@ -81,7 +85,17 @@ eReader.factory("Product", function($rootScope) {
 					clearInterval(timer);
 				}
 			}, 1);
-		}
+		},
+        slow: function(target, velocity, left) {
+            var a = -0.05;
+            var timer = setInterval(function() {
+                target.scrollLeft += (left ? velocity : -velocity);
+                velocity += a;
+                if (velocity <= 0) {
+                    clearInterval(timer);
+                }
+            }, 1);
+        }
 	};
 });
 

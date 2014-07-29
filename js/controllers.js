@@ -284,6 +284,8 @@ eReader.controller("HomeCtrl", function($scope, $timeout, Product, Process, Cook
 
 // PDF View Controller
 eReader.controller("PDFCtrl", function($scope, $sce, $timeout) {
+    $scope.bookPDF = "view/null.html";
+    
 	$scope.hidePDF = function() {
 		$scope.$emit("hidePDF");
 		var timer = $timeout(function() {

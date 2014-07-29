@@ -119,7 +119,7 @@ eReader.controller("HomeCtrl", function($scope, $timeout, Product, Process, Cook
     // set style
     $scope.setStyle = function(c) {
         return {
-            width: 240 * Product.getCount(c) + 'px'
+            width: 240 * Product.getCount(c) + "px"
         };
     };
 
@@ -169,6 +169,15 @@ eReader.controller("HomeCtrl", function($scope, $timeout, Product, Process, Cook
 		}
 	};
 
+    $scope.showList = function() {
+        $scope.$emit("showList");
+    };
+    
+    $scope.download = function(c, i) {
+        var product = Product.getOne(c, i);
+        window.open("local/proxy.aspx?action=download&uri=" + $scope.serverAddress + product.pdfname);
+    };
+    
 	// click non-request book
 	$scope.showProduct = function(c, i) {
 		if (!$scope.isMobileDevice && $scope.isDragging) {
@@ -179,10 +188,6 @@ eReader.controller("HomeCtrl", function($scope, $timeout, Product, Process, Cook
 			$scope.$emit("showProduct", product);
 		}
 	};
-    
-    $scope.showList = function() {
-        $scope.$emit("showList");
-    };
     
 	// open pdf
 	$scope.showPDF = function(c, i) {
@@ -227,7 +232,7 @@ eReader.controller("HomeCtrl", function($scope, $timeout, Product, Process, Cook
 	$scope.$on("bindPubLibrary", function(event) {
 		Process.getPubList().then(function(data) {
 			Product.clear();
-
+            
 			var bookData = data["response"]["bkdata"];
 			for (var i in bookData) {
 				var each = bookData[i];
@@ -239,6 +244,7 @@ eReader.controller("HomeCtrl", function($scope, $timeout, Product, Process, Cook
 					Product.addOne("md", each);
 				}
 			}
+            Product.addToDate();
 
 			$scope.$emit("hideLoading");
 		}, function(data) {
@@ -266,6 +272,7 @@ eReader.controller("HomeCtrl", function($scope, $timeout, Product, Process, Cook
 					Product.addOne("md", each);
 				}
 			}
+            Product.addToDate();
 
 			$scope.$emit("hideLoading");
 		}, function(data) {
@@ -353,6 +360,13 @@ eReader.controller("ProductCtrl", function($scope, $sce, $swipe, $timeout, Proce
 	$scope.isShowCarousel = false;
 	$scope.activeCarousel = 0;
 
+    $scope.setStyle = function() {
+        return {
+            width: 640 * $scope.product.imageData.length + "px", 
+            left: -640 * $scope.activeCarousel + "px"
+        };
+    };
+    
 	$scope.hideProduct = function() {
 		$scope.$emit("hideProduct");
 		var timer = $timeout(function() {

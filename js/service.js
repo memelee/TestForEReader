@@ -23,6 +23,7 @@ eReader.factory("URL", function() {
 });
 
 eReader.factory("Product", function($rootScope) {
+	$rootScope.srDateList = [];
 	$rootScope.mlBookList = [];
 	$rootScope.srBookList = [];
 	$rootScope.irBookList = [];
@@ -30,6 +31,7 @@ eReader.factory("Product", function($rootScope) {
 	
 	return {
 		clear: function() {
+            $rootScope.srDateList = [];
 			$rootScope.mlBookList = [];
 			$rootScope.srBookList = [];
 			$rootScope.irBookList = [];
@@ -60,21 +62,36 @@ eReader.factory("Product", function($rootScope) {
 			}
         },
 		addOne: function(c, p) {
+            p.index = this.getCount(c);
 			switch (c) {
 			case "ml":
-                p.index = this.getCount("ml");
 				return $rootScope.mlBookList.push(p);
 			case "sr":
-                p.index = this.getCount("sr");
 				return $rootScope.srBookList.push(p);
 			case "ir":
-                p.index = this.getCount("ir");
 				return $rootScope.irBookList.push(p);
 			case "md":
-                p.index = this.getCount("md");
 				return $rootScope.mdBookList.push(p);
+            case "dt":
+				return $rootScope.srDateList.push(p);
 			}
 		},
+        addToDate: function() {
+            var date = this.getOne("sr", 0).bookDate.substr(0, 4);
+            var list = [];
+            for (var i in $rootScope.srBookList) {
+                var each = this.getOne("sr", i); 
+                var eachDate = each.bookDate.substr(0, 4);
+                if (eachDate == date) {
+                    list.push(each);
+                } else if (eachDate != date) {
+                    this.addOne("dt", {date: date, list: list});
+                    date = eachDate;
+                    list = [each];
+                }
+            }
+            this.addOne("dt", {date: date, list: list});
+        },
 		move: function(target, left) {
 			var i = 0;
 			var step = left ? -3 : 3;

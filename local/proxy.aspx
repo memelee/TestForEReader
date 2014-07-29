@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" %>
+<%@ Page Language="C#" AutoEventWireup="true" %>
 <%@ Import Namespace="System.Net" %>
 <%@ Import Namespace="System.IO" %>
 <script runat="server">
@@ -20,6 +20,7 @@
     protected void Page_Load(object sender, EventArgs e)
     {
         string Uri = Request["uri"];
+        string Action = Request["action"];
         if (string.IsNullOrEmpty(Uri))
             return;
 
@@ -55,6 +56,12 @@
         if (Uri.IndexOf(".pdf") != -1) 
         {
             Response.ContentType = "application/pdf"; 
+            if (Action == "download") 
+            {
+                string[] url = Uri.Split('/');
+                string[] arr = url[url.Length - 1].Split('?');
+                Response.AddHeader("Content-Disposition", "attachment;filename=" + arr[0]);
+            }
             
             int buffer = 1024;
             while (true)

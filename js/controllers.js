@@ -104,6 +104,7 @@ eReader.controller("MainCtrl", function($scope, $timeout, Cookie) {
 eReader.controller("HomeCtrl", function($scope, $timeout, Product, Process, Cookie) {
 	$scope.startLeft = 0;
 	$scope.isDragging = false;
+    $scope.isShowDownload = false;
 
 	// init book
 	$scope.initHome = function() {
@@ -130,7 +131,7 @@ eReader.controller("HomeCtrl", function($scope, $timeout, Product, Process, Cook
 	$scope.showSetting = function() {
 		$scope.$emit("showSetting");
 	};
-
+    
 	// left & right arrow
 	$scope.showLeft = function(c) {
 		var target = document.getElementById(c).parentNode;
@@ -173,28 +174,25 @@ eReader.controller("HomeCtrl", function($scope, $timeout, Product, Process, Cook
         $scope.$emit("showList");
     };
     
-    $scope.download = function(c, i) {
-        var product = Product.getOne(c, i);
+    $scope.download = function(product) {
         window.open("local/proxy.aspx?action=download&uri=" + $scope.serverAddress + product.pdfname);
     };
     
 	// click non-request book
-	$scope.showProduct = function(c, i) {
+	$scope.showProduct = function(product) {
 		if (!$scope.isMobileDevice && $scope.isDragging) {
 			$scope.isDragging  = false;
 		} else {
 			$scope.$emit("showLoading");
-			var product = Product.getOne(c, i);
 			$scope.$emit("showProduct", product);
 		}
 	};
     
 	// open pdf
-	$scope.showPDF = function(c, i) {
+	$scope.showPDF = function(product) {
 		if (!$scope.isMobileDevice && $scope.isDragging) {
 			$scope.isDragging  = false;
 		} else {
-			var product = Product.getOne(c, i);
 			if (product.pdfname == "" || product.pdfname == null) {
                 $scope.$emit("showLoading");
 				$scope.$emit("showProduct", product);
@@ -310,6 +308,7 @@ eReader.controller("ListCtrl", function($scope, $timeout, Product) {
         var timer = $timeout(function() {
             $scope.search = "";
             $scope.activeSegment = 0;
+			$timeout.cancel(timer);
 		}, 500);
     };
     
@@ -318,12 +317,14 @@ eReader.controller("ListCtrl", function($scope, $timeout, Product) {
     };
     
     // open pdf
-	$scope.showPDF = function(c, i) {
+	$scope.showPDF = function(product) {
         $scope.hideList();
-        var product = Product.getOne(c, i);
         if (product.pdfname == "" || product.pdfname == null) {
-            $scope.$emit("showLoading");
-            $scope.$emit("showProduct", product);
+            var timer = $timeout(function() {
+                $scope.$emit("showLoading");
+                $scope.$emit("showProduct", product);
+                $timeout.cancel(timer);
+            }, 500);
         } else {
             if ($scope.isIOS) {
                 var addr = $scope.eReaderAddress + product.bookName;
@@ -349,7 +350,10 @@ eReader.controller("ListCtrl", function($scope, $timeout, Product) {
             else if ($scope.isMobileDevice) {
                 window.open("local/proxy.aspx?uri=" + $scope.serverAddress + product.pdfname);
             } else {
-                $scope.$emit("showPDF", product);
+                var timer = $timeout(function() {
+                    $scope.$emit("showPDF", product);
+                    $timeout.cancel(timer);
+                }, 500);
             }
         }
 	};

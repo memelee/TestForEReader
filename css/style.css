@@ -15,6 +15,10 @@
 
 .scroll { overflow: scroll !important; }
 
+a:link {color: #1ac}
+a:visited {color: #666}
+a:hover {color: #fff}
+
 /*main*/
 body { background-color: #000; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; width: 100%; }
 .container { position: relative; margin: 0 auto; width: 100%; }
@@ -29,7 +33,9 @@ body { background-color: #000; -webkit-user-select: none; -moz-user-select: none
 .section { position: relative; width: 100%; height: 322px; overflow: hidden; background: url(../img/main/section.png) no-repeat; background-size: 100% 100%; }
 	.section-control { position: absolute; height: 20px; width: 20px; top: 8px; cursor: pointer; }
 	.section-control.left { right: 50px; background: url(../img/main/arrow-left.png) no-repeat; background-size: 100% 100%; }
+	.section-control.left:hover { background: url(../img/main/arrow-left-roll.png) no-repeat; background-size: 100% 100%; }
 	.section-control.right { right: 20px; background: url(../img/main/arrow-right.png) no-repeat; background-size: 100% 100%; }
+	.section-control.right:hover { background: url(../img/main/arrow-right-roll.png) no-repeat; background-size: 100% 100%; }
 	.section-header { margin: 11px 20px; color: #999; font-size: 12px; font-weight: bold; }
         .section-sub-header { color: #19f; font-weight: normal; cursor: pointer; }
 	.section-list-container { position: relative; width: 100%; height: 285px; overflow: hidden; -webkit-overflow-scrolling: touch; }

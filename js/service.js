@@ -37,18 +37,6 @@ eReader.factory("Product", function($rootScope) {
 			$rootScope.irBookList = [];
 			$rootScope.mdBookList = [];
 		},
-		getOne: function(c, i) {
-			switch (c) {
-			case "ml":
-				return $rootScope.mlBookList[i];
-			case "sr":
-				return $rootScope.srBookList[i];
-			case "ir":
-				return $rootScope.irBookList[i];
-			case "md":
-				return $rootScope.mdBookList[i];
-			}
-		},
         getCount: function(c) {
             switch (c) {
 			case "ml":
@@ -62,7 +50,6 @@ eReader.factory("Product", function($rootScope) {
 			}
         },
 		addOne: function(c, p) {
-            p.index = this.getCount(c);
 			switch (c) {
 			case "ml":
 				return $rootScope.mlBookList.push(p);
@@ -72,25 +59,23 @@ eReader.factory("Product", function($rootScope) {
 				return $rootScope.irBookList.push(p);
 			case "md":
 				return $rootScope.mdBookList.push(p);
-            case "dt":
-				return $rootScope.srDateList.push(p);
 			}
 		},
         addToDate: function() {
-            var date = this.getOne("sr", 0).bookDate.substr(0, 4);
+            var date = $rootScope.srBookList[0].bookDate.substr(0, 4);
             var list = [];
             for (var i in $rootScope.srBookList) {
-                var each = this.getOne("sr", i); 
+                var each = $rootScope.srBookList[i]
                 var eachDate = each.bookDate.substr(0, 4);
                 if (eachDate == date) {
                     list.push(each);
                 } else if (eachDate != date) {
-                    this.addOne("dt", {date: date, list: list});
+                    $rootScope.srDateList.push({date: date, list: list});
                     date = eachDate;
                     list = [each];
                 }
             }
-            this.addOne("dt", {date: date, list: list});
+            $rootScope.srDateList.push({date: date, list: list});
         },
 		move: function(target, left) {
 			var i = 0;

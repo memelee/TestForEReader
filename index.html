@@ -37,9 +37,9 @@
 					<ul hm-dragStart="dragStart('ml')" hm-drag="dragging('ml', $event)" hm-dragEnd="dragEnd('ml', $event)" id="ml" class="section-list" ng-style="setStyle('ml')">
 						<li ng-repeat="each in mlBookList" class="book-item animate">
 							<div class="book-thumb">
-			                	<img ng-click="showPDF('ml', $index)" ng-src="{{serverAddress + each.coverUrl}}">
+			                	<img ng-click="showPDF(each)" ng-src="{{serverAddress + each.coverUrl}}">
 			                </div>
-                            <div ng-if="!isMobileDevice" ng-click="download('ml', $index)" class="book-download">Download</div>
+                            <div ng-if="!isMobileDevice" ng-click="download(each)" class="book-download">Download</div>
 			                <div ng-bind="each.bookName" class="book-label"></div>
 			                <div ng-bind="each.bookDate" class="book-date"></div>
 			            </li>	
@@ -55,12 +55,12 @@
 				<ul hm-dragStart="dragStart('sr')" hm-drag="dragging('sr', $event)" hm-dragEnd="dragEnd('sr', $event)" id="sr" class="section-list" ng-style="setStyle('sr')">
 					<li ng-repeat="each in srBookList" class="book-item animate">
 						<div class="book-thumb">
-		                	<img ng-click="showPDF('sr', $index)" ng-src="{{serverAddress + each.coverUrl}}">
+		                	<img ng-click="showPDF(each)" ng-src="{{serverAddress + each.coverUrl}}">
 		                </div>
-                        <div ng-if="!isMobileDevice && each.pdfname" ng-click="download('sr', $index)" class="book-download">Download</div>
+                        <div ng-if="!isMobileDevice && each.pdfname" ng-click="download(each)" class="book-download">Download</div>
 		                <div ng-if="!each.pdfname" class="book-lock">
-							<img ng-if="each.bookName != 'GFL Test'" ng-click="showPDF('sr', $index)" ng-src="img/main/locker.png">
-							<img ng-if="each.bookName == 'GFL Test'" ng-click="showPDF('sr', $index)" ng-src="img/main/locker-big.png">
+							<img ng-if="each.bookName != 'GFL Test'" ng-click="showPDF(each)" ng-src="img/main/locker.png">
+							<img ng-if="each.bookName == 'GFL Test'" ng-click="showPDF(each)" ng-src="img/main/locker-big.png">
 		                </div>
 		                <div ng-bind="each.bookName" class="book-label"></div>
 		                <div ng-bind="each.bookDate" class="book-date"></div>
@@ -76,7 +76,7 @@
 				<ul hm-dragStart="dragStart('ir')" hm-drag="dragging('ir', $event)" hm-dragEnd="dragEnd('ir', $event)" id="ir" class="section-list" ng-style="setStyle('ir')">
 					<li ng-repeat="each in irBookList" class="book-item animate">
 						<div class="book-thumb">
-		                	<img ng-click="showProduct('ir', $index)" ng-src="{{serverAddress + each.coverUrl}}">
+		                	<img ng-click="showProduct(each)" ng-src="{{serverAddress + each.coverUrl}}">
 		                </div>
 		                <div ng-bind="each.bookName" class="book-label"></div>
 		                <div ng-bind="each.bookDate" class="book-date"></div>
@@ -92,7 +92,7 @@
 				<ul hm-dragStart="dragStart('md')" hm-drag="dragging('md', $event)" hm-dragEnd="dragEnd('md', $event)" id="md" class="section-list" ng-style="setStyle('md')">
 					<li ng-repeat="each in mdBookList" class="book-item animate">
 						<div class="book-thumb">
-		                	<img ng-click="showProduct('md', $index)" ng-src="{{serverAddress + each.coverUrl}}">
+		                	<img ng-click="showProduct(each)" ng-src="{{serverAddress + each.coverUrl}}">
 		                </div>
 		                <div ng-bind="each.bookName" class="book-label"></div>
 		                <div ng-bind="each.bookDate" class="book-date"></div>
@@ -140,7 +140,7 @@
                         <li ng-repeat="group in srDateList" style="margin: 0; height: auto; border: none;">
                             <div ng-bind="group.date" class="list-header"></div>
                             <ul>
-                                <li ng-repeat="each in group.list | filter:search" ng-click="showPDF('sr', each.index)" ng-class="each.pdfname ? 'active' : 'text-disable'" class="list-item animate">
+                                <li ng-repeat="each in group.list | filter:search" ng-click="showPDF(each)" ng-class="each.pdfname ? 'active' : 'text-disable'" class="list-item animate">
                                     <span ng-bind="each.bookName" class="list-label"></span>
                                     <span ng-bind="each.bookDate" class="list-date"></span>
                                     <span ng-if="!each.pdfname" class="list-lock">
@@ -151,7 +151,7 @@
                         </li>
                     </ul>
                     <ul ng-if="activeSegment == 1" class="modal-list">
-                        <li ng-repeat="each in srBookList | filter:search" ng-click="showPDF('sr', each.index)" ng-class="each.pdfname ? 'active' : 'text-disable'" class="list-item animate">
+                        <li ng-repeat="each in srBookList | filter:search" ng-click="showPDF(each)" ng-class="each.pdfname ? 'active' : 'text-disable'" class="list-item animate">
                             <span ng-bind="each.bookName" class="list-label"></span>
                             <span ng-bind="each.bookDate" class="list-date"></span>
                             <span ng-if="!each.pdfname" class="list-lock">

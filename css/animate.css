@@ -3,6 +3,10 @@
    	-moz-transform: translate3d(0, 0, 0); 
    	-ms-transform: translate3d(0, 0, 0); 
    	transform: translate3d(0, 0, 0); 
+    -webkit-transform-style: preserve-3d; 
+   	-moz-transform-style: preserve-3d; 
+   	-ms-transform-style: preserve-3d; 
+    transform-style: preserve-3d;
   	-webkit-transition: 300ms linear all;
     -moz-transition: 300ms linear all;
     -ms-transition: 300ms linear all;
@@ -16,9 +20,21 @@
 .mask.ng-hide-remove.ng-hide-remove-active { opacity: 0.8; }
 
 .loading.ng-hide-remove,
-.loading.ng-hide-add.ng-hide-add-active { opacity: 0; }
+.loading.ng-hide-add.ng-hide-add-active { 
+    opacity: 0; 
+    -webkit-transform: translateZ(10000px); 
+    -moz-transform: translateZ(10000px); 
+    -ms-transform: translateZ(10000px);
+    transform: translateZ(10000px);
+}
 .loading.ng-hide-add,
-.loading.ng-hide-remove.ng-hide-remove-active { opacity: 0.8; }
+.loading.ng-hide-remove.ng-hide-remove-active { 
+    opacity: 0.8;
+    -webkit-transform: translateZ(10000px); 
+    -moz-transform: translateZ(10000px); 
+    -ms-transform: translateZ(10000px);
+    transform: translateZ(10000px);
+}
 
 .book-item.ng-enter,
 .book-item.ng-leave.ng-leave-active { opacity: 0; }
@@ -31,9 +47,21 @@
 .list-item.ng-enter.ng-enter-active { opacity: 1; }
 
 .modal.ng-hide-remove,
-.modal.ng-hide-add.ng-hide-add-active { opacity: 0; }
+.modal.ng-hide-add.ng-hide-add-active { 
+    opacity: 0; 
+    -webkit-transform: translateZ(5000px) rotateY(90deg); 
+   	-moz-transform: translateZ(5000px) rotateY(90deg); 
+   	-ms-transform: translateZ(5000px) rotateY(90deg); 
+   	transform: translateZ(5000px) rotateY(90deg); 
+}
 .modal.ng-hide-add,
-.modal.ng-hide-remove.ng-hide-remove-active { opacity: 1; }
+.modal.ng-hide-remove.ng-hide-remove-active { 
+    opacity: 1; 
+    -webkit-transform: translateZ(5000px) rotateY(0deg); 
+   	-moz-transform: translateZ(5000px) rotateY(0deg); 
+   	-ms-transform: translateZ(5000px) rotateY(0deg); 
+   	transform: translateZ(5000px) rotateY(0deg); 
+}
 
 .part-container.part-next-show-remove,
 .part-container.part-next-show-add.part-next-show-add-active { left: -720px; }

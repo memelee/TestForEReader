@@ -37,9 +37,13 @@
 					<ul hm-dragStart="dragStart('ml')" hm-drag="dragging('ml', $event)" hm-dragEnd="dragEnd('ml', $event)" id="ml" class="section-list" ng-style="setStyle('ml')">
 						<li ng-repeat="each in mlBookList" class="book-item animate">
 							<div class="book-thumb">
-			                	<img ng-click="showPDF(each)" ng-src="{{serverAddress + each.coverUrl}}">
+                                <div class="book-sub-thumb" ng-mouseenter="showDownload(each)" ng-mouseleave="hideDownload(each)">
+                                    <img ng-click="showPDF(each)" ng-src="{{serverAddress + each.coverUrl}}" class="book-cover">
+                                    <img ng-if="!each.new" ng-click="showPDF(each)" ng-src="img/main/new-tag.png" class="book-new">
+                                    <div ng-if="!isMobileDevice" ng-click="download(each)" ng-class="{'active': each.download}" class="book-download animate">Download</div>
+                                </div>
 			                </div>
-                            <div ng-if="!isMobileDevice" ng-click="download(each)" class="book-download">Download</div>
+                            <div class="clear">
 			                <div ng-bind="each.bookName" class="book-label"></div>
 			                <div ng-bind="each.bookDate" class="book-date"></div>
 			            </li>	
@@ -55,13 +59,14 @@
 				<ul hm-dragStart="dragStart('sr')" hm-drag="dragging('sr', $event)" hm-dragEnd="dragEnd('sr', $event)" id="sr" class="section-list" ng-style="setStyle('sr')">
 					<li ng-repeat="each in srBookList" class="book-item animate">
 						<div class="book-thumb">
-		                	<img ng-click="showPDF(each)" ng-src="{{serverAddress + each.coverUrl}}">
+                            <div class="book-sub-thumb" ng-mouseenter="showDownload(each)" ng-mouseleave="hideDownload(each)">
+                                <img ng-click="showPDF(each)" ng-src="{{serverAddress + each.coverUrl}}" class="book-cover">
+                                <img ng-if="!each.pdfname && each.bookName != 'GFL Test'" ng-click="showPDF(each)" ng-src="img/main/locker.png" class="book-lock">
+                                <img ng-if="!each.pdfname && each.bookName == 'GFL Test'" ng-click="showPDF(each)" ng-src="img/main/locker-big.png" class="book-lock">
+                                <div ng-if="!isMobileDevice && each.pdfname" ng-click="download(each)" ng-class="{'active': each.download}" class="book-download animate">Download</div>
+                            </div>
 		                </div>
-                        <div ng-if="!isMobileDevice && each.pdfname" ng-click="download(each)" class="book-download">Download</div>
-		                <div ng-if="!each.pdfname" class="book-lock">
-							<img ng-if="each.bookName != 'GFL Test'" ng-click="showPDF(each)" ng-src="img/main/locker.png">
-							<img ng-if="each.bookName == 'GFL Test'" ng-click="showPDF(each)" ng-src="img/main/locker-big.png">
-		                </div>
+                        <div class="clear">
 		                <div ng-bind="each.bookName" class="book-label"></div>
 		                <div ng-bind="each.bookDate" class="book-date"></div>
 		            </li>
@@ -76,8 +81,11 @@
 				<ul hm-dragStart="dragStart('ir')" hm-drag="dragging('ir', $event)" hm-dragEnd="dragEnd('ir', $event)" id="ir" class="section-list" ng-style="setStyle('ir')">
 					<li ng-repeat="each in irBookList" class="book-item animate">
 						<div class="book-thumb">
-		                	<img ng-click="showProduct(each)" ng-src="{{serverAddress + each.coverUrl}}">
+                            <div class="book-sub-thumb">
+                                <img ng-click="showProduct(each)" ng-src="{{serverAddress + each.coverUrl}}" class="book-cover">
+                            </div>
 		                </div>
+                        <div class="clear">
 		                <div ng-bind="each.bookName" class="book-label"></div>
 		                <div ng-bind="each.bookDate" class="book-date"></div>
 		            </li>
@@ -92,8 +100,11 @@
 				<ul hm-dragStart="dragStart('md')" hm-drag="dragging('md', $event)" hm-dragEnd="dragEnd('md', $event)" id="md" class="section-list" ng-style="setStyle('md')">
 					<li ng-repeat="each in mdBookList" class="book-item animate">
 						<div class="book-thumb">
-		                	<img ng-click="showProduct(each)" ng-src="{{serverAddress + each.coverUrl}}">
+                            <div class="book-sub-thumb">
+                                <img ng-click="showProduct(each)" ng-src="{{serverAddress + each.coverUrl}}" class="book-cover">
+                            </div>
 		                </div>
+                        <div class="clear">
 		                <div ng-bind="each.bookName" class="book-label"></div>
 		                <div ng-bind="each.bookDate" class="book-date"></div>
 		            </li>

@@ -104,9 +104,8 @@ eReader.controller("MainCtrl", function($scope, $timeout, Cookie) {
 eReader.controller("HomeCtrl", function($scope, $timeout, Product, Process, Cookie) {
 	$scope.startLeft = 0;
 	$scope.isDragging = false;
-    $scope.isShowDownload = false;
 
-	// init book
+    // init book
 	$scope.initHome = function() {
 		if (Cookie.getCookie("EMAIL") != "") {
 			$scope.$emit("showLoading");
@@ -130,6 +129,14 @@ eReader.controller("HomeCtrl", function($scope, $timeout, Product, Process, Cook
 	};
 	$scope.showSetting = function() {
 		$scope.$emit("showSetting");
+	};
+    
+    // download label
+	$scope.showDownload = function(product) {
+        product.download = true;
+	};
+	$scope.hideDownload = function(product) {
+        product.download = false;
 	};
     
 	// left & right arrow
@@ -197,6 +204,10 @@ eReader.controller("HomeCtrl", function($scope, $timeout, Product, Process, Cook
                 $scope.$emit("showLoading");
 				$scope.$emit("showProduct", product);
 			} else {
+                if (product.bookCategoryName == "My Library") {
+                    Cookie.setCookie(product.pdfname, true, 8760);
+                    product.new = true;
+                }
 				if ($scope.isIOS) {
 					var addr = $scope.eReaderAddress + product.bookName;
 					if (product.volumeNumber) {
@@ -261,6 +272,7 @@ eReader.controller("HomeCtrl", function($scope, $timeout, Product, Process, Cook
 			for (var i in bookData) {
 				var each = bookData[i];
 				if (each.bookCategoryName == "My Library") {
+                    each.new = Cookie.getCookie(each.pdfname);
 					Product.addOne("ml", each);
 				} else if (each.bookCategoryName == "Special Reports") {
 					Product.addOne("sr", each);
@@ -300,7 +312,7 @@ eReader.controller("PDFCtrl", function($scope, $sce, $timeout) {
 });
 
 // List View Controller
-eReader.controller("ListCtrl", function($scope, $timeout, Product) {
+eReader.controller("ListCtrl", function($scope, $timeout, Product, Cookie) {
     $scope.activeSegment = 0;
     
     $scope.hideList = function() {

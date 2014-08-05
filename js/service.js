@@ -144,8 +144,9 @@ eReader.factory("Process", function($http, URL) {
 eReader.factory("Cookie", function() {
 	return {
 		setCookie: function(k, v) {
+            var h = arguments[2] || 1;
 			var exp = new Date();
-			exp.setTime(exp.getTime() + 1 * 60 * 60 * 1000);
+			exp.setTime(exp.getTime() + h * 60 * 60 * 1000);
 			document.cookie = k + "=" + v + ";path=/;expires=" + exp.toGMTString();
 		},
 		getCookie: function(k) {

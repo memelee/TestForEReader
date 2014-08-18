@@ -24,7 +24,7 @@
 	<div ng-controller="HomeCtrl" ng-init="initHome()" class="container">
 		<div class="header">
 			<img ng-src="img/main/logo.png">
-			<button ng-if="!isLogin" ng-click="showSignin()" class="button-signin">Sign In</button>
+			<button ng-if="!isLogin" ng-click="showSignin()" class="button-signin"></button>
 			<div ng-if="isLogin" ng-bind="nickname" class="header-hello"></div>
 			<button ng-click="showSetting()" class="button-setting"></button>
 		</div>
@@ -126,7 +126,7 @@
 		<div ng-controller="PDFCtrl" id="pdf" class="modal-container">
 			<div class="modal-header">
 				<h1 ng-bind="bookName"></h1>
-				<button ng-click="hidePDF()" class="button-right">Close</button>
+				<button ng-click="hidePDF()" class="button-right"></button>
 			</div>
 			<div class="modal-body">
 				<iframe ng-src="{{bookPDF}}"></iframe>
@@ -138,20 +138,20 @@
     <div ng-show="isShowList" class="modal animate ng-hide">
         <div ng-controller="ListCtrl" id="list" class="modal-container">
             <div class="modal-header">
-                <input ng-model="search" type="text" placeholder="Search symbol, name, keyword">
-                <button ng-click="hideList()" class="button-right">Close</button>
+                <input ng-model="search" placeholder="Search symbol, name, keyword">
+                <button ng-click="hideList()" class="button-right"></button>
             </div>
             <div class="modal-body">
                 <ul class="modal-segment">
-                    <li ng-class="{active: activeSegment == 0}" ng-click="showThis(0)" class="segment first">Date</span>
-                    <li ng-class="{active: activeSegment == 1}" ng-click="showThis(1)" class="segment last">Title</span>
+                    <li ng-class="{active: activeSegment == 0}" ng-click="showThis(0)" class="segment left"></li>
+                    <li ng-class="{active: activeSegment == 1}" ng-click="showThis(1)" class="segment right"></li>
                 </ul>
                 <div class="modal-list-container">
                     <ul ng-if="activeSegment == 0" class="modal-list">
                         <li ng-repeat="group in srDateList" style="margin: 0; height: auto; border: none;">
                             <div ng-bind="group.date" class="list-header"></div>
                             <ul>
-                                <li ng-repeat="each in group.list | filter:search" ng-click="showPDF(each)" ng-class="each.pdfname ? 'active' : 'text-disable'" class="list-item animate">
+                                <li ng-repeat="each in group.list | filter:search" ng-click="showPDF(each)" ng-class="{'active': each.pdfname}" class="list-item animate">
                                     <span ng-bind="each.bookName" class="list-label"></span>
                                     <span ng-bind="each.bookDate" class="list-date"></span>
                                     <span ng-if="!each.pdfname" class="list-lock">
@@ -162,7 +162,7 @@
                         </li>
                     </ul>
                     <ul ng-if="activeSegment == 1" class="modal-list">
-                        <li ng-repeat="each in srBookList | filter:search" ng-click="showPDF(each)" ng-class="each.pdfname ? 'active' : 'text-disable'" class="list-item animate">
+                        <li ng-repeat="each in srBookList | filter:search" ng-click="showPDF(each)" ng-class="{'active': each.pdfname}" class="list-item animate">
                             <span ng-bind="each.bookName" class="list-label"></span>
                             <span ng-bind="each.bookDate" class="list-date"></span>
                             <span ng-if="!each.pdfname" class="list-lock">
@@ -179,9 +179,9 @@
 	<div ng-show="isShowProduct" class="modal animate ng-hide">
 		<div ng-controller="ProductCtrl" id="product" class="modal-container">
 			<div class="modal-header">
-				<button ng-show="isShowNext" ng-click="hideNext()" class="button-left">Back</button>
+				<button ng-show="isShowNext" ng-click="hideNext()" class="button-left"></button>
 				<h1>Product Information</h1>
-				<button ng-click="hideProduct()" class="button-right">Close</button>
+				<button ng-click="hideProduct()" class="button-right"></button>
 			</div>
 			<div class="modal-body">
 				<div ng-class="{'part-next-show': isShowNext}" class="part-container animate">
@@ -195,27 +195,27 @@
 						</ul>
 					</div>
 					<div class="part fl" style="margin-left: 20px; text-align: left;">
-						<h1>{{productTitle}}</h1>
+						<h1 ng-bind="productTitle"></h1>
 						<div ng-class="{'scroll': isMobileDevice}" class="part-description">
 							<iframe ng-src="{{productHTML}}"></iframe>
 						</div>
 						<p class="part-text">For access to {{productTitle}}, please contact your Account Exective.</p>
-						<button ng-click="showRequest()" class="button-request">Request Service</button>
+						<button ng-click="showRequest()" class="button-request"></button>
 					</div>
 					<div ng-if="isShowRequest" class="part fl part-request">
-						<p class="modal-text text-bold">Please tell us who you are and we will respond to you within 1-2 business days.</p>
+						<p class="modal-text">Please tell us who you are and we will respond to you within 1-2 business days.</p>
 							<form ng-submit="request(user)">
 								<ul>
 									<li>
-										<input ng-model="user.name" class="fl" required name="name" placeholder="Name">
-										<input ng-model="user.company" class="fr" required name="company" placeholder="Company">
+										<input ng-model="user.name" class="fl" name="name" placeholder="Name">
+										<input ng-model="user.company" class="fr" name="company" placeholder="Company">
 									</li>
 									<li>
-										<input ng-model="user.email" class="fl" required type="email" name="email" placeholder="Email">
-										<input ng-model="user.phone" class="fr" required type="telephone" name="telephone" placeholder="Telephone">
+										<input ng-model="user.email" class="fl" name="email" placeholder="Email">
+										<input ng-model="user.phone" class="fr" name="telephone" placeholder="Telephone">
 									</li>
 									<li>
-										<button type="submit" class="button-submit">Submit</button>
+										<button type="submit" class="button-submit"></button>
 									</li>
 								</ul>
 							</form>
@@ -226,6 +226,7 @@
 					</div>
 					<div ng-if="isShowCarousel" class="part fl part-carousel">
 						<div class="part-carousel-container">
+                            <p ng-bind="productTitle" class="part-carousel-title"></p>
 			                <ul class="part-carousel-indicators">
 			                  	<li ng-repeat="each in product.imageData" ng-click="showThis($index)" ng-class="{active: $index == activeCarousel}"></li>
 			                </ul>
@@ -233,6 +234,7 @@
 			                	<div ng-swipe-left="swipeLeft()" ng-swipe-right="swipeRight()" class="part-item-container animate" ng-style="setStyle()">
 				                  	<div ng-repeat="each in product.imageData" class="part-item" >
 				                    	<img ng-src="{{serverAddress + each.largeImgUrl}}">
+                                        <p ng-bind="each.longText" class="part-carousel-text"></p>
 				                  	</div>
 				                </div>
 			                </div>
@@ -250,17 +252,17 @@
 		<div ng-controller="SigninCtrl" id="signin" class="modal-container">
 			<div class="modal-header">
 				<h1>Sign In</h1>
-				<button ng-click="hideSignin()" class="button-right">Close</button>
+				<button ng-click="hideSignin()" class="button-right"></button>
 			</div>
 			<div class="modal-body">
 					<form ng-submit="login(user)">
 						<ul>
 							<li>
-								<input ng-model="user.email" type="email" name="email" placeholder="Email">
+								<input ng-model="user.email" name="email" placeholder="Email">
 							</li>
 							<li>
 								<input ng-model="user.password" type="password" name="password" placeholder="Password">
-								<button type="submit" class="button-submit fr">Sign In</button>
+								<button type="submit" class="button-signin-blue"></button>
 							</li>
 						</ul>	
 					</form>
@@ -284,7 +286,7 @@
 	<div ng-show="isShowSetting" class="modal animate ng-hide">
 		<div ng-controller="SettingCtrl" id="setting" class="modal-container">
 			<div class="modal-header">
-				<button ng-click="hideSetting()" class="button-right">Close</button>
+				<button ng-click="hideSetting()" class="button-right"></button>
 			</div>
 			<div class="modal-body">
 				<img ng-src="img/setting/setting-header.png" width="80%">
@@ -295,8 +297,8 @@
 				<p class="modal-text">UK: 0 (800) 969-581</p>
 				<p class="modal-text">International: (310) 448-6199</p>
 				<p class="modal-text"><a href="mailto:support@williamoneil.com">support@williamoneil.com</a></p>
-				<div style="height: 30px; padding: 10px;">
-					<button ng-if="isLogin" ng-click="logout()" class="button-signout">Sign Out</button>
+				<div style="height: 32px; padding: 10px;">
+					<button ng-if="isLogin" ng-click="logout()" class="button-signout"></button>
 				</div>
 				<p class="modal-text"><a href="http://williamoneil.com/InstitutionalServices/eBooks/terms.aspx" target="_blank">Copyright 2013 William O'Neil + Co. Incorporated</a></p>
 				<p class="modal-text">Terms & Conditions</p>

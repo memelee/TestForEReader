@@ -78,12 +78,14 @@ eReader.factory("Product", function($rootScope) {
             $rootScope.srDateList.push({date: date, list: list});
         },
 		move: function(target, left) {
+            var width = target.clientWidth;
+            var num = Math.floor(width / 240);
 			var i = 0;
-			var step = left ? -3 : 3;
+			var step = left ? -8 : 8;
 			var timer = setInterval(function() {
 				target.scrollLeft += step;
-				i += 3;
-				if (i >= 240) {
+				i += Math.abs(step);
+				if (i >= num * 240) {
 					clearInterval(timer);
 				}
 			}, 1);

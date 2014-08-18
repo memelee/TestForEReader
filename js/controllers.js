@@ -1,12 +1,15 @@
 // Root View Controller
-eReader.controller("MainCtrl", function($scope, $timeout, Cookie) {
+eReader.controller("MainCtrl", function($scope, $location, $timeout, Cookie) {
 	// constant
 	$scope.eReaderAddress = "ereader://?";
 	// $scope.serverAddress = "http://ereaderweb.williamoneil.com";
 	$scope.serverAddress = "http://172.22.136.45";
+    
 	$scope.browser = navigator.userAgent.toLowerCase();
 	$scope.isIOS = $scope.browser.indexOf("ipod") != -1 || $scope.browser.indexOf("ipad") != -1 || $scope.browser.indexOf("iphone") != -1;
 	$scope.isMobileDevice = $scope.isIOS || $scope.browser.indexOf("android") != -1;
+    
+    $scope.queryString = $location.search();
 
 	// view display
 	$scope.isShowMask = false;
@@ -107,12 +110,23 @@ eReader.controller("HomeCtrl", function($scope, $timeout, Product, Process, Cook
 
     // init book
 	$scope.initHome = function() {
+        if (typeof($scope.queryString.book) != "undefined") {
+            if (typeof($scope.queryString.volume) == "undefined" || $scope.queryString.volume == "") {
+                $scope.queryString.volume = 0;
+            }
+        }
 		if (Cookie.getCookie("EMAIL") != "") {
 			$scope.$emit("showLoading");
 			$scope.$emit("login");
 		} else {
 			$scope.$emit("showLoading");
 			$scope.$emit("logout");
+            if (typeof($scope.queryString.book) != "undefined") {
+                var timer = $timeout(function() {
+                    $scope.showSignin();
+                    $timeout.cancel(timer);
+                }, 500);
+            }
 		}
 	};
 
@@ -200,7 +214,7 @@ eReader.controller("HomeCtrl", function($scope, $timeout, Product, Process, Cook
 		if (!$scope.isMobileDevice && $scope.isDragging) {
 			$scope.isDragging  = false;
 		} else {
-			if (product.pdfname == "" || product.pdfname == null) {
+			if (!product.pdfname) {
                 $scope.$emit("showLoading");
 				$scope.$emit("showProduct", product);
 			} else {
@@ -281,6 +295,9 @@ eReader.controller("HomeCtrl", function($scope, $timeout, Product, Process, Cook
 				} else if (each.bookCategoryName == "Market Data") {
 					Product.addOne("md", each);
 				}
+                if ($scope.queryString.book == each.bookName && $scope.queryString.volume == each.volumeNumber) {
+                    $scope.showPDF(each);
+                }
 			}
             Product.addToDate();
 
@@ -439,6 +456,23 @@ eReader.controller("ProductCtrl", function($scope, $sce, $swipe, $timeout, Proce
 	};
 
 	$scope.request = function(u) {
+        if (typeof(u) == "undefined" || typeof(u.name) == "undefined" || u.name == "") {
+            alert("Please enter a valid name.");
+            return;
+        }
+        if (typeof(u.company) == "undefined" || u.company == "") {
+            alert("Please enter a valid company name.");
+            return;
+        }
+        if (typeof(u.email) == "undefined" || u.email == "") {
+            alert("Please enter a valid email address.");
+            return;
+        }
+        if (typeof(u.phone) == "undefined" || u.phone == "") {
+            alert("Please enter a valid phone number.");
+            return;
+        }
+        
 		$scope.$emit("showLoading");
 		u.book = $scope.bookID;
 		Process.request(u).then(function(data) {
